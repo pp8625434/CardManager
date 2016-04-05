@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 商品统计 -->
+	<package name="commditysta" extends="print" namespace="/commditysta">
+		<action name="commoditySta" class="com.manage.commoditysta.action.CommodityStaAction" method="commoditySta">
+			<result name="success">/admin/commoditysta/commoditySta.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+	</package>
+	
+	<package name="commiditystaJson" extends="json-default" namespace="/commditysta">
+		<action name="commodityStatistical" class="com.manage.commoditysta.action.CommodityStaAction" method="commodityStatistical" >
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		
+	</package>
+</struts>
+
+
+

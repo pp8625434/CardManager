@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Ware Manager And DAO Configration==================== -->  
+    <bean id="com.manage.commodity.dao.impl.CommodityDaoImpl" class="com.manage.commodity.dao.impl.CommodityDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.commodity.dao.CommodityDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.commodity.dao.CommodityDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.commodity.dao.impl.CommodityDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.commodity.model.Commodity" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.commodity.service.impl.CommodityManagerImpl">
+                <property name="dao" ref="com.manage.commodity.dao.CommodityDao"/>
+                <property name="modelClass" value="com.manage.commodity.model.Commodity"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

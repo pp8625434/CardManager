@@ -1,0 +1,185 @@
+package com.manage.commodity.action.info;
+
+import java.util.Date;
+
+import com.base.framework.web.PageInfoView;
+
+public class CommodityPageInfo extends PageInfoView{
+	
+	protected Integer f_id;
+	protected String f_id_op;
+	protected Integer f_version;
+	protected String f_version_op;
+	protected Integer f_mid;
+	protected String f_mid_op;
+	protected String f_mname;
+	protected String f_mname_op;
+	protected String f_cname;
+	protected String f_cname_op;
+	protected Double f_price;
+	protected String f_price_op;
+	protected String f_unit;
+	protected String f_unit_op;
+	protected Integer f_isused;
+	protected String f_isused_op;
+	protected Date f_createdate;
+	protected String f_createdate_op;
+	protected Integer f_creator;
+	protected String f_creator_op;
+	protected Integer f_isdeleted;
+	protected String f_isdeleted_op;
+	
+	protected String f_imgpath;
+	protected String f_imgpath_op;
+	
+	protected Integer f_sourceid;
+	protected String f_sourceid_op;
+	protected String f_sourcename;
+	protected String f_sourcename_op;
+	
+	public Integer getF_id() {
+		return f_id;
+	}
+	public void setF_id(Integer f_id) {
+		this.f_id = f_id;
+	}
+	public String getF_id_op() {
+		return f_id_op;
+	}
+	public void setF_id_op(String f_id_op) {
+		this.f_id_op = f_id_op;
+	}
+	public Integer getF_version() {
+		return f_version;
+	}
+	public void setF_version(Integer f_version) {
+		this.f_version = f_version;
+	}
+	public String getF_version_op() {
+		return f_version_op;
+	}
+	public void setF_version_op(String f_version_op) {
+		this.f_version_op = f_version_op;
+	}
+	public Integer getF_mid() {
+		return f_mid;
+	}
+	public void setF_mid(Integer f_mid) {
+		this.f_mid = f_mid;
+	}
+	public String getF_mid_op() {
+		return f_mid_op;
+	}
+	public void setF_mid_op(String f_mid_op) {
+		this.f_mid_op = f_mid_op;
+	}
+	public String getF_mname() {
+		return f_mname;
+	}
+	public void setF_mname(String f_mname) {
+		this.f_mname = f_mname;
+	}
+	public String getF_mname_op() {
+		return f_mname_op;
+	}
+	public void setF_mname_op(String f_mname_op) {
+		this.f_mname_op = f_mname_op;
+	}
+	public String getF_cname() {
+		return f_cname;
+	}
+	public void setF_cname(String f_cname) {
+		this.f_cname = f_cname;
+	}
+	public String getF_cname_op() {
+		return f_cname_op;
+	}
+	public void setF_cname_op(String f_cname_op) {
+		this.f_cname_op = f_cname_op;
+	}
+	public Double getF_price() {
+		return f_price;
+	}
+	public void setF_price(Double f_price) {
+		this.f_price = f_price;
+	}
+	public String getF_price_op() {
+		return f_price_op;
+	}
+	public void setF_price_op(String f_price_op) {
+		this.f_price_op = f_price_op;
+	}
+	public String getF_unit() {
+		return f_unit;
+	}
+	public void setF_unit(String f_unit) {
+		this.f_unit = f_unit;
+	}
+	public String getF_unit_op() {
+		return f_unit_op;
+	}
+	public void setF_unit_op(String f_unit_op) {
+		this.f_unit_op = f_unit_op;
+	}
+	public Integer getF_isused() {
+		return f_isused;
+	}
+	public void setF_isused(Integer f_isused) {
+		this.f_isused = f_isused;
+	}
+	public String getF_isused_op() {
+		return f_isused_op;
+	}
+	public void setF_isused_op(String f_isused_op) {
+		this.f_isused_op = f_isused_op;
+	}
+	public Date getF_createdate() {
+		return f_createdate;
+	}
+	public void setF_createdate(Date f_createdate) {
+		this.f_createdate = f_createdate;
+	}
+	public String getF_createdate_op() {
+		return f_createdate_op;
+	}
+	public void setF_createdate_op(String f_createdate_op) {
+		this.f_createdate_op = f_createdate_op;
+	}
+	public Integer getF_creator() {
+		return f_creator;
+	}
+	public void setF_creator(Integer f_creator) {
+		this.f_creator = f_creator;
+	}
+	public String getF_creator_op() {
+		return f_creator_op;
+	}
+	public void setF_creator_op(String f_creator_op) {
+		this.f_creator_op = f_creator_op;
+	}
+	public Integer getF_isdeleted() {
+		return f_isdeleted;
+	}
+	public void setF_isdeleted(Integer f_isdeleted) {
+		this.f_isdeleted = f_isdeleted;
+	}
+	public String getF_isdeleted_op() {
+		return f_isdeleted_op;
+	}
+	public void setF_isdeleted_op(String f_isdeleted_op) {
+		this.f_isdeleted_op = f_isdeleted_op;
+	}
+	public String getF_imgpath() {
+		return f_imgpath;
+	}
+	public void setF_imgpath(String f_imgpath) {
+		this.f_imgpath = f_imgpath;
+	}
+	public String getF_imgpath_op() {
+		return f_imgpath_op;
+	}
+	public void setF_imgpath_op(String f_imgpath_op) {
+		this.f_imgpath_op = f_imgpath_op;
+	}
+
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Ware Manager And DAO Configration==================== -->  
+    <bean id="com.manage.recharge.dao.impl.RechargeDaoImpl" class="com.manage.recharge.dao.impl.RechargeDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.recharge.dao.RechargeDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.recharge.dao.RechargeDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.recharge.dao.impl.RechargeDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.recharge.model.Recharge" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.recharge.service.impl.RechargeManagerImpl">
+                <property name="dao" ref="com.manage.recharge.dao.RechargeDao"/>
+                <property name="modelClass" value="com.manage.recharge.model.Recharge"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

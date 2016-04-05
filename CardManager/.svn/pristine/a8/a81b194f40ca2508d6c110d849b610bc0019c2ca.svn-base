@@ -1,0 +1,94 @@
+<%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8" %>
+<%@ include file="/includes/main.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<link rel="stylesheet" type="text/css" href="${applicationScope.ctx}/admin/css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="${applicationScope.ctx}/admin/css/content.css"/>
+		<script type="text/javascript" src="${applicationScope.ctx}/js/framework/hi_Include.js"></script>
+		<script type="text/javascript" src="${applicationScope.ctx}/admin/commoditysta/js/statistic.js"></script>
+		<script type="text/javascript" src="${applicationScope.ctx}/admin/commoditysta/js/commoditySta.js"></script>
+		<script type="text/javascript" src="${applicationScope.ctx}/js/datepicker/wdatePicker.js"></script>
+		<script type="text/javascript" src="${applicationScope.ctx}/js/common/common.js"></script>
+		<!-- echarts必选JS -->		
+		<script src="<%=request.getContextPath()%>/echarts/esl.js" type="text/javascript"></script>  
+		<script src="<%=request.getContextPath()%>/echarts/echarts-config.js" type="text/javascript"></script>  
+		<!-- echarts必选JS -->
+
+	</head>	
+	<body class="adminMain">
+		<div class="mainTitle">
+			商品统计
+		</div>
+		<form name="formSearch" id="formSearch"  method="post" action="${applicationScope.ctx}/commditysta/commoditySta.action">
+			<div class="Gr_Main">
+				<div class="tagTable">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+						<tr>
+							<td style="padding:0px">
+								<span class="fLBox">　　商户:</span>
+								<input type="text" class="inputtext1" readOnly id="mname" name="mname" value="<s:property value="mname" />" />
+								&nbsp;&nbsp;
+								<input type="button" class="btnInput4" value="选择商户" onclick="selectProject()" />
+								<input type="hidden" id="mid" name="mid" value="<s:property value="mid" />" />
+								&nbsp;&nbsp;
+								<input type="button" value="清空" class="btnInput3" id="butt" onclick="clearMerchant();" />
+							</td>
+							<td style="padding:0px">
+								<span class="fLBox">统计日期:</span>
+									<s:textfield class="GrCx_input" id="bdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+										cssClass="Wdate" cssStyle="width:120px;font-size:14px;color:#016586;" readonly="true" disabled='mark in {"view"}?true:false'>
+											<s:param name="value">
+												<s:property value="bdate" />
+											</s:param>
+									</s:textfield>
+									至
+									<s:textfield class="GrCx_input" id="edate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+										cssClass="Wdate" cssStyle="width:120px;font-size:14px;color:#016586;"
+										readonly="true" disabled='mark in {"view"}?true:false'>
+											<s:param name="value">
+												<s:property value="edate" />
+											</s:param>
+									</s:textfield>
+							</td>
+						</tr>
+						<tr>
+							<td style="padding:0px">
+								<span class="fLBox">商品来源:</span>
+								<input type="text" class="inputtext1" readOnly id="sourcename" name="sourcename" value="<s:property value="sourcename" />"  >
+								&nbsp;&nbsp;
+								<input type="button" class="btnInput4" value="选择商户" onclick="selectProjectSource()" />
+								<input type="hidden" id="sourceid" name="sourceid" value="<s:property value="sourceid" />" />
+								&nbsp;&nbsp;
+								<input type="button" value="清空" class="btnInput3" id="butt" onclick="clearMerchantSource();" />
+							</td>
+							<td>
+								<input type="button" value="查询" class="btnInput4" id="butt" onclick="tjfx();" />
+							</td>
+						</tr>
+					</table>
+				</div>
+				<br/>
+				<div id="main1" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
+				<br/>
+				<div class="mainConText">
+					<table class="tableCon" id="datatable"  width="100%">
+						<tr class="TRtit">
+							<th>
+								商品名称
+							</th>
+							<th>
+								销量(单位)
+							</th>
+							
+							<th>
+								销售额
+							</th>
+						</tr>
+					</table>
+				</div>
+			</div>		
+	  </form>
+	</body>
+</html>

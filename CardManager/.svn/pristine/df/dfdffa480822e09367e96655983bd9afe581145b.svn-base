@@ -1,0 +1,80 @@
+#######################################
+#              SystemName             #	
+#######################################
+base.system.name=\u5B5D\u6613\u8FBE-\u793E\u533A\u670D\u52A1\u4E00\u5361\u901A
+base.system.url=
+
+#######################################
+#            framework Configure      #	
+#######################################
+base.config.reload=false
+
+#######################################
+#        PageInfo Configure           #
+#######################################
+base.pageinfo.pagesize=10
+#base.pageinfo.maxrecords=0
+#base.pageinfo.currnetmiddlepag=5
+
+#######################################
+#          Security Configure         #  
+#######################################
+#base.security.page.org.show.mode=lookup
+base.security.page.org.show.mode=dropdown
+
+
+#######################################
+#             mail  begin             # 
+#######################################
+ulms.mail.flag=1
+#######################################
+#             mail  end               # 
+#######################################
+
+#######################################
+#             flv  server             # 
+#######################################
+#base.video.flvserver = http://cdn2.whalezhen.com/flvserver.ashx
+
+base.path.resource.file=/resourcefile
+base.path.ftp.image=/ftpimg
+
+#######################################
+#          sorl  begin                #
+#######################################
+solr.ware=http\://127.0.0.1\:801/solr/ware/
+solr.shop=http\://127.0.0.1\:801/solr/shop/
+
+######################################
+
+######################################
+#        upload file servie          #
+######################################
+web.uploadfileService=http\://192.168.1.151\:801/uploadfile/
+
+
+base.path.shopFile=E\:/shopfile
+
+web.shop.url=/PrintOLShop/
+
+web.front.httpurl=/PrintOLfront/
+
+web.front.url=D\:\\apache-tomcat-6.0.30\\webapps\\PrintOLIndex/
+
+web.management.url=/PrintOLManagement/
+
+web.order.url=/PrintOLorder/
+
+
+
+web.index.url=/PrintOLindex/
+
+webservice.orders=http\://localhost/PrintOLorder/services/FrontCache?wsdl,http\://localhost/PrintOLorder/services/FrontCache?wsdl
+
+websercice.person=http\://localhost/PrintOLfront/services/PersonCache?wsdl,http\://localhost/PrintOLfront/services/PersonCache?wsdl
+
+ad.images.path=http\://localhost\:801/CardManager/images/
+
+organization.path=http\://gov.easyxiao.com/shanhaiguan.ashx?datatype\=getorganization
+
+recharge.path=http\://localhost\:801/CreditService/moneyUpdate.action

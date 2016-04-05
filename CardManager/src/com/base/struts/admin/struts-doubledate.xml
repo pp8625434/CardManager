@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 广告管理  -->
+	<package name="doubledate" extends="print" namespace="/doubledate" >
+		<action name="doubledateList" class="com.manage.doubledate.action.DoubledateAction"  method="doubledateList">
+			<result name="success">/admin/doubledate/doubledateList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="toEditDoubledate" class="com.manage.doubledate.action.DoubledateAction" method="toEditDoubledate">
+			<result name="success">/admin/doubledate/doubledateInfoEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="saveDoubledate" class="com.manage.doubledate.action.DoubledateAction" method="saveDoubledate">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="delDoubledate" class="com.manage.doubledate.action.DoubledateAction" method="delDoubledate">
+			<result name="success" type="chain">
+				<param name="actionName">doubledateList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="doubledateInfo" class="com.manage.doubledate.action.DoubledateAction" method="doubledateInfo">
+			<result name="success">/admin/doubledate/doubledateinfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	</package>
+	<package name="doubledateJson" extends="json-default" namespace="/doubledate">
+		<action name="toCheckdate" class="com.manage.doubledate.action.DoubledateAction" method="toCheckdate" >
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+	</package>
+</struts>

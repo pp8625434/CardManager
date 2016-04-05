@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Ware Manager And DAO Configration==================== -->  
+    <bean id="com.manage.advertisement.dao.impl.AdvertisementDaoImpl" class="com.manage.advertisement.dao.impl.AdvertisementDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.advertisement.dao.AdvertisementDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.advertisement.dao.AdvertisementDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.advertisement.dao.impl.AdvertisementDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.advertisement.model.Advertisement" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.advertisement.service.impl.AdvertisementManagerImpl">
+                <property name="dao" ref="com.manage.advertisement.dao.AdvertisementDao"/>
+                <property name="modelClass" value="com.manage.advertisement.model.Advertisement"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

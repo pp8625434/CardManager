@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 卡片管理 -->
+	<package name="card" extends="print" namespace="/card">
+		<action name="cardList" class="com.manage.card.action.CardAction" method="cardList">
+			<result name="success">/admin/card/cardlist.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="cardInfo" class="com.manage.card.action.CardAction" method="cardInfo">
+			<result name="success">/admin/card/cardinfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="cardEdit" class="com.manage.card.action.CardAction" method="cardEdit">
+			<result name="success">/admin/card/cardedit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="saveCard" class="com.manage.card.action.CardAction" method="saveCard">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="cardDelete" class="com.manage.card.action.CardAction" method="cardDelete">
+			<result name="success" type="chain">cardList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="reSetCardPassword" class="com.manage.card.action.CardAction" method="reSetCardPassword">
+			<result name="success" type="chain">cardList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+	</package>
+	<package name="cardJson" extends="json-default" namespace="/card">
+		<action name="checkCardNum" class="com.manage.card.action.CardAction" method="checkCardNum" >
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="checkIcard" class="com.manage.card.action.CardAction" method="checkIcard" >
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="getCardInfoByCardNum" class="com.manage.card.action.CardAction" method="getCardInfoByCardNum" >
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+</struts>
+
+
+

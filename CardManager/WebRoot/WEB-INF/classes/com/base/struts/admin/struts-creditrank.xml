@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 积分排行 -->
+	<package name="creditrank" extends="print" namespace="/creditrank">
+		<action name="toCreditRank" class="com.manage.creditrank.action.CreditRankAction" method="toCreditRank">
+			<result name="success">/admin/creditrank/creditrank.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+	</package>
+	
+	<package name="creditrankJson" extends="json-default" namespace="/creditrank">
+		<action name="creditrankList" class="com.manage.creditrank.action.CreditRankAction" method="creditrankList" >
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		
+	</package>
+</struts>
+
+
+

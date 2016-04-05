@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="test" extends="json-default" >
+	
+		<action name="test"
+			class="com.base.framework.security.action.RoleAction" method="test">
+			<result type="json" name="success" >
+				<param name="includeProperties" >result</param>
+			</result>
+		</action>
+	
+	</package>
+	<!--  角色管理功能 begin  -->
+	<package name="security" extends="print" namespace="/admin" >
+		<action name="roleList"
+			class="com.base.framework.security.action.RoleAction" method="roleList">
+			<result name="success">/admin/security/roleList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="roleSave"
+			class="com.base.framework.security.action.RoleAction" method="saveRole">
+			<result name="success" >/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="roleEdit"
+			class="com.base.framework.security.action.RoleAction" method="viewRole"> 
+			<result name="success">/admin/security/roleEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="roleView"
+			class="com.base.framework.security.action.RoleAction" method="viewRole">
+			<result name="success">/admin/security/roleEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="roleRemove"
+			class="com.base.framework.security.action.RoleAction" method="removeRole">
+			<result name="success" type="chain">roleList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="roleRemoveAll"
+			class="com.base.framework.security.action.RoleAction" method="removeAllRole">
+			<result name="success" type="chain">roleList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<!--  角色管理功能 end  -->
+		
+	</package>
+
+	<package name="roleJson" extends="json-default" namespace="/admin">
+		<action name="checkRole" class="com.base.framework.security.action.RoleAction" method="checkRole" >
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="updateTopHTML" class="com.base.framework.security.action.RoleAction" method="updateTopHTML" >
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+</struts>

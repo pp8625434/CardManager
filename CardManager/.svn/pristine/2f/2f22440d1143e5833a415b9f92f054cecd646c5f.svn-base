@@ -1,0 +1,172 @@
+######################
+### Query Language ###
+######################
+
+## define query language constants / function names
+
+hibernate.query.substitutions true 1, false 0, yes 'Y', no 'N'
+
+
+#################
+### Platforms ###
+#################
+
+## using c3p0 connection pool  begin 
+#jdbc.driverClass=oracle.jdbc.driver.OracleDriver
+#jdbc.jdbcUrl =jdbc:oracle:thin:@192.168.1.131:1521:adks
+#jdbc.user =lllnet
+#jdbc.password =adks
+#jdbc.miniPoolSize = 5 
+#jdbc.maxPoolSize = 600
+#jdbc.initialPoolSize = 5 
+
+##using c3p0 connection pool-MYSQL
+jdbc.driverClass=com.mysql.jdbc.Driver
+jdbc.jdbcUrl =jdbc:mysql://192.168.1.151:3306/card?useUnicode=true&amp;characterEncoding=utf-8
+jdbc.user =root
+jdbc.password =root
+jdbc.miniPoolSize = 5 
+jdbc.maxPoolSize = 500
+jdbc.initialPoolSize = 20
+jdbc.maxIdleTime = 1000
+jdbc.maxStatements= 2000 
+jdbc.acquireIncrement = 1 
+jdbc.idleConnectionTestPeriod=600
+#jdbc.acquireRetryAttempts = 30 
+#jdbc.acquireRetryDelay = 1000 
+#jdbc.testConnectionOnCheckin = true 
+#jdbc.automaticTestTable =ACCOUNT
+#jdbc.idleConnectionTestPeriod = 1800
+#jdbc.checkoutTimeout=3000
+#jdbc.breakAfterAcquireFailure = true
+#jdbc.preferredTestQuery = select 1
+#jdbc.testConnectionOnCheckout = true
+
+## using c3p0 connection pool  end 
+
+## hiberante config parameters begin 
+#hibernate config
+hibernate.c3p0.max_size=600
+hibernate.c3p0.min_size=20
+hibernate.c3p0.timeout=120
+hibernate.c3p0.max_statements=1000
+hibernate.c3p0.idle_test_period=120
+hibernate.c3p0.acquire_increment=2
+#hibernate.c3p0.validate=true
+
+#hibernate.dialect = org.hibernate.dialect.Oracle9Dialect
+hibernate.dialect = org.hibernate.dialect.MySQLDialect
+hibernate.hbm2ddl.auto= false
+hibernate.show_sql=true
+hibernate.format_sql=false
+# fetch max depth
+hibernate.max_fetch_depth=1
+#cache.use_second_level_cache
+cache.use_second_level_cache = true
+## choose a cache implementation
+hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider
+## enable the query cache
+hibernate.cache.use_query_cache=true
+## set the JDBC fetch size 25
+hibernate.jdbc.fetch_size=50
+## set the maximum JDBC 2 batch size (a nonzero value enables batching) 5
+hibernate.jdbc.batch_size=30
+## Query translator factory class
+hibernate.query.factory_class=org.hibernate.hql.classic.ClassicQueryTranslatorFactory
+##
+#org.hibernate.hql.ast.ASTQueryTranslatorFactory
+
+hibernate.connection.SetBigStringTryClob=true
+
+## hiberante config parameters end
+
+ 
+## Oracle
+
+#hibernate.dialect org.hibernate.dialect.OracleDialect
+#hibernate.dialect org.hibernate.dialect.Oracle9Dialect
+#hibernate.connection.driver_class oracle.jdbc.driver.OracleDriver
+#hibernate.connection.username ora
+#hibernate.connection.password ora
+#hibernate.connection.url jdbc:oracle:thin:@localhost:1521:test
+
+#################################
+### Hibernate Connection Pool ###
+#################################
+
+hibernate.connection.pool_size 1
+
+
+##############################
+### Proxool Connection Pool###
+##############################
+
+## Properties for external configuration of Proxool
+
+hibernate.proxool.pool_alias pool1
+
+##############################
+### Miscellaneous Settings ###
+##############################
+
+## print all generated SQL to the console
+
+#hibernate.show_sql true
+
+## enable ordering of SQL UPDATEs by primary key
+
+hibernate.order_updates true
+
+
+## set the default batch size for batch fetching
+
+hibernate.default_batch_fetch_size 8
+
+
+#####################
+### JDBC Settings ###
+#####################
+
+## enable batch updates even for versioned data
+
+hibernate.jdbc.batch_versioned_data true
+
+## use streams when writing binary types to / from JDBC
+
+hibernate.jdbc.use_streams_for_binary true
+
+##########################
+### Second-level Cache ###
+##########################
+
+## optimize chache for minimal "puts" instead of minimal "gets" (good for clustered cache)
+
+#hibernate.cache.use_minimal_puts true
+
+
+## set a prefix for cache region names
+
+hibernate.cache.region_prefix hibernate.test
+
+
+###########################
+###  druid  datasource  ###
+###########################
+
+jdbc.validationQuery = SELECT 1
+jdbc.initialSize = 20
+jdbc.maxActive = 100
+jdbc.maxIdle = 20
+jdbc.minIdle = 1
+jdbc.maxWait = 60000
+jdbc.testOnBorrow = false
+jdbc.testOnReturn = false
+jdbc.testWhileIdle = true
+jdbc.timeBetweenEvictionRunsMillis = 60000
+jdbc.minEvictableIdleTimeMillis = 25200000
+jdbc.removeAbandoned = true
+jdbc.removeAbandonedTimeout = 1800
+jdbc.logAbandoned = true
+jdbc.filters = stat
+jdbc.poolPreparedStatements = true
+jdbc.maxPoolPreparedStatementPerConnectionSize =20

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <bean id="com.manage.creditrank.dao.impl.CreditRankDaoImpl" class="com.manage.creditrank.dao.impl.CreditRankDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.creditrank.dao.CreditRankDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.creditrank.dao.CreditRankDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.creditrank.dao.impl.CreditRankDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.creditrank.model.CreditRank" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.creditrank.service.impl.CreditRankManagerImpl">
+                <property name="dao" ref="com.manage.creditrank.dao.CreditRankDao"/>
+                <property name="modelClass" value="com.manage.creditrank.model.CreditRank"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

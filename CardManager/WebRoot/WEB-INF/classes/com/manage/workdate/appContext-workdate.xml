@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Workdate Manager And DAO Configration==================== -->  
+    <bean id="com.manage.workdate.dao.impl.WorkdateDaoImpl" class="com.manage.workdate.dao.impl.WorkdateDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.workdate.dao.WorkdateDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.workdate.dao.WorkdateDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.workdate.dao.impl.WorkdateDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.workdate.model.Workdate" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.workdate.service.impl.WorkdateManagerImpl">
+                <property name="dao" ref="com.manage.workdate.dao.WorkdateDao"/>
+                <property name="modelClass" value="com.manage.workdate.model.Workdate"/>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

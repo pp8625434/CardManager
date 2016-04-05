@@ -1,0 +1,108 @@
+package com.manage.order.action.info;
+
+import java.util.Date;
+
+import com.base.framework.web.PageInfoView;
+
+public class OrderPageInfo extends PageInfoView{
+	
+	protected Integer f_id;
+	protected String f_id_op;
+	protected Integer f_mid;
+	protected String f_mid_op;
+	protected Integer f_userid;
+	protected String f_userid_op;
+	protected String f_orgid;
+	protected String f_orgid_op;
+	protected String f_cardnum;
+	protected String f_cardnum_op;
+	protected Integer f_paytype;
+	protected String f_paytype_op;
+	protected Date f_addtime;
+	protected String f_addtime_op;
+	public Integer getF_id() {
+		return f_id;
+	}
+	public void setF_id(Integer f_id) {
+		this.f_id = f_id;
+	}
+	public String getF_id_op() {
+		return f_id_op;
+	}
+	public void setF_id_op(String f_id_op) {
+		this.f_id_op = f_id_op;
+	}
+	public Integer getF_mid() {
+		return f_mid;
+	}
+	public void setF_mid(Integer f_mid) {
+		this.f_mid = f_mid;
+	}
+	public String getF_mid_op() {
+		return f_mid_op;
+	}
+	public void setF_mid_op(String f_mid_op) {
+		this.f_mid_op = f_mid_op;
+	}
+	public Integer getF_userid() {
+		return f_userid;
+	}
+	public void setF_userid(Integer f_userid) {
+		this.f_userid = f_userid;
+	}
+	public String getF_userid_op() {
+		return f_userid_op;
+	}
+	public void setF_userid_op(String f_userid_op) {
+		this.f_userid_op = f_userid_op;
+	}
+	public String getF_orgid() {
+		return f_orgid;
+	}
+	public void setF_orgid(String f_orgid) {
+		this.f_orgid = f_orgid;
+	}
+	public String getF_orgid_op() {
+		return f_orgid_op;
+	}
+	public void setF_orgid_op(String f_orgid_op) {
+		this.f_orgid_op = f_orgid_op;
+	}
+	public String getF_cardnum() {
+		return f_cardnum;
+	}
+	public void setF_cardnum(String f_cardnum) {
+		this.f_cardnum = f_cardnum;
+	}
+	public String getF_cardnum_op() {
+		return f_cardnum_op;
+	}
+	public void setF_cardnum_op(String f_cardnum_op) {
+		this.f_cardnum_op = f_cardnum_op;
+	}
+	public Integer getF_paytype() {
+		return f_paytype;
+	}
+	public void setF_paytype(Integer f_paytype) {
+		this.f_paytype = f_paytype;
+	}
+	public String getF_paytype_op() {
+		return f_paytype_op;
+	}
+	public void setF_paytype_op(String f_paytype_op) {
+		this.f_paytype_op = f_paytype_op;
+	}
+	public Date getF_addtime() {
+		return f_addtime;
+	}
+	public void setF_addtime(Date f_addtime) {
+		this.f_addtime = f_addtime;
+	}
+	public String getF_addtime_op() {
+		return f_addtime_op;
+	}
+	public void setF_addtime_op(String f_addtime_op) {
+		this.f_addtime_op = f_addtime_op;
+	}
+	
+}

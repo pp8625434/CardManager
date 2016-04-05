@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<package name="enumeration" extends="print" namespace="/admin" >
+
+	  <action name="enumerationList"
+			class="com.manage.enumeration.action.EnumerationAction"  method="enumerationList">
+			<result name="success">/admin/enumeration/enumerationList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+
+		<action name="enumerationSave"
+			class="com.manage.enumeration.action.EnumerationAction" method="saveEnumeration">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="modelParamsStack" /><!--
+			<interceptor-ref name="loadobject" />
+		--></action>
+		
+		<action name="enumerationEdit"
+			class="com.manage.enumeration.action.EnumerationAction" method="viewEnumeration"> 
+			<result name="success">/admin/enumeration/enumerationEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+			<interceptor-ref name="loadobject" />
+		</action>
+		
+		<action name="enumerationView"
+			class="com.manage.enumeration.action.EnumerationAction" method="viewEnumeration">
+			<result name="success">/admin/enumeration/enumerationEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="enumerationRemove"
+			class="com.manage.enumeration.action.EnumerationAction" method="removeEnumeration">
+			<result name="success" type="chain">enumerationList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="enumerationRemoveAll"
+			class="com.manage.enumeration.action.EnumerationAction" method="removeAllEnumeration">
+			<result name="success" type="chain">enumerationList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="enumerationLookup"
+			class="com.manage.enumeration.action.EnumerationAction"  method="enumerationList">
+			<result name="success">/admin/enumeration/enumerationList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+
+	  <action name="enumerationValueList"
+			class="com.manage.enumeration.action.EnumerationValueAction" method="enumerationValueList">
+			<result name="success">/admin/enumeration/enumerationValueList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="enumerationValueSave"
+			class="com.manage.enumeration.action.EnumerationValueAction" method="saveEnumerationValue">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+			<interceptor-ref name="loadobject" />
+		</action>
+		
+		<action name="enumerationValueEdit"
+			class="com.manage.enumeration.action.EnumerationValueAction" method="editEnumerationValue">
+			<result name="success">/admin/enumeration/enumerationValueEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+			<interceptor-ref name="loadobject" />
+		</action>
+		
+		<action name="enumerationValueView"
+			class="com.manage.enumeration.action.EnumerationValueAction" method="viewEnumerationValue">
+			<result name="success">/admin/enumeration/enumerationValueEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="enumerationValueRemove"
+			class="com.manage.enumeration.action.EnumerationValueAction" method="removeEnumerationValue">
+			<result name="success" type="chain">enumerationValueList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="enumerationValueRemoveAll"
+			class="com.manage.enumeration.action.EnumerationValueAction" method="removeAllEnumerationValue">
+			<result name="success" type="chain">enumerationValueList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="enumerationValueLookup"
+			class="org.hi.base.enumeration.action.webwork.EnumerationValueAction" method="enumerationValueList" >
+			<result name="success">/admin/enumeration/enumerationValueList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		
+</package>
+
+<package name="enumerationgJson" extends="json-default" namespace="/admin">
+		<action name="checkEnumeration" class="com.manage.enumeration.action.EnumerationAction" method="checkEnumeration" >
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="checkEnumerationValue" class="com.manage.enumeration.action.EnumerationValueAction" method="checkEnumerationValue" >
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+</package>	
+</struts>

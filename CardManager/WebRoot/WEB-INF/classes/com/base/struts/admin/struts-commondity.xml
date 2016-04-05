@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 商品管理管理 -->
+	<package name="commodity" extends="print" namespace="/admin" >
+		<action name="commodityList" class="com.manage.commodity.action.CommodityAction"  method="commodityList">
+			<result name="success">/admin/commodity/commodityList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="toEditCommodity" class="com.manage.commodity.action.CommodityAction" method="toEditCommodity">
+			<result name="success">/admin/commodity/commodityInfoEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="saveCommodity" class="com.manage.commodity.action.CommodityAction" method="saveCommodity">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="delCommodity" class="com.manage.commodity.action.CommodityAction" method="delCommodity">
+			<result name="success" type="chain">
+				<param name="actionName">commodityList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="commodityIsusedY" class="com.manage.commodity.action.CommodityAction" method="commodityIsusedY">
+			<result name="success" type="chain">
+				<param name="actionName">commodityList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+
+		<action name="commodityIsusedN" class="com.manage.commodity.action.CommodityAction" method="commodityIsusedN">
+			<result name="success" type="chain">
+				<param name="actionName">commodityList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="commodityInfo" class="com.manage.commodity.action.CommodityAction" method="commodityInfo">
+			<result name="success">/admin/commodity/commodityinfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+	
+</struts>

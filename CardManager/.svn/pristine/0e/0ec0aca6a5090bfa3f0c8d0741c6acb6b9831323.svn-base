@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 广告管理  -->
+	<package name="advertisement" extends="print" namespace="/advertisement" >
+		<action name="advertisementList" class="com.manage.advertisement.action.AdvertisementAction"  method="advertisementList">
+			<result name="success">/admin/advertisement/advertisementList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="toEditAdvertisement" class="com.manage.advertisement.action.AdvertisementAction" method="toEditAdvertisement">
+			<result name="success">/admin/advertisement/advertisementInfoEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="saveAdvertisement" class="com.manage.advertisement.action.AdvertisementAction" method="saveAdvertisement">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="delAdvertisement" class="com.manage.advertisement.action.AdvertisementAction" method="delAdvertisement">
+			<result name="success" type="chain">
+				<param name="actionName">advertisementList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="advertisementInfo" class="com.manage.advertisement.action.AdvertisementAction" method="advertisementInfo">
+			<result name="success">/admin/advertisement/advertisementinfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+	
+</struts>

@@ -1,0 +1,159 @@
+<%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8" contentType="text/html;charset=utf-8"%>
+<%@ include file="/includes/main.jsp"%>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/admin/css/style.css">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/admin/css/content.css">	
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/framework/hi_Include.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/admin/order/js/order.js"></script>
+		<script type="text/javascript" src="${applicationScope.ctx}/js/datepicker/wdatePicker.js"></script>
+		<!-- 机构选择的js/css 开始 -->
+		<link rel="stylesheet"  type="text/css" href="${applicationScope.ctx}/js/ztree/css/demo.css" />
+		<link rel="stylesheet"  type="text/css" href="${applicationScope.ctx}/js/ztree/css/zTreeStyle/zTreeStyle.css" />
+		<script type="text/javascript" src="${applicationScope.ctx}/js/ztree/js/jquery-1.4.4.min.js"></script>
+		<script type="text/javascript" src="${applicationScope.ctx}/js/ztree/js/jquery.ztree.core-3.5.js"></script>
+		<script type="text/javascript" src="${applicationScope.ctx}/admin/addcardstatistics/js/orgtree.js"></script>
+		<!-- 机构选择的js/css 结束 -->	
+	</head>		
+	<body class="adminMain">
+		<div class="mainTitle">
+			订单列表
+		</div>
+		<form name="formSearch" id="formSearch" method="post" action="<%=request.getContextPath()%>/order/orderList.action">
+			<div class="tagTable">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+					<tr>
+						<td style="padding:0px">
+							<span class="fLBox">　　卡号：</span>
+							<input type="text" class="inputtext1" name="pageInfo.f_cardnum" value="<s:property value="pageInfo.f_cardnum"/>" >
+						 	<input type="hidden" name="pageInfo.f_cardnum_op" value="">	
+						</td>
+						<td style="padding:0px">
+							<span class="fLBox">消费时间：</span>
+							<s:textfield name="startDate" id="startDate" onclick="WdatePicker({isShowWeek:true,dateFmt:'yyyy-MM-dd'})" 
+						 		cssClass="Wdate" cssStyle="width:96px;" readonly="true" disabled='mark in {"view"}?true:false' title="起始时间" >
+						 		<s:param name="value">
+									<s:property value="startDate" />
+								</s:param>
+						 	</s:textfield>
+						 	&nbsp;-&nbsp;
+						 	<s:textfield name="endDate" id="endDate" onclick="WdatePicker({isShowWeek:true,dateFmt:'yyyy-MM-dd'})" 
+						 		cssClass="Wdate" cssStyle="width:96px;" readonly="true" disabled='mark in {"view"}?true:false' title="结束时间" >
+						 		<s:param name="value">
+									<s:property value="endDate" />
+								</s:param>
+						 	</s:textfield>
+						</td>
+						<td>
+							<span class="fLBox">订单类型：</span>
+							<select name="pageInfo.f_otype">
+								<option value="">全部</option>
+								<option value="1" <s:if test="pageInfo.f_otype==1">selected</s:if>>大集订单</option>
+								<option value="2" <s:if test="pageInfo.f_otype==2">selected</s:if>>自助订单</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding:0px">
+							<span class="fLBox">所在社区：</span>
+								<input type="text" class="inputtext1" id="orgname" readOnly onclick="showMenu(); return false;" size="30"/>
+								<div id="menuContent" class="menuContent" style="display:none; position: absolute;">
+									<ul id="treeDemo" class="ztree" style="margin-top:0; width:250px;"></ul>
+								</div>
+								<input type="hidden" name="orgid" id="orgid" value="<s:property value="orgid"/>" />
+								&nbsp;&nbsp;&nbsp;
+								<input type="button" value="清空" class="btnInput3" id="butt" onclick="clearOrgin();" />
+						</td>
+						<td style="padding:0px">
+							<span class="fLBox">商户名称：</span>
+							<input type="text" class="inputtext1" readOnly id="mname" name="mname" value="<s:property value="mname" />" maxlength="100" size="30"/>
+							&nbsp;&nbsp;
+							<input type="button" class="btnInput4" value="选择商户" onclick="selectProject()" />
+							<input type="button" value="清空" class="btnInput3" id="butt" onclick="clearMerchant();" />
+							<input type="hidden" id="mid" name="mid" value="<s:property value="mid" />" />
+							
+						</td>
+					  	<td>
+					  		<input type="button" value="查询" class="btnInput4" onclick="javascript:formSearchSubmit()">
+					  		<s:if test="lookup==null">
+					  			<z:button cssClass="btnInput4" rids="${sessionScope.rIDs}"  mlinkid="1200"></z:button>
+					  		</s:if>
+					  		<input type="hidden" name="pageInfo.sorterName"	id="pageInfo.sorterName" value="<s:property value="pageInfo.sorterName" default=""/>" />
+							<input type="hidden" name="pageInfo.sorterDirection" id="pageInfo.sorterDirection" value="<s:property value="pageInfo.sorterDirection" default="ASC"/>" />
+					  	</td>
+					</tr>
+				</table>
+			</div>
+			<div class="mainConText">
+				<table class="tableCon">
+					<tr class="TRtit">
+						<td width="15"><input name="chkall" value="checkbox" onClick="javascript:selectAll()" type="checkbox"></td>
+						<td> <a href="javascript:sortBy('orgid')" id="title_orgid">社区名称</a></td>
+						<td> <a href="javascript:sortBy('mid')" id="title_mid">商户名称</a></td>
+						<td> <a href="javascript:sortBy('otype')" id="title_otype">订单类型</a></td>
+						<td> <a href="javascript:sortBy('cardnum')" id="title_cardnum">卡号</a></td>
+						<td> <a href="javascript:sortBy('paytype')" id="title_paytype">结账方式</a></td>
+						<td> <a href="javascript:sortBy('allprice')" id="title_allprice">总价</a></td>
+						<td> <a href="javascript:sortBy('cash')" id="title_cash">现金</a></td>
+						<td> <a href="javascript:sortBy('money')" id="title_money">余额</a></td>
+						<td> <a href="javascript:sortBy('paycredit')" id="title_paycredit">抵扣金额/使用积分</a></td>
+						<td> <a href="javascript:sortBy('discount')" id="title_discount">折扣</a></td>
+						<td> <a href="javascript:sortBy('addtime')" id="title_addtime">消费时间</a></td>
+						<td>
+							<s:if test="lookup==null">
+								<a>操作</a>
+							</s:if>
+						</td>
+					</tr>
+					<s:iterator value="oList" status="order">
+						<tr>
+							<td width="15">
+								<input name="orderId" value="<s:property  value="id"/>" type="checkbox">
+							</td>
+							<td>
+								<s:property  value="@com.manage.cache.OrganizationUtils@getOname(orgid)"/>
+							</td>
+							<td> <s:property  value="@com.manage.cache.MerchantCache@getMname(mid)"/></td>
+							<td>
+								<s:if test="otype==1">大集订单</s:if>
+								<s:elseif test="otype==2">自助订单</s:elseif>
+							</td>
+							<td> <s:property  value="cardnum"/></td>
+							<td>
+								<s:if test="paytype == 1 ">现金</s:if>
+								<s:elseif test="paytype==2 ">余额</s:elseif>
+								<s:elseif test="paytype==3 ">现金+余额</s:elseif>
+							</td>
+							<td> <s:property  value="allprice"/></td>
+							<td> <s:property  value="cash"/></td>
+							<td> <s:property  value="money"/></td>
+							<td> <s:property  value="paycreditmoney"/> / <s:property  value="paycredit"/></td>
+							<td> <s:property  value="discount"/></td>
+							<td> <s:date name="addtime" format="yyyy-MM-dd HH:mm:ss"/></td>
+							<td>
+								<s:if test="lookup==null">
+									<z:label rids="${sessionScope.rIDs}" mlinkid="1200" parametervlue="id:${id}"></z:label>
+								</s:if>
+		  					</td>
+						</tr>
+					</s:iterator>				  																															
+				</table>
+				<table>
+					<tr>
+						<td align="left" class="pageBoxLeft">
+							<font style="cursor: hand" onclick="javascript:selectAll('true')">全选</font>
+							<font style="cursor: hand" onclick="javascript:selectCancel()">取消全选</font>
+						</td>	
+						<td align="right" class="pageBoxRight">
+							<dl class="pageBox">
+								<hi:page pageBeanName="pageInfo" currentPage="${pageInfo.currentPage}" buttonClass="btnInput4"
+									url="${applicationScope.ctx}/order/orderList.action" />
+							</dl>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</form>
+	</body>
+</html> 

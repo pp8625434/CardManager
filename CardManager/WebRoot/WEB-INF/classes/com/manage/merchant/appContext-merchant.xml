@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Merchant Manager And DAO Configration==================== -->  
+    <bean id="com.manage.merchant.dao.impl.MerchantDaoImpl" class="com.manage.merchant.dao.impl.MerchantDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.merchant.dao.MerchantDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.merchant.dao.MerchantDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.merchant.dao.impl.MerchantDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.merchant.model.Merchant" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.merchant.service.impl.MerchantManagerImpl">
+                <property name="dao" ref="com.manage.merchant.dao.MerchantDao"/>
+                <property name="modelClass" value="com.manage.merchant.model.Merchant"/>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 社区接口 -->
+	<package name="organitionJson" extends="json-default" namespace="/organization">
+		<action name="getOrganizationTree" class="com.manage.organization.action.OrganizationAction" method="getOrganizationTree" >
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		<action name="getOrganizationById" class="com.manage.organization.action.OrganizationAction" method="getOrganizationById" >
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+	</package>
+</struts>
+
+
+

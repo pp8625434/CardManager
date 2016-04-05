@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 工作日管理 -->
+	<package name="workdate" extends="print" namespace="/workdate">
+		<action name="workdateList" class="com.manage.workdate.action.WorkdateAction" method="workdateList">
+			<result name="success">/admin/workdate/workdatelist.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="workdateInfo" class="com.manage.workdate.action.WorkdateAction" method="workdateInfo">
+			<result name="success">/admin/workdate/workdateinfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="editWorkdate" class="com.manage.workdate.action.WorkdateAction" method="editWorkdate">
+			<result name="success">/admin/workdate/workdateedit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="saveWorkdate" class="com.manage.workdate.action.WorkdateAction" method="saveWorkdate">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="delWorkdate" class="com.manage.workdate.action.WorkdateAction" method="delWorkdate">
+			<result name="success" type="chain">workdateList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+	</package>
+	<package name="workdateJson" extends="json-default" namespace="/workdate">
+		<action name="checkThedate" class="com.manage.workdate.action.WorkdateAction" method="checkThedate" >
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+</struts>
+
+
+

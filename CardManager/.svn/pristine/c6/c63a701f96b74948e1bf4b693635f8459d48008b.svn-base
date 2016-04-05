@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== WcuShare Manager And DAO Configration==================== -->  
+    <bean id="com.manage.ordersta.dao.impl.OrderStaDaoImpl" class="com.manage.ordersta.dao.impl.OrderStaDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.ordersta.dao.OrderStaDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.ordersta.dao.OrderStaDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.ordersta.dao.impl.OrderStaDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+  <!--    <bean id="com.manage.ordersta.model.Order" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.ordersta.service.impl.OrderStaManagerImpl">
+                <property name="dao" ref="com.manage.ordersta.dao.OrderStaDao"/>
+                <property name="modelClass" value="com.manage.ordersta.model.Order"/>
+            </bean>
+        </property>
+    </bean>
+    
+-->
+</beans>

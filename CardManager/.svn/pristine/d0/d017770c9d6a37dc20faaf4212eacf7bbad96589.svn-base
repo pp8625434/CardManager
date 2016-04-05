@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Enumeration Manager And DAO Configration==================== -->  
+    <bean id="com.manage.enumeration.dao.impl.EnumerationDaoImpl" class="com.manage.enumeration.dao.impl.EnumerationDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.enumeration.dao.EnumerationDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.enumeration.dao.EnumerationDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.enumeration.dao.impl.EnumerationDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.enumeration.model.Enumeration" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.enumeration.service.impl.EnumerationManagerImpl">
+                <property name="dao" ref="com.manage.enumeration.dao.EnumerationDao"/>
+                <property name="modelClass" value="com.manage.enumeration.model.Enumeration"/>
+            </bean>
+        </property>
+    </bean>
+
+   <!-- ===================== EnumerationValue Manager And DAO Configration==================== -->  
+    <bean id="com.manage.enumeration.dao.impl.EnumerationValueDaoImpl" class="com.manage.enumeration.dao.impl.EnumerationValueDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.enumeration.dao.EnumerationValueDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.enumeration.dao.EnumerationValueDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.enumeration.dao.impl.EnumerationValueDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.enumeration.model.EnumerationValue" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.enumeration.service.impl.EnumerationValueManagerImpl">
+                <property name="dao" ref="com.manage.enumeration.dao.EnumerationValueDao"/>
+                <property name="modelClass" value="com.manage.enumeration.model.EnumerationValue"/>
+            </bean>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>  
+ 	<include file="struts-default.xml" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.i18n.reload" value="true" />
+	<constant name="struts.multipart.saveDir" value="/temp" />
+	<constant name= "struts.multipart.maxSize" value="2048000000" />
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<constant name="struts.custom.i18n.resources"
+		value="ApplicationResources,ApplicationMessages" />
+	<constant name="struts.serve.static.browserCache" value="false" />
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+ 	<!-- 百度ueditor编辑器 -->
+ 	<bean type="org.apache.struts2.dispatcher.multipart.MultiPartRequest"
+		name="myRequestParser" class="com.manage.ueditor.RequestParseWrapper"
+		scope="default" optional="true" />
+	<constant name="struts.multipart.handler" value="myRequestParser" />
+ 	<!-- 百度ueditor编辑器 -->
+	<package name="print" extends="struts-default">
+		<result-types>
+			<result-type name="json" 
+			    class="org.apache.struts2.json.JSONResult"/>
+		</result-types>
+		<interceptors>
+            <interceptor name="upload" 	class="org.apache.struts2.interceptor.FileUploadInterceptor"/>
+			<interceptor name="loadobject" class="com.base.framework.web.interceptor.LoadObjectInterceptor" />
+			<interceptor name="sessionIterceptor" class="com.base.framework.web.interceptor.SessionTimeOutIterceptor" />
+			<interceptor name="Jurisdiction" class="com.base.framework.interceptor.JurisdictionControlInterceptor" /> 
+			<interceptor-stack name="exceptionStack">
+				<interceptor-ref name="defaultStack">  
+                    <param name="exception.logEnabled">true</param>  
+                    <param name="exception.logLevel">error</param> 
+                    </interceptor-ref>
+              </interceptor-stack> 
+			<interceptor-stack name="defaultStack">
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="params" />
+			</interceptor-stack>
+			<!-- 上传使用的 拦截器  -->
+			<interceptor-stack name="modelStackUpload" >
+				<interceptor-ref name="upload" />
+				<interceptor-ref name="basicStack" /> 
+			</interceptor-stack>
+			<!--  基础部分功能使用  -->
+			<interceptor-stack name="modelParamsStack">
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="loadobject" />
+				<interceptor-ref name="sessionIterceptor" />
+				<!-- <interceptor-ref name="exception" /> -->
+			</interceptor-stack>
+			<!-- 加权限控制的基础部分功能使用 赵磊-->
+			<interceptor-stack name="JurismodelParamsStack">
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="loadobject" />
+				<interceptor-ref name="sessionIterceptor" />
+				<interceptor-ref name="Jurisdiction" />
+			</interceptor-stack>
+			     
+		</interceptors>
+		<default-interceptor-ref name="basicStack" />
+	 	  
+		<global-results>
+			<result name="error">/admin/common/error.jsp</result> 
+			<result name="noJurisdiction">/admin/common/noJurisdiction.jsp</result>
+			<result name="operationError" type="redirect">
+				/admin/common/error.jsp
+			</result>
+			
+			<result name="login" type="redirect">
+				/admin/common/session.jsp
+			</result>
+			<result name="nologin" type="redirect">
+				/admin/common/session.jsp
+			</result>
+			<!--
+			-->
+		</global-results>
+		<!-- 
+		<global-exception-mappings>  
+            <exception-mapping result="error"  
+                exception="java.lang.Exception">  
+            </exception-mapping>  
+        </global-exception-mappings>
+         -->  	
+	</package>
+	
+	<!-- 管理员后台功能-->
+	<include file="com/base/struts/admin/struts-login.xml"></include>
+	<include file="com/base/struts/admin/struts-menu.xml"></include>
+	<include file="com/base/struts/admin/struts-enumeration.xml"></include>
+	<include file="com/base/struts/admin/struts-security.xml" ></include>
+	<include file="com/base/struts/admin/struts-statistical.xml"></include>
+	<include file="com/base/struts/admin/struts-user.xml"></include>
+	<include file="com/base/struts/admin/struts-org.xml"></include>
+	<include file="com/base/struts/admin/struts-citys.xml"></include>
+
+	<include file="com/base/struts/admin/struts-commondity.xml"></include>
+
+	<include file="com/base/struts/admin/struts-merchant.xml"></include>
+
+	<include file="com/base/struts/admin/struts-card.xml"></include>
+
+	<include file="com/base/struts/admin/struts-advertisement.xml"></include>
+	
+	<include file="com/base/struts/admin/struts-organization.xml"></include>
+	<include file="com/base/struts/admin/struts-doubledate.xml"></include>
+	
+	<include file="com/base/struts/admin/struts-moneylog.xml"></include>
+
+	<include file="com/base/struts/admin/struts-ordersta.xml"></include>
+	
+	<!-- 办卡统计 -->
+	<include file="com/base/struts/admin/struts-addcardstatistics.xml"></include>
+	<!-- 商品统计 -->
+	<include file="com/base/struts/admin/struts-commoditysta.xml"></include>
+	<include file="com/base/struts/admin/struts-creditrank.xml"></include>
+	<!-- 订单列表 -->
+	<include file="com/base/struts/admin/struts-order.xml"></include>
+	<!-- 工作日管理 -->
+	<include file="com/base/struts/admin/struts-workdate.xml"></include>
+	
+
+</struts>
+

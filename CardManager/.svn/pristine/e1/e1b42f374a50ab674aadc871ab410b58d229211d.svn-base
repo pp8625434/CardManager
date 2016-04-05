@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+ 	<bean id="com.manage.log.dao.impl.LogDaoImpl" class="com.manage.log.dao.impl.LogDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="com.manage.log.dao.LogDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces" value="com.manage.log.dao.LogDao"></property>
+		<property name="interceptorNames">
+			<list>
+				<value>com.manage.log.dao.impl.LogDaoImpl</value>
+			</list>
+		</property>
+	</bean>
+		<bean id="com.manage.log.model.Log" parent="txProxyTemplate">
+			<property name="target">
+				<bean class="com.manage.log.service.impl.LogManagerImpl">
+					<property name="dao" ref="com.manage.log.dao.LogDao"></property>
+					<property name="modelClass" value="com.manage.log.model.Log"></property>
+				</bean>
+			</property>
+		</bean>
+</beans>

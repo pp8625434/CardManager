@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="GBK"?>
+<ehcache>
+	<diskStore path="D:\\TempObject"/>
+	<defaultCache
+		maxElementsInMemory="10000"
+		eternal="false"
+		timeToIdleSeconds="100"
+		timeToLiveSeconds="1000"
+		overflowToDisk="true"
+	 />
+	 <cache name="com.sitechasia.occ.core.base.ExampleForTest"
+	 	eternal="false"
+	 	timeToIdleSeconds="100"
+	 	timeToLiveSeconds="1000"
+	 	overflowToDisk="true"
+	  />
+</ehcache>

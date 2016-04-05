@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 充值管理  -->
+	<package name="moneylog" extends="print" namespace="/moneylog" >
+		<action name="toEditMoneyLog" class="com.manage.money.action.MoneyLogAction" method="toEditMoneyLog">
+			<result name="success">/admin/moneylog/moneyLogInfoEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="saveMoneyLog" class="com.manage.money.action.MoneyLogAction" method="saveMoneyLog">
+			<result name="success">/admin/moneylog/rechargeInfo.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="rechargeLog" class="com.manage.money.action.MoneyLogAction" method="rechargeLog">
+			<result name="success">/admin/moneylog/rechargeList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+	</package>
+</struts>

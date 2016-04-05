@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	 
+	<package name="statistical" extends="print" namespace="/statistical">
+		
+		<action name="logList" class="com.manage.log.action.LogAction" method="logList">
+			<result name="success">/admin/statistical/logList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+	 
+</struts>

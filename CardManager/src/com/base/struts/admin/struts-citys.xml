@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 城市管理 -->
+	<package name="citys" extends="print" namespace="/org" >
+
+				
+	</package>
+	<package name="citysJson" extends="json-default" namespace="/citys">
+		<action name="getProvinceJson" class="com.manage.citys.action.CitysAction" method="getProvinceJson" >
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		<action name="getCityJson" class="com.manage.citys.action.CitysAction" method="getCityJson" >
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		<action name="getAreaJson" class="com.manage.citys.action.CitysAction" method="getAreaJson" >
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+	</package>
+	
+</struts>

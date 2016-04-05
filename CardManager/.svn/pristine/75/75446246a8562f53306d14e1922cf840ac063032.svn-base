@@ -1,0 +1,109 @@
+package com.manage.commoditysta.action;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import com.alibaba.fastjson.JSON;
+import com.base.framework.SpringContextHolder;
+import com.base.framework.web.struts.BaseAction;
+import com.base.util.Utils;
+import com.manage.commoditysta.dao.CommodityStaDao;
+import com.manage.commoditysta.model.CommoditySta;
+
+
+public class CommodityStaAction extends BaseAction {
+	
+	private Logger logger = Logger.getLogger(CommodityStaAction.class);
+	
+	private String mid;
+	
+	private String bdate;
+	private String edate;
+	private String data;
+	private CommodityStaDao commodityStaDao = (CommodityStaDao)SpringContextHolder.getBean(CommodityStaDao.class);
+	
+	
+	/**
+	 * @author DL
+	 * @date Jan 11, 2016
+	 * @param 
+	 * @return
+	 * @see 进入页面
+	 */
+	public String commoditySta() throws Exception{
+		return SUCCESS;
+	}
+
+
+	/**
+	 * @author DL
+	 * @date Jan 11, 2016
+	 * @param 
+	 * @return
+	 * @see 商品统计
+	 */
+	public String commodityStatistical() throws Exception{
+		try {
+			List<CommoditySta> list = null;
+			//自定义统计
+			list = new ArrayList<CommoditySta>();
+			HashMap<String, String> map = new HashMap<String, String>();
+
+			if(Utils.isNotNullOrEmpty(bdate) && Utils.isNotNullOrEmpty(edate)){
+				map.put("bdate", bdate + " 00:00:00");
+				map.put("edate", edate + " 23:59:59");
+			}
+			map.put("mid", mid);
+			list = commodityStaDao.getCommoditySta(map);
+			data = JSON.toJSONString(list);
+		} catch (Exception e) {
+			logger.error("发生错误：",e);
+		}
+		return SUCCESS;
+	}
+	
+	public Logger getLogger() {
+		return logger;
+	}
+
+	public void setLogger(Logger logger) {
+		this.logger = logger;
+	}
+
+	public String getBdate() {
+		return bdate;
+	}
+
+	public void setBdate(String bdate) {
+		this.bdate = bdate;
+	}
+
+	public String getEdate() {
+		return edate;
+	}
+
+	public void setEdate(String edate) {
+		this.edate = edate;
+	}
+	
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
+
+	public String getMid() {
+		return mid;
+	}
+
+
+	public void setMid(String mid) {
+		this.mid = mid;
+	}
+
+}

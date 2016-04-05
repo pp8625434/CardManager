@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.manage.enumeration.model.EnumerationValue" table="p_enumerationvalue" >
+        <id name="id" type="integer">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <version name="version" type="integer" column="version"/>
+        <property name="valueName" type="string">
+            <column name="valueName" length="50" not-null="true"/>
+        </property>
+        <property name="displayRef" type="string">
+            <column name="displayRef" length="100"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="255"/>
+        </property>
+        
+        <many-to-one name="enumeration" class="com.manage.enumeration.model.Enumeration" outer-join="auto"  not-null="false" not-found="ignore" fetch="select" foreign-key="none">
+            <column name="enumeration"  not-null="false"/>
+        </many-to-one>
+        <property name="creator" type="integer">
+            <column name="creator" />
+        </property>
+        <property name="pxorder" type="integer">
+            <column name="pxorder" />
+        </property>
+        <!-- 
+        <many-to-one name="creator" class="com.manage.user.model.User" outer-join="auto"  not-null="false" not-found="ignore" fetch="select" foreign-key="none">
+            <column name="creator"  not-null="false"/>
+        </many-to-one>
+        -->
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 商铺管理 -->
+	<package name="merchant" extends="print" namespace="/merchant">
+		<action name="merchantList" class="com.manage.merchant.action.MerchantAction" method="merchantList">
+			<result name="success">/admin/merchant/merchantlist.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="merchantInfo" class="com.manage.merchant.action.MerchantAction" method="merchantInfo">
+			<result name="success">/admin/merchant/merchantinfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="merchantEdit" class="com.manage.merchant.action.MerchantAction" method="merchantEdit">
+			<result name="success">/admin/merchant/merchantedit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="saveMerchant" class="com.manage.merchant.action.MerchantAction" method="saveMerchant">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="merchantDelete" class="com.manage.merchant.action.MerchantAction" method="merchantDelete">
+			<result name="success" type="chain">merchantList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+	</package>
+	<package name="merchantJson" extends="json-default" namespace="/merchant">
+		<action name="checkMname" class="com.manage.merchant.action.MerchantAction" method="checkMname" >
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+</struts>
+
+
+

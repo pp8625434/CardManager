@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.framework.security.model.RoleMenuLink" table="p_rolemenulink" >
+        <id name="id" type="integer">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <version name="version" type="integer" column="version"/>
+		<!--  不作关联映射 
+		<many-to-one name="role" class="com.base.framework.security.model.Role" outer-join="auto"  not-null="false"  fetch="select" foreign-key="none">
+            <column name="role"  not-null="false"/>
+        </many-to-one>
+        <many-to-one name="menuLink" class="com.manage.menu.model.MenuLink" outer-join="auto"  not-null="false"  fetch="select" foreign-key="none">
+            <column name="menuLink"  not-null="false"/>
+        </many-to-one>
+ 		-->
+ 		
+ 		 <property name="role" type="java.lang.Integer">
+            <column name="role" />
+        </property>
+        
+        <property name="menuLink" type="java.lang.Integer">
+            <column name="menuLink" />
+        </property>
+    
+    </class>
+</hibernate-mapping>

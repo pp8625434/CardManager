@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 订单管理 -->
+	<package name="order" extends="print" namespace="/order">
+		<action name="orderList" class="com.manage.order.action.OrderAction" method="orderList">
+			<result name="success">/admin/order/orderlist.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="orderInfo" class="com.manage.order.action.OrderAction" method="orderInfo">
+			<result name="success">/admin/order/orderinfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>
+
+
+

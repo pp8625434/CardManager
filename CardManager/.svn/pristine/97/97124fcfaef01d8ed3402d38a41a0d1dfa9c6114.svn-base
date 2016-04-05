@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.manage.menu.model.BMenuLink" table="p_menulink" >
+        <id name="id" type="integer">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <version name="version" type="integer" column="version"/>
+        <property name="name" type="string">
+            <column name="name" length="50" />
+        </property>
+        <property name="linkUrl" type="string">
+            <column name="linkUrl" length="200" not-null="true"/>
+        </property>
+        <property name="displayRef" type="string">
+            <column name="displayRef" length="50" not-null="true"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="200"/>
+        </property>
+        <property name="authority" type="integer" column = "authority" />
+        <property name="orderNum" type="integer">
+            <column name="orderNum"/>
+        </property>
+        <property name="menu" type="integer">
+            <column name="menu"/>
+        </property>
+        <property name="menulinkcss" type="string">
+            <column name="MENULINKCSS" length="200"/>
+        </property>
+        <property name="menuLinkType" type="integer" column="MENULINKTYPE"></property>
+        <!-- 
+        <many-to-one name="creator" class="com.manage.user.model.User" outer-join="auto"  not-null="false"  fetch="select" foreign-key="none">
+            <column name="creator"  not-null="false"/>
+        </many-to-one>
+        -->
+        <property name="creator" type="java.lang.Integer">
+            <column name="creator" />
+        </property>
+    
+    </class>
+</hibernate-mapping>
