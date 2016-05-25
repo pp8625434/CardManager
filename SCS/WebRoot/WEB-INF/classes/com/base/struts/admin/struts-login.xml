@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="login" extends="print" namespace="/admin" >
+		<!-- 集成后使用登录 -->
+		<action name="newLogin" class="com.manage.login.action.LoginAction" method="newLogin">
+			<result name="successlogin" >/admin/index.jsp </result>
+			<interceptor-ref name="defaultStack" />
+		</action>
+		
+		<!-- 登录功能 -->
+	  	<action name="login" class="com.manage.login.action.LoginAction"	method="login">
+			<result name="success" >/admin/index.jsp </result>
+			<!-- <result type="chain">index</result> -->
+			<result name="login">/admin/login.jsp</result>
+			<interceptor-ref name="defaultStack" />
+		</action>
+		
+		<action name="index" class="com.manage.login.action.LoginAction" method ="index">
+			<!--  <result name="success" >/admin/index.jsp</result>-->
+			<result name="success" type="redirectAction">sysMenu</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>	
+		
+		<action name="logout" class="com.manage.login.action.LogoutAction"	method="logout">
+			<result name="success">/admin/login.jsp</result>
+		</action>
+		
+		<action name="frontLogin" class="com.manage.login.action.LoginAction" method="frontLogin">
+			<result name="success" >/index.html</result><!--   /head.jsp-->
+		</action>
+		
+		<!-- 登录日志 -->
+		<action name="loginLogList" class="com.manage.login.action.LoginLogAction" method="loginLogList">
+			<result name="success">/admin/statistical/loginLogList.jsp</result>
+		</action>
+		
+		<!-- 删除日志 -->
+		<action name="removeLoginLogById" class="com.manage.login.action.LoginLogAction" method="removeLoginLogById">
+			<result name="success" type="chain">loginLogList</result>
+		</action>
+</package>
+	<package name="rJson"  extends="json-default"  namespace="/service">
+		<action name="logout" class="com.manage.login.action.LogoutAction" method="logout" >
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		<action name="returnBack" class="com.manage.login.action.LogoutAction" method="returnBack">
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+	</package>
+</struts>

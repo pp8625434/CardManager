@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 保密补贴扣发通知单 -->
+	<package name="subsidiesdetainper" extends="print" namespace="/subsidiesdetainper" >
+		<action name="subsidiesDetainperList" class="com.manage.subsidiesdetainper.action.SubsidiesDetainperAction"  method="subsidiesDetainperList">
+			<result name="success">/admin/subsidiesdetainper/subsidiesDetainperList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="subsidiesDetainperSave" class="com.manage.subsidiesdetainper.action.SubsidiesDetainperAction" method="subsidiesDetainperSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="subsidiesDetainperAdd" class="com.manage.subsidiesdetainper.action.SubsidiesDetainperAction" method="subsidiesDetainperAdd">
+			<result name="success">/admin/subsidiesdetainper/subsidiesDetainperEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="subsidiesDetainperDel" class="com.manage.subsidiesdetainper.action.SubsidiesDetainperAction" method="subsidiesDetainperDel">
+			<result name="success" type="chain">
+				<param name="actionName">subsidiesDetainperList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="subsidiesDetainperInfo" class="com.manage.subsidiesdetainper.action.SubsidiesDetainperAction" method="subsidiesDetainperInfo">
+			<result name="success">/admin/subsidiesdetainper/subsidiesDetainperInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

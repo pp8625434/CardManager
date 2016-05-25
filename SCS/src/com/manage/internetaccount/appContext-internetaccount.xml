@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Ware Manager And DAO Configration==================== -->  
+    <bean id="com.manage.internetaccount.dao.impl.InternetAccountDaoImpl" class="com.manage.internetaccount.dao.impl.InternetAccountDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.internetaccount.dao.InternetAccountDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.internetaccount.dao.InternetAccountDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.internetaccount.dao.impl.InternetAccountDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.internetaccount.model.InternetAccount" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.internetaccount.service.impl.InternetAccountManagerImpl">
+                <property name="dao" ref="com.manage.internetaccount.dao.InternetAccountDao"/>
+                <property name="modelClass" value="com.manage.internetaccount.model.InternetAccount"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

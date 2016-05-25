@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 设备购置明细表 -->
+	<package name="deviceinfo" extends="print" namespace="/deviceinfo" >
+		<action name="deviceInfoList" class="com.manage.deviceinfo.action.DeviceInfoAction"  method="deviceInfoList">
+			<result name="success">/admin/deviceinfo/deviceInfoList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="deviceInfoSave" class="com.manage.deviceinfo.action.DeviceInfoAction" method="deviceInfoSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="deviceInfoAdd" class="com.manage.deviceinfo.action.DeviceInfoAction" method="deviceInfoAdd">
+			<result name="success">/admin/deviceinfo/deviceInfoEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="deviceInfoDel" class="com.manage.deviceinfo.action.DeviceInfoAction" method="deviceInfoDel">
+			<result name="success" type="chain">
+				<param name="actionName">deviceInfoList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="deviceInfoInfo" class="com.manage.deviceinfo.action.DeviceInfoAction" method="deviceInfoInfo">
+			<result name="success">/admin/deviceinfo/deviceInfoInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

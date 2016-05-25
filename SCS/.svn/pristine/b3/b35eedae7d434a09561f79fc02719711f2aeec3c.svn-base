@@ -1,0 +1,12 @@
+package com.manage.temp.service.impl;
+
+
+import com.manage.temp.service.SKeypartexamTabManager;
+
+import com.base.framework.service.impl.ManagerImpl;
+
+public class SKeypartexamTabManagerImpl extends ManagerImpl implements SKeypartexamTabManager{
+    
+   
+		
+}

@@ -1,0 +1,12 @@
+package com.manage.temp.service.impl;
+
+
+import com.manage.temp.service.SExamClassificationTabManager;
+
+import com.base.framework.service.impl.ManagerImpl;
+
+public class SExamClassificationTabManagerImpl extends ManagerImpl implements SExamClassificationTabManager{
+    
+   
+		
+}

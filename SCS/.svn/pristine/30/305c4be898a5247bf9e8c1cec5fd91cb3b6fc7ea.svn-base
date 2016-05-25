@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Enumeration Manager And DAO Configration==================== -->  
+    <bean id="com.manage.vregist.dao.impl.VregistInfoDaoImpl" class="com.manage.vregist.dao.impl.VregistInfoDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.vregist.dao.VregistInfoDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.vregist.dao.VregistInfoDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.vregist.dao.impl.VregistInfoDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.vregist.model.SVregistInfoTab" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.vregist.service.impl.VregistInfoManagerImpl">
+                <property name="dao" ref="com.manage.vregist.dao.VregistInfoDao"/>
+                <property name="modelClass" value="com.manage.vregist.model.SVregistInfoTab"/>
+            </bean>
+        </property>
+    </bean>
+    
+
+</beans>

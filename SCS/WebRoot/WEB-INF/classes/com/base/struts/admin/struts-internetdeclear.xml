@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 计算机国际联网申报审批管理 -->
+	<package name="internetdeclear" extends="print" namespace="/internetdeclear">
+		
+		<action name="internetdeclearList" class="com.manage.pcinternetdeclear.action.InternetdeclearAction" method="internetdeclearList" >
+			<result name="success">/admin/internetdeclear/internetdeclearList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="internetdeclearInfo" class="com.manage.pcinternetdeclear.action.InternetdeclearAction" method="internetdeclearInfo" >
+			<result name="success">/admin/internetdeclear/internetdeclearInfo.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="internetdeclearEdit" class="com.manage.pcinternetdeclear.action.InternetdeclearAction" method="internetdeclearEdit" >
+			<result name="success">/admin/internetdeclear/internetdeclearEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="saveInternetdeclear" class="com.manage.pcinternetdeclear.action.InternetdeclearAction" method="saveInternetdeclear" >
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="delInternetdeclear" class="com.manage.pcinternetdeclear.action.InternetdeclearAction" method="delInternetdeclear" >
+			<result name="success" type="chain">internetdeclearList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+	</package>
+	
+</struts>
+
+
+

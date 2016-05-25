@@ -1,0 +1,12 @@
+package com.manage.temp.service.impl;
+
+
+import com.manage.temp.service.SSecexamregistTabManager;
+
+import com.base.framework.service.impl.ManagerImpl;
+
+public class SSecexamregistTabManagerImpl extends ManagerImpl implements SSecexamregistTabManager{
+    
+   
+		
+}

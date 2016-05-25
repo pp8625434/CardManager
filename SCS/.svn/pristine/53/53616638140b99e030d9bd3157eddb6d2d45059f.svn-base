@@ -1,0 +1,430 @@
+package com.manage.appsysnetin.action.info;
+
+import java.util.Date;
+
+import com.base.framework.web.PageInfoView;
+
+public class AppSysNetInPageInfo extends PageInfoView{
+	private Integer f_id;
+	private String f_id_op;
+	private Integer f_version;
+	private String f_version_op;
+	private String f_sysname;
+	private String f_sysname_op;
+	private String f_projectprincipal;
+	private String f_projectprincipal_op;
+	private String f_executivedept;
+	private String f_executivedept_op;
+	private Integer f_executivedeptid;
+	private String f_executivedeptid_op;
+	private String f_deptprincipal;
+	private String f_deptprincipal_op;
+	private String f_sysdevelopdept;
+	private String f_sysdevelopdept_op;
+	private String f_developor;
+	private String f_developor_op;
+	private String f_developdeptzizhi;
+	private String f_developdeptzizhi_op;
+	private Integer f_security;
+	private String f_security_op;
+	private String f_accesspoint;
+	private String f_accesspoint_op;
+	private String f_applicationrange;
+	private String f_applicationrange_op;
+	private String f_functionsketch;
+	private String f_functionsketch_op;
+	private String f_projectdata;
+	private String f_projectdata_op;
+	private String f_environment;
+	private String f_environment_op;
+	private String f_securitypolicy;
+	private String f_securitypolicy_op;
+	private String f_setupdept;
+	private String f_setupdept_op;
+	private String f_setupdeptsign;
+	private String f_setupdeptsign_op;
+	private Integer f_setuporid;
+	private String f_setuporid_op;
+	private Date f_setupordate;
+	private String f_setupordate_op;
+	private String f_securityopinion;
+	private String f_securityopinion_op;
+	private String f_securitysign;
+	private String f_securitysign_op;
+	private Integer f_securityid;
+	private String f_securityid_op;
+	private Date f_securitysigndate;
+	private String f_securitysigndate_op;
+	private String f_infordeptopinion;
+	private String f_infordeptopinion_op;
+	private String f_infordeptsign;
+	private String f_infordeptsign_op;
+	private Integer f_infordeptsignid;
+	private String f_infordeptsignid_op;
+	private Date f_infordeptsigndate;
+	private String f_infordeptsigndate_op;
+	
+	private String f_filePath;
+	private String f_filePath_op;
+	
+	public Integer getF_id() {
+		return f_id;
+	}
+	public void setF_id(Integer f_id) {
+		this.f_id = f_id;
+	}
+	public String getF_id_op() {
+		return f_id_op;
+	}
+	public void setF_id_op(String f_id_op) {
+		this.f_id_op = f_id_op;
+	}
+	public Integer getF_version() {
+		return f_version;
+	}
+	public void setF_version(Integer f_version) {
+		this.f_version = f_version;
+	}
+	public String getF_version_op() {
+		return f_version_op;
+	}
+	public void setF_version_op(String f_version_op) {
+		this.f_version_op = f_version_op;
+	}
+	public String getF_sysname() {
+		return f_sysname;
+	}
+	public void setF_sysname(String f_sysname) {
+		this.f_sysname = f_sysname;
+	}
+	public String getF_sysname_op() {
+		return f_sysname_op;
+	}
+	public void setF_sysname_op(String f_sysname_op) {
+		this.f_sysname_op = f_sysname_op;
+	}
+	public String getF_projectprincipal() {
+		return f_projectprincipal;
+	}
+	public void setF_projectprincipal(String f_projectprincipal) {
+		this.f_projectprincipal = f_projectprincipal;
+	}
+	public String getF_projectprincipal_op() {
+		return f_projectprincipal_op;
+	}
+	public void setF_projectprincipal_op(String f_projectprincipal_op) {
+		this.f_projectprincipal_op = f_projectprincipal_op;
+	}
+	public String getF_executivedept() {
+		return f_executivedept;
+	}
+	public void setF_executivedept(String f_executivedept) {
+		this.f_executivedept = f_executivedept;
+	}
+	public String getF_executivedept_op() {
+		return f_executivedept_op;
+	}
+	public void setF_executivedept_op(String f_executivedept_op) {
+		this.f_executivedept_op = f_executivedept_op;
+	}
+	public Integer getF_executivedeptid() {
+		return f_executivedeptid;
+	}
+	public void setF_executivedeptid(Integer f_executivedeptid) {
+		this.f_executivedeptid = f_executivedeptid;
+	}
+	public String getF_executivedeptid_op() {
+		return f_executivedeptid_op;
+	}
+	public void setF_executivedeptid_op(String f_executivedeptid_op) {
+		this.f_executivedeptid_op = f_executivedeptid_op;
+	}
+	public String getF_deptprincipal() {
+		return f_deptprincipal;
+	}
+	public void setF_deptprincipal(String f_deptprincipal) {
+		this.f_deptprincipal = f_deptprincipal;
+	}
+	public String getF_deptprincipal_op() {
+		return f_deptprincipal_op;
+	}
+	public void setF_deptprincipal_op(String f_deptprincipal_op) {
+		this.f_deptprincipal_op = f_deptprincipal_op;
+	}
+	public String getF_sysdevelopdept() {
+		return f_sysdevelopdept;
+	}
+	public void setF_sysdevelopdept(String f_sysdevelopdept) {
+		this.f_sysdevelopdept = f_sysdevelopdept;
+	}
+	public String getF_sysdevelopdept_op() {
+		return f_sysdevelopdept_op;
+	}
+	public void setF_sysdevelopdept_op(String f_sysdevelopdept_op) {
+		this.f_sysdevelopdept_op = f_sysdevelopdept_op;
+	}
+	public String getF_developor() {
+		return f_developor;
+	}
+	public void setF_developor(String f_developor) {
+		this.f_developor = f_developor;
+	}
+	public String getF_developor_op() {
+		return f_developor_op;
+	}
+	public void setF_developor_op(String f_developor_op) {
+		this.f_developor_op = f_developor_op;
+	}
+	public String getF_developdeptzizhi() {
+		return f_developdeptzizhi;
+	}
+	public void setF_developdeptzizhi(String f_developdeptzizhi) {
+		this.f_developdeptzizhi = f_developdeptzizhi;
+	}
+	public String getF_developdeptzizhi_op() {
+		return f_developdeptzizhi_op;
+	}
+	public void setF_developdeptzizhi_op(String f_developdeptzizhi_op) {
+		this.f_developdeptzizhi_op = f_developdeptzizhi_op;
+	}
+	public Integer getF_security() {
+		return f_security;
+	}
+	public void setF_security(Integer f_security) {
+		this.f_security = f_security;
+	}
+	public String getF_security_op() {
+		return f_security_op;
+	}
+	public void setF_security_op(String f_security_op) {
+		this.f_security_op = f_security_op;
+	}
+	public String getF_accesspoint() {
+		return f_accesspoint;
+	}
+	public void setF_accesspoint(String f_accesspoint) {
+		this.f_accesspoint = f_accesspoint;
+	}
+	public String getF_accesspoint_op() {
+		return f_accesspoint_op;
+	}
+	public void setF_accesspoint_op(String f_accesspoint_op) {
+		this.f_accesspoint_op = f_accesspoint_op;
+	}
+	public String getF_applicationrange() {
+		return f_applicationrange;
+	}
+	public void setF_applicationrange(String f_applicationrange) {
+		this.f_applicationrange = f_applicationrange;
+	}
+	public String getF_applicationrange_op() {
+		return f_applicationrange_op;
+	}
+	public void setF_applicationrange_op(String f_applicationrange_op) {
+		this.f_applicationrange_op = f_applicationrange_op;
+	}
+	public String getF_functionsketch() {
+		return f_functionsketch;
+	}
+	public void setF_functionsketch(String f_functionsketch) {
+		this.f_functionsketch = f_functionsketch;
+	}
+	public String getF_functionsketch_op() {
+		return f_functionsketch_op;
+	}
+	public void setF_functionsketch_op(String f_functionsketch_op) {
+		this.f_functionsketch_op = f_functionsketch_op;
+	}
+	public String getF_projectdata() {
+		return f_projectdata;
+	}
+	public void setF_projectdata(String f_projectdata) {
+		this.f_projectdata = f_projectdata;
+	}
+	public String getF_projectdata_op() {
+		return f_projectdata_op;
+	}
+	public void setF_projectdata_op(String f_projectdata_op) {
+		this.f_projectdata_op = f_projectdata_op;
+	}
+	public String getF_environment() {
+		return f_environment;
+	}
+	public void setF_environment(String f_environment) {
+		this.f_environment = f_environment;
+	}
+	public String getF_environment_op() {
+		return f_environment_op;
+	}
+	public void setF_environment_op(String f_environment_op) {
+		this.f_environment_op = f_environment_op;
+	}
+	public String getF_securitypolicy() {
+		return f_securitypolicy;
+	}
+	public void setF_securitypolicy(String f_securitypolicy) {
+		this.f_securitypolicy = f_securitypolicy;
+	}
+	public String getF_securitypolicy_op() {
+		return f_securitypolicy_op;
+	}
+	public void setF_securitypolicy_op(String f_securitypolicy_op) {
+		this.f_securitypolicy_op = f_securitypolicy_op;
+	}
+	public String getF_setupdept() {
+		return f_setupdept;
+	}
+	public void setF_setupdept(String f_setupdept) {
+		this.f_setupdept = f_setupdept;
+	}
+	public String getF_setupdept_op() {
+		return f_setupdept_op;
+	}
+	public void setF_setupdept_op(String f_setupdept_op) {
+		this.f_setupdept_op = f_setupdept_op;
+	}
+	public String getF_setupdeptsign() {
+		return f_setupdeptsign;
+	}
+	public void setF_setupdeptsign(String f_setupdeptsign) {
+		this.f_setupdeptsign = f_setupdeptsign;
+	}
+	public String getF_setupdeptsign_op() {
+		return f_setupdeptsign_op;
+	}
+	public void setF_setupdeptsign_op(String f_setupdeptsign_op) {
+		this.f_setupdeptsign_op = f_setupdeptsign_op;
+	}
+	public Integer getF_setuporid() {
+		return f_setuporid;
+	}
+	public void setF_setuporid(Integer f_setuporid) {
+		this.f_setuporid = f_setuporid;
+	}
+	public String getF_setuporid_op() {
+		return f_setuporid_op;
+	}
+	public void setF_setuporid_op(String f_setuporid_op) {
+		this.f_setuporid_op = f_setuporid_op;
+	}
+	public Date getF_setupordate() {
+		return f_setupordate;
+	}
+	public void setF_setupordate(Date f_setupordate) {
+		this.f_setupordate = f_setupordate;
+	}
+	public String getF_setupordate_op() {
+		return f_setupordate_op;
+	}
+	public void setF_setupordate_op(String f_setupordate_op) {
+		this.f_setupordate_op = f_setupordate_op;
+	}
+	public String getF_securityopinion() {
+		return f_securityopinion;
+	}
+	public void setF_securityopinion(String f_securityopinion) {
+		this.f_securityopinion = f_securityopinion;
+	}
+	public String getF_securityopinion_op() {
+		return f_securityopinion_op;
+	}
+	public void setF_securityopinion_op(String f_securityopinion_op) {
+		this.f_securityopinion_op = f_securityopinion_op;
+	}
+	public String getF_securitysign() {
+		return f_securitysign;
+	}
+	public void setF_securitysign(String f_securitysign) {
+		this.f_securitysign = f_securitysign;
+	}
+	public String getF_securitysign_op() {
+		return f_securitysign_op;
+	}
+	public void setF_securitysign_op(String f_securitysign_op) {
+		this.f_securitysign_op = f_securitysign_op;
+	}
+	public Integer getF_securityid() {
+		return f_securityid;
+	}
+	public void setF_securityid(Integer f_securityid) {
+		this.f_securityid = f_securityid;
+	}
+	public String getF_securityid_op() {
+		return f_securityid_op;
+	}
+	public void setF_securityid_op(String f_securityid_op) {
+		this.f_securityid_op = f_securityid_op;
+	}
+	public Date getF_securitysigndate() {
+		return f_securitysigndate;
+	}
+	public void setF_securitysigndate(Date f_securitysigndate) {
+		this.f_securitysigndate = f_securitysigndate;
+	}
+	public String getF_securitysigndate_op() {
+		return f_securitysigndate_op;
+	}
+	public void setF_securitysigndate_op(String f_securitysigndate_op) {
+		this.f_securitysigndate_op = f_securitysigndate_op;
+	}
+	public String getF_infordeptopinion() {
+		return f_infordeptopinion;
+	}
+	public void setF_infordeptopinion(String f_infordeptopinion) {
+		this.f_infordeptopinion = f_infordeptopinion;
+	}
+	public String getF_infordeptopinion_op() {
+		return f_infordeptopinion_op;
+	}
+	public void setF_infordeptopinion_op(String f_infordeptopinion_op) {
+		this.f_infordeptopinion_op = f_infordeptopinion_op;
+	}
+	public String getF_infordeptsign() {
+		return f_infordeptsign;
+	}
+	public void setF_infordeptsign(String f_infordeptsign) {
+		this.f_infordeptsign = f_infordeptsign;
+	}
+	public String getF_infordeptsign_op() {
+		return f_infordeptsign_op;
+	}
+	public void setF_infordeptsign_op(String f_infordeptsign_op) {
+		this.f_infordeptsign_op = f_infordeptsign_op;
+	}
+	public Integer getF_infordeptsignid() {
+		return f_infordeptsignid;
+	}
+	public void setF_infordeptsignid(Integer f_infordeptsignid) {
+		this.f_infordeptsignid = f_infordeptsignid;
+	}
+	public String getF_infordeptsignid_op() {
+		return f_infordeptsignid_op;
+	}
+	public void setF_infordeptsignid_op(String f_infordeptsignid_op) {
+		this.f_infordeptsignid_op = f_infordeptsignid_op;
+	}
+	public Date getF_infordeptsigndate() {
+		return f_infordeptsigndate;
+	}
+	public void setF_infordeptsigndate(Date f_infordeptsigndate) {
+		this.f_infordeptsigndate = f_infordeptsigndate;
+	}
+	public String getF_infordeptsigndate_op() {
+		return f_infordeptsigndate_op;
+	}
+	public void setF_infordeptsigndate_op(String f_infordeptsigndate_op) {
+		this.f_infordeptsigndate_op = f_infordeptsigndate_op;
+	}
+	public String getF_filePath() {
+		return f_filePath;
+	}
+	public void setF_filePath(String path) {
+		f_filePath = path;
+	}
+	public String getF_filePath_op() {
+		return f_filePath_op;
+	}
+	public void setF_filePath_op(String path_op) {
+		f_filePath_op = path_op;
+	}
+}

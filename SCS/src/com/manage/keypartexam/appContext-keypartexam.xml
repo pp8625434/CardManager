@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Enumeration Manager And DAO Configration==================== -->  
+    <bean id="com.manage.keypartexam.dao.impl.KeypartexamDaoImpl" class="com.manage.keypartexam.dao.impl.KeypartexamDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.keypartexam.dao.KeypartexamDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.keypartexam.dao.KeypartexamDao"/>
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.keypartexam.dao.impl.KeypartexamDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.keypartexam.model.SKeypartexamTab" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.keypartexam.service.impl.KeypartexamManagerImpl">
+                <property name="dao" ref="com.manage.keypartexam.dao.KeypartexamDao"/>
+                <property name="modelClass" value="com.manage.keypartexam.model.SKeypartexamTab"/>
+            </bean>
+        </property>
+    </bean>
+    
+
+</beans>

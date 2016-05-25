@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Ware Manager And DAO Configration==================== -->  
+    <bean id="com.manage.subsidiesdetain.dao.impl.SubsidiesDetainDaoImpl" class="com.manage.subsidiesdetain.dao.impl.SubsidiesDetainDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.subsidiesdetain.dao.SubsidiesDetainDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.subsidiesdetain.dao.SubsidiesDetainDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.subsidiesdetain.dao.impl.SubsidiesDetainDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.subsidiesdetain.model.SubsidiesDetain" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.subsidiesdetain.service.impl.SubsidiesDetainManagerImpl">
+                <property name="dao" ref="com.manage.subsidiesdetain.dao.SubsidiesDetainDao"/>
+                <property name="modelClass" value="com.manage.subsidiesdetain.model.SubsidiesDetain"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

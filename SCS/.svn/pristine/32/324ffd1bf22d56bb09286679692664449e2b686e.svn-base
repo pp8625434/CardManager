@@ -1,0 +1,25 @@
+#######################################
+#              SystemName             #	
+#######################################
+base.system.name=\u5B5D\u6613\u8FBE-\u793E\u533A\u670D\u52A1\u4E00\u5361\u901A
+base.system.url=
+
+#######################################
+#            framework Configure      #	
+#######################################
+base.config.reload=false
+
+#######################################
+#        PageInfo Configure           #
+#######################################
+base.pageinfo.pagesize=10
+#base.pageinfo.maxrecords=0
+#base.pageinfo.currnetmiddlepag=5
+
+#######################################
+#          Security Configure         #  
+#######################################
+#base.security.page.org.show.mode=lookup
+base.security.page.org.show.mode=dropdown
+
+

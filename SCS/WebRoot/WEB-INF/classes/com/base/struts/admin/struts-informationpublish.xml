@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 互联网信息发布审批表 -->
+	<package name="informationpublish" extends="print" namespace="/informationpublish" >
+		<action name="informationPublishList" class="com.manage.informationpublish.action.InformationPublishAction"  method="informationPublishList">
+			<result name="success">/admin/informationpublish/informationPublishList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="informationPublishSave" class="com.manage.informationpublish.action.InformationPublishAction" method="informationPublishSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="informationPublishAdd" class="com.manage.informationpublish.action.InformationPublishAction" method="informationPublishAdd">
+			<result name="success">/admin/informationpublish/informationPublishEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="informationPublishDel" class="com.manage.informationpublish.action.InformationPublishAction" method="informationPublishDel">
+			<result name="success" type="chain">
+				<param name="actionName">informationPublishList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="informationPublishInfo" class="com.manage.informationpublish.action.InformationPublishAction" method="informationPublishInfo">
+			<result name="success">/admin/informationpublish/informationPublishInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

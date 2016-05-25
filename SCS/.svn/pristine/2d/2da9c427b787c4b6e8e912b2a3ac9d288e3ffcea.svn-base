@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.framework.security.model.UserRole" table="p_userrole" >
+        <id name="id" type="integer">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <version name="version" type="integer" column="version"/>
+        <!-- 
+        <many-to-one name="securityUser" class="com.manage.user.model.User"  not-null="false" foreign-key="none">
+        </many-to-one>
+        <many-to-one name="role" class="com.base.framework.security.model.Role" outer-join="auto"  not-null="false"  fetch="select" foreign-key="none">
+        </many-to-one>
+        
+        <column name="securityUser"  not-null="false"/>
+    	<column name="role"  not-null="false"/>
+        -->
+        
+        
+        <property name="securityUser" type="java.lang.Integer">
+            <column name="securityUser" />
+        </property>
+        
+        <property name="role" type="java.lang.Integer">
+            <column name="role" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

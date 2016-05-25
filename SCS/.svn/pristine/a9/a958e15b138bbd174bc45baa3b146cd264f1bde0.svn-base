@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>  
+ 	<include file="struts-default.xml" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.i18n.reload" value="true" />
+	<constant name="struts.multipart.saveDir" value="/temp" />
+	<constant name= "struts.multipart.maxSize" value="2048000000" />
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<constant name="struts.custom.i18n.resources"
+		value="ApplicationResources,ApplicationMessages" />
+	<constant name="struts.serve.static.browserCache" value="false" />
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+ 	<!-- 百度ueditor编辑器 -->
+ 	<bean type="org.apache.struts2.dispatcher.multipart.MultiPartRequest"
+		name="myRequestParser" class="com.manage.ueditor.RequestParseWrapper"
+		scope="default" optional="true" />
+	<constant name="struts.multipart.handler" value="myRequestParser" />
+ 	<!-- 百度ueditor编辑器 -->
+	<package name="print" extends="struts-default">
+		<result-types>
+			<result-type name="json" 
+			    class="org.apache.struts2.json.JSONResult"/>
+		</result-types>
+		<interceptors>
+            <interceptor name="upload" 	class="org.apache.struts2.interceptor.FileUploadInterceptor"/>
+			<interceptor name="loadobject" class="com.base.framework.web.interceptor.LoadObjectInterceptor" />
+			<interceptor name="sessionIterceptor" class="com.base.framework.web.interceptor.SessionTimeOutIterceptor" />
+			<interceptor name="Jurisdiction" class="com.base.framework.interceptor.JurisdictionControlInterceptor" /> 
+			<interceptor-stack name="exceptionStack">
+				<interceptor-ref name="defaultStack">  
+                    <param name="exception.logEnabled">true</param>  
+                    <param name="exception.logLevel">error</param> 
+                    </interceptor-ref>
+              </interceptor-stack> 
+			<interceptor-stack name="defaultStack">
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="params" />
+			</interceptor-stack>
+			<!-- 上传使用的 拦截器  -->
+			<interceptor-stack name="modelStackUpload" >
+				<interceptor-ref name="upload" />
+				<interceptor-ref name="basicStack" /> 
+			</interceptor-stack>
+			<!--  基础部分功能使用  -->
+			<interceptor-stack name="modelParamsStack">
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="loadobject" />
+				<interceptor-ref name="sessionIterceptor" />
+				<!-- <interceptor-ref name="exception" /> -->
+			</interceptor-stack>
+			<!-- 加权限控制的基础部分功能使用 赵磊-->
+			<interceptor-stack name="JurismodelParamsStack">
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="loadobject" />
+				<interceptor-ref name="sessionIterceptor" />
+				<interceptor-ref name="Jurisdiction" />
+			</interceptor-stack>
+			     
+		</interceptors>
+		<default-interceptor-ref name="basicStack" />
+	 	  
+		<global-results>
+			<result name="error">/admin/common/error.jsp</result> 
+			<result name="noJurisdiction">/admin/common/noJurisdiction.jsp</result>
+			<result name="operationError" type="redirect">
+				/admin/common/error.jsp
+			</result>
+			
+			<result name="login" type="redirect">
+				/admin/common/session.jsp
+			</result>
+			<result name="nologin" type="redirect">
+				/admin/common/session.jsp
+			</result>
+			<!--
+			-->
+		</global-results>
+		 	
+	</package>
+	
+	<!-- 管理员后台功能-->
+	<include file="com/base/struts/admin/struts-login.xml"></include>
+	<include file="com/base/struts/admin/struts-menu.xml"></include>
+	<include file="com/base/struts/admin/struts-enumeration.xml"></include>
+	<include file="com/base/struts/admin/struts-security.xml" ></include>
+	<include file="com/base/struts/admin/struts-statistical.xml"></include>
+	<include file="com/base/struts/admin/struts-user.xml"></include>
+	<include file="com/base/struts/admin/struts-org.xml"></include>
+	<include file="com/base/struts/admin/struts-jsutil.xml"></include>
+	<!-- 流程图 -->
+	<include file="com/base/struts/admin/struts-flowchart.xml" ></include>
+	
+	<!-- 视频会议系统使用申请表 -->
+	<include file="com/base/struts/admin/struts-videomeeting.xml" ></include>
+	
+	<!-- 系统失泄密记录表 -->
+	<include file="com/base/struts/admin/struts-telltalerecord.xml" ></include>
+	<!-- 应用系统入网审批表 -->
+	<include file="com/base/struts/admin/struts-appsysnetin.xml"></include>
+	<!-- OA系统组织结构变更表 -->
+	<include file="com/base/struts/admin/struts-oasysalter.xml"></include>
+	<!-- 系统配置变更审批表 -->
+	<include file="com/base/struts/admin/struts-sysconfigalter.xml"></include>
+	<!-- 布线系统季度检查记录表 -->
+	<include file="com/base/struts/admin/struts-wiresysrecord.xml"></include>
+	<!-- 配线间周检查记录表 -->
+	<include file="com/base/struts/admin/struts-pantchrecord.xml"></include>
+	<!-- 年度设备购置需求表 -->
+	<include file="com/base/struts/admin/struts-devicepurchase.xml"></include>
+	<!-- 设备购置明细表 -->
+	<include file="com/base/struts/admin/struts-deviceinfo.xml"></include>
+	<!-- 建立摆渡中心申请表 -->
+	<include file="com/base/struts/admin/struts-ferrycentre.xml"></include>
+	<!-- 应用系统业务模块增加、删除、配置变更审批表 -->
+	<include file="com/base/struts/admin/struts-appsysalter.xml"></include>
+	<!-- 设备接入/退出涉密信息系统审批 -->
+	<include file="com/base/struts/admin/struts-deviceiosys.xml"></include>
+	<!-- 非涉密便携式计算机携带外出审批 -->
+	<include file="com/base/struts/admin/struts-notsecretpcout.xml"></include>
+	<!-- 更换USBKEY申请表 -->
+	<include file="com/base/struts/admin/struts-alterusbkey.xml"></include>
+</struts>
+

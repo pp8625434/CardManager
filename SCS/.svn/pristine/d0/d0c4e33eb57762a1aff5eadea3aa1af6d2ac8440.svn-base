@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 设备维护、维修审批表 -->
+	<package name="devicemaintain" extends="print" namespace="/devicemaintain" >
+		<action name="deviceMaintainList" class="com.manage.devicemaintain.action.DeviceMaintainAction"  method="deviceMaintainList">
+			<result name="success">/admin/devicemaintain/deviceMaintainList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="deviceMaintainSave" class="com.manage.devicemaintain.action.DeviceMaintainAction" method="deviceMaintainSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="deviceMaintainAdd" class="com.manage.devicemaintain.action.DeviceMaintainAction" method="deviceMaintainAdd">
+			<result name="success">/admin/devicemaintain/deviceMaintainEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="deviceMaintainDel" class="com.manage.devicemaintain.action.DeviceMaintainAction" method="deviceMaintainDel">
+			<result name="success" type="chain">
+				<param name="actionName">deviceMaintainList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="deviceMaintainInfo" class="com.manage.devicemaintain.action.DeviceMaintainAction" method="deviceMaintainInfo">
+			<result name="success">/admin/devicemaintain/deviceMaintainInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

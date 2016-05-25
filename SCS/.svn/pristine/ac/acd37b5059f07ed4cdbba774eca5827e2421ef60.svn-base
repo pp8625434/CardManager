@@ -1,0 +1,4 @@
+
+function create_flowchart(){
+	parent.addTab("新建流程图",ctx+"/flowchart/perCreateFlowchart.action?flowchart.id=-1","icon icon-nav");
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<table width="100%" border="1">
+  <caption>
+    外网邮箱开通、撤销申请审批表
+  </caption>
+  <tr>
+    <td width="25%">申请人所在单位（部门）</td>
+    <td width="25%">&nbsp;</td>
+    <td width="25%">申请人</td>
+    <td width="25%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>申请人所在处室</td>
+    <td>&nbsp;</td>
+    <td>联系方式</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="2">申请开通、撤销外网邮箱原因</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>签字</td>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="2">申请人所在部门或单位意见</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>签字</td>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="2">信息档案部审查意见</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>签字</td>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="2">网管操作结果记录</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>签字</td>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

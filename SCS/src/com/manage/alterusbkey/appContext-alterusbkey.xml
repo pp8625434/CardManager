@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Ware Manager And DAO Configration==================== -->  
+    <bean id="com.manage.alterusbkey.dao.impl.AlterUsbkeyDaoImpl" class="com.manage.alterusbkey.dao.impl.AlterUsbkeyDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.alterusbkey.dao.AlterUsbkeyDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.alterusbkey.dao.AlterUsbkeyDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.alterusbkey.dao.impl.AlterUsbkeyDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.alterusbkey.model.AlterUsbkey" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.alterusbkey.service.impl.AlterUsbkeyManagerImpl">
+                <property name="dao" ref="com.manage.alterusbkey.dao.AlterUsbkeyDao"/>
+                <property name="modelClass" value="com.manage.alterusbkey.model.AlterUsbkey"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

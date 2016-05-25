@@ -1,0 +1,779 @@
+package com.manage.secretpcout.action.info;
+
+import java.util.Date;
+
+import com.base.framework.web.PageInfoView;
+
+public class SecretPcOutPageInfo extends PageInfoView {
+	private Integer f_id;
+	private String f_id_op;
+	private Integer f_version;
+	private String f_version_op;
+	private String f_deptname;
+	private String f_deptname_op;
+	private Integer f_deptid;
+	private String f_deptid_op;
+	private String f_user;
+	private String f_user_op;
+	private String f_outplace;
+	private String f_outplace_op;
+	private String f_devicenum;
+	private String f_devicenum_op;
+	private String f_devicesecurity;
+	private String f_devicesecurity_op;
+	private Integer f_iscontentsecret;
+	private String f_iscontentsecret_op;
+	private String f_diskfrom;
+	private String f_diskfrom_op;
+	private String f_mediumnum;
+	private String f_mediumnum_op;
+	private String f_mediumsecurity;
+	private String f_mediumsecurity_op;
+	private String f_impboxnum;
+	private String f_impboxnum_op;
+	private String f_impboxsecurity;
+	private String f_impboxsecurity_op;
+	private String f_borrowreason;
+	private String f_borrowreason_op;
+	private String f_applyopenport;
+	private String f_applyopenport_op;
+	private String f_applyinstallsoft;
+	private String f_applyinstallsoft_op;
+	private String f_usersign;
+	private String f_usersign_op;
+	private Integer f_userid;
+	private String f_userid_op;
+	private Date f_usersigndate;
+	private String f_usersigndate_op;
+	private String f_deptleaderopinion;
+	private String f_deptleaderopinion_op;
+	private String f_deptleadersign;
+	private String f_deptleadersign_op;
+	private Integer f_deptleaderid;
+	private String f_deptleaderid_op;
+	private Date f_leadersigndate;
+	private String f_leadersigndate_op;
+	private Integer f_isupdate;
+	private String f_isupdate_op;
+	private String f_updateversion;
+	private String f_updateversion_op;
+	private String f_openport;
+	private String f_openport_op;
+	private String f_installsoft;
+	private String f_installsoft_op;
+	private String f_operator1;
+	private String f_operator1_op;
+	private Integer f_operatorid1;
+	private String f_operatorid1_op;
+	private Date f_operatordate1;
+	private String f_operatordate1_op;
+	private String f_receiver;
+	private String f_receiver_op;
+	private Integer f_receiverid;
+	private String f_receiverid_op;
+	private Date f_receiverdate;
+	private String f_receiverdate_op;
+	private String f_checkcondition;
+	private String f_checkcondition_op;
+	private String f_transfersign;
+	private String f_transfersign_op;
+	private Integer f_transferid;
+	private String f_transferid_op;
+	private String f_checkersign;
+	private String f_checkersign_op;
+	private Integer f_checkerid;
+	private String f_checkerid_op;
+	private Date f_checkersigndate;
+	private String f_checkersigndate_op;
+	private String f_portcondition;
+	private String f_portcondition_op;
+	private String f_operator2;
+	private String f_operator2_op;
+	private Integer f_operatorid2;
+	private String f_operatorid2_op;
+	private Date f_operatordate2;
+	private String f_operatordate2_op;
+	private String f_securityopinion;
+	private String f_securityopinion_op;
+	private String f_securitysign;
+	private String f_securitysign_op;
+	private Integer f_securityid;
+	private String f_securityid_op;
+	private Date f_securitysigndate;
+	private String f_securitysigndate_op;
+	private String f_firstperson;
+	private String f_firstperson_op;
+	private Integer f_firstpid;
+	private String f_firstpid_op;
+	private Date f_firstsubdate;
+	private String f_firstsubdate_op;
+	private String f_openportelse;
+	private String f_openportelse_op;
+	private String f_portelse;
+	private String f_portelse_op;
+	private String f_conditionelse;
+	private String f_conditionelse_op;
+	private String f_closeSolutionelse;
+	private String f_closeSolutionelse_op;
+	public Integer getF_id() {
+		return f_id;
+	}
+	public void setF_id(Integer f_id) {
+		this.f_id = f_id;
+	}
+	public String getF_id_op() {
+		return f_id_op;
+	}
+	public void setF_id_op(String f_id_op) {
+		this.f_id_op = f_id_op;
+	}
+	public Integer getF_version() {
+		return f_version;
+	}
+	public void setF_version(Integer f_version) {
+		this.f_version = f_version;
+	}
+	public String getF_version_op() {
+		return f_version_op;
+	}
+	public void setF_version_op(String f_version_op) {
+		this.f_version_op = f_version_op;
+	}
+	public String getF_deptname() {
+		return f_deptname;
+	}
+	public void setF_deptname(String f_deptname) {
+		this.f_deptname = f_deptname;
+	}
+	public String getF_deptname_op() {
+		return f_deptname_op;
+	}
+	public void setF_deptname_op(String f_deptname_op) {
+		this.f_deptname_op = f_deptname_op;
+	}
+	public Integer getF_deptid() {
+		return f_deptid;
+	}
+	public void setF_deptid(Integer f_deptid) {
+		this.f_deptid = f_deptid;
+	}
+	public String getF_deptid_op() {
+		return f_deptid_op;
+	}
+	public void setF_deptid_op(String f_deptid_op) {
+		this.f_deptid_op = f_deptid_op;
+	}
+	public String getF_user() {
+		return f_user;
+	}
+	public void setF_user(String f_user) {
+		this.f_user = f_user;
+	}
+	public String getF_user_op() {
+		return f_user_op;
+	}
+	public void setF_user_op(String f_user_op) {
+		this.f_user_op = f_user_op;
+	}
+	public String getF_outplace() {
+		return f_outplace;
+	}
+	public void setF_outplace(String f_outplace) {
+		this.f_outplace = f_outplace;
+	}
+	public String getF_outplace_op() {
+		return f_outplace_op;
+	}
+	public void setF_outplace_op(String f_outplace_op) {
+		this.f_outplace_op = f_outplace_op;
+	}
+	public String getF_devicenum() {
+		return f_devicenum;
+	}
+	public void setF_devicenum(String f_devicenum) {
+		this.f_devicenum = f_devicenum;
+	}
+	public String getF_devicenum_op() {
+		return f_devicenum_op;
+	}
+	public void setF_devicenum_op(String f_devicenum_op) {
+		this.f_devicenum_op = f_devicenum_op;
+	}
+	public String getF_devicesecurity() {
+		return f_devicesecurity;
+	}
+	public void setF_devicesecurity(String f_devicesecurity) {
+		this.f_devicesecurity = f_devicesecurity;
+	}
+	public String getF_devicesecurity_op() {
+		return f_devicesecurity_op;
+	}
+	public void setF_devicesecurity_op(String f_devicesecurity_op) {
+		this.f_devicesecurity_op = f_devicesecurity_op;
+	}
+	public Integer getF_iscontentsecret() {
+		return f_iscontentsecret;
+	}
+	public void setF_iscontentsecret(Integer f_iscontentsecret) {
+		this.f_iscontentsecret = f_iscontentsecret;
+	}
+	public String getF_iscontentsecret_op() {
+		return f_iscontentsecret_op;
+	}
+	public void setF_iscontentsecret_op(String f_iscontentsecret_op) {
+		this.f_iscontentsecret_op = f_iscontentsecret_op;
+	}
+	public String getF_diskfrom() {
+		return f_diskfrom;
+	}
+	public void setF_diskfrom(String f_diskfrom) {
+		this.f_diskfrom = f_diskfrom;
+	}
+	public String getF_diskfrom_op() {
+		return f_diskfrom_op;
+	}
+	public void setF_diskfrom_op(String f_diskfrom_op) {
+		this.f_diskfrom_op = f_diskfrom_op;
+	}
+	public String getF_mediumnum() {
+		return f_mediumnum;
+	}
+	public void setF_mediumnum(String f_mediumnum) {
+		this.f_mediumnum = f_mediumnum;
+	}
+	public String getF_mediumnum_op() {
+		return f_mediumnum_op;
+	}
+	public void setF_mediumnum_op(String f_mediumnum_op) {
+		this.f_mediumnum_op = f_mediumnum_op;
+	}
+	public String getF_mediumsecurity() {
+		return f_mediumsecurity;
+	}
+	public void setF_mediumsecurity(String f_mediumsecurity) {
+		this.f_mediumsecurity = f_mediumsecurity;
+	}
+	public String getF_mediumsecurity_op() {
+		return f_mediumsecurity_op;
+	}
+	public void setF_mediumsecurity_op(String f_mediumsecurity_op) {
+		this.f_mediumsecurity_op = f_mediumsecurity_op;
+	}
+	public String getF_impboxnum() {
+		return f_impboxnum;
+	}
+	public void setF_impboxnum(String f_impboxnum) {
+		this.f_impboxnum = f_impboxnum;
+	}
+	public String getF_impboxnum_op() {
+		return f_impboxnum_op;
+	}
+	public void setF_impboxnum_op(String f_impboxnum_op) {
+		this.f_impboxnum_op = f_impboxnum_op;
+	}
+	public String getF_impboxsecurity() {
+		return f_impboxsecurity;
+	}
+	public void setF_impboxsecurity(String f_impboxsecurity) {
+		this.f_impboxsecurity = f_impboxsecurity;
+	}
+	public String getF_impboxsecurity_op() {
+		return f_impboxsecurity_op;
+	}
+	public void setF_impboxsecurity_op(String f_impboxsecurity_op) {
+		this.f_impboxsecurity_op = f_impboxsecurity_op;
+	}
+	public String getF_borrowreason() {
+		return f_borrowreason;
+	}
+	public void setF_borrowreason(String f_borrowreason) {
+		this.f_borrowreason = f_borrowreason;
+	}
+	public String getF_borrowreason_op() {
+		return f_borrowreason_op;
+	}
+	public void setF_borrowreason_op(String f_borrowreason_op) {
+		this.f_borrowreason_op = f_borrowreason_op;
+	}
+	public String getF_applyopenport() {
+		return f_applyopenport;
+	}
+	public void setF_applyopenport(String f_applyopenport) {
+		this.f_applyopenport = f_applyopenport;
+	}
+	public String getF_applyopenport_op() {
+		return f_applyopenport_op;
+	}
+	public void setF_applyopenport_op(String f_applyopenport_op) {
+		this.f_applyopenport_op = f_applyopenport_op;
+	}
+	public String getF_applyinstallsoft() {
+		return f_applyinstallsoft;
+	}
+	public void setF_applyinstallsoft(String f_applyinstallsoft) {
+		this.f_applyinstallsoft = f_applyinstallsoft;
+	}
+	public String getF_applyinstallsoft_op() {
+		return f_applyinstallsoft_op;
+	}
+	public void setF_applyinstallsoft_op(String f_applyinstallsoft_op) {
+		this.f_applyinstallsoft_op = f_applyinstallsoft_op;
+	}
+	public String getF_usersign() {
+		return f_usersign;
+	}
+	public void setF_usersign(String f_usersign) {
+		this.f_usersign = f_usersign;
+	}
+	public String getF_usersign_op() {
+		return f_usersign_op;
+	}
+	public void setF_usersign_op(String f_usersign_op) {
+		this.f_usersign_op = f_usersign_op;
+	}
+	public Integer getF_userid() {
+		return f_userid;
+	}
+	public void setF_userid(Integer f_userid) {
+		this.f_userid = f_userid;
+	}
+	public String getF_userid_op() {
+		return f_userid_op;
+	}
+	public void setF_userid_op(String f_userid_op) {
+		this.f_userid_op = f_userid_op;
+	}
+	public Date getF_usersigndate() {
+		return f_usersigndate;
+	}
+	public void setF_usersigndate(Date f_usersigndate) {
+		this.f_usersigndate = f_usersigndate;
+	}
+	public String getF_usersigndate_op() {
+		return f_usersigndate_op;
+	}
+	public void setF_usersigndate_op(String f_usersigndate_op) {
+		this.f_usersigndate_op = f_usersigndate_op;
+	}
+	public String getF_deptleaderopinion() {
+		return f_deptleaderopinion;
+	}
+	public void setF_deptleaderopinion(String f_deptleaderopinion) {
+		this.f_deptleaderopinion = f_deptleaderopinion;
+	}
+	public String getF_deptleaderopinion_op() {
+		return f_deptleaderopinion_op;
+	}
+	public void setF_deptleaderopinion_op(String f_deptleaderopinion_op) {
+		this.f_deptleaderopinion_op = f_deptleaderopinion_op;
+	}
+	public String getF_deptleadersign() {
+		return f_deptleadersign;
+	}
+	public void setF_deptleadersign(String f_deptleadersign) {
+		this.f_deptleadersign = f_deptleadersign;
+	}
+	public String getF_deptleadersign_op() {
+		return f_deptleadersign_op;
+	}
+	public void setF_deptleadersign_op(String f_deptleadersign_op) {
+		this.f_deptleadersign_op = f_deptleadersign_op;
+	}
+	public Integer getF_deptleaderid() {
+		return f_deptleaderid;
+	}
+	public void setF_deptleaderid(Integer f_deptleaderid) {
+		this.f_deptleaderid = f_deptleaderid;
+	}
+	public String getF_deptleaderid_op() {
+		return f_deptleaderid_op;
+	}
+	public void setF_deptleaderid_op(String f_deptleaderid_op) {
+		this.f_deptleaderid_op = f_deptleaderid_op;
+	}
+	public Date getF_leadersigndate() {
+		return f_leadersigndate;
+	}
+	public void setF_leadersigndate(Date f_leadersigndate) {
+		this.f_leadersigndate = f_leadersigndate;
+	}
+	public String getF_leadersigndate_op() {
+		return f_leadersigndate_op;
+	}
+	public void setF_leadersigndate_op(String f_leadersigndate_op) {
+		this.f_leadersigndate_op = f_leadersigndate_op;
+	}
+	public Integer getF_isupdate() {
+		return f_isupdate;
+	}
+	public void setF_isupdate(Integer f_isupdate) {
+		this.f_isupdate = f_isupdate;
+	}
+	public String getF_isupdate_op() {
+		return f_isupdate_op;
+	}
+	public void setF_isupdate_op(String f_isupdate_op) {
+		this.f_isupdate_op = f_isupdate_op;
+	}
+	public String getF_updateversion() {
+		return f_updateversion;
+	}
+	public void setF_updateversion(String f_updateversion) {
+		this.f_updateversion = f_updateversion;
+	}
+	public String getF_updateversion_op() {
+		return f_updateversion_op;
+	}
+	public void setF_updateversion_op(String f_updateversion_op) {
+		this.f_updateversion_op = f_updateversion_op;
+	}
+	public String getF_openport() {
+		return f_openport;
+	}
+	public void setF_openport(String f_openport) {
+		this.f_openport = f_openport;
+	}
+	public String getF_openport_op() {
+		return f_openport_op;
+	}
+	public void setF_openport_op(String f_openport_op) {
+		this.f_openport_op = f_openport_op;
+	}
+	public String getF_installsoft() {
+		return f_installsoft;
+	}
+	public void setF_installsoft(String f_installsoft) {
+		this.f_installsoft = f_installsoft;
+	}
+	public String getF_installsoft_op() {
+		return f_installsoft_op;
+	}
+	public void setF_installsoft_op(String f_installsoft_op) {
+		this.f_installsoft_op = f_installsoft_op;
+	}
+	public String getF_operator1() {
+		return f_operator1;
+	}
+	public void setF_operator1(String f_operator1) {
+		this.f_operator1 = f_operator1;
+	}
+	public String getF_operator1_op() {
+		return f_operator1_op;
+	}
+	public void setF_operator1_op(String f_operator1_op) {
+		this.f_operator1_op = f_operator1_op;
+	}
+	public Integer getF_operatorid1() {
+		return f_operatorid1;
+	}
+	public void setF_operatorid1(Integer f_operatorid1) {
+		this.f_operatorid1 = f_operatorid1;
+	}
+	public String getF_operatorid1_op() {
+		return f_operatorid1_op;
+	}
+	public void setF_operatorid1_op(String f_operatorid1_op) {
+		this.f_operatorid1_op = f_operatorid1_op;
+	}
+	public Date getF_operatordate1() {
+		return f_operatordate1;
+	}
+	public void setF_operatordate1(Date f_operatordate1) {
+		this.f_operatordate1 = f_operatordate1;
+	}
+	public String getF_operatordate1_op() {
+		return f_operatordate1_op;
+	}
+	public void setF_operatordate1_op(String f_operatordate1_op) {
+		this.f_operatordate1_op = f_operatordate1_op;
+	}
+	public String getF_receiver() {
+		return f_receiver;
+	}
+	public void setF_receiver(String f_receiver) {
+		this.f_receiver = f_receiver;
+	}
+	public String getF_receiver_op() {
+		return f_receiver_op;
+	}
+	public void setF_receiver_op(String f_receiver_op) {
+		this.f_receiver_op = f_receiver_op;
+	}
+	public Integer getF_receiverid() {
+		return f_receiverid;
+	}
+	public void setF_receiverid(Integer f_receiverid) {
+		this.f_receiverid = f_receiverid;
+	}
+	public String getF_receiverid_op() {
+		return f_receiverid_op;
+	}
+	public void setF_receiverid_op(String f_receiverid_op) {
+		this.f_receiverid_op = f_receiverid_op;
+	}
+	public Date getF_receiverdate() {
+		return f_receiverdate;
+	}
+	public void setF_receiverdate(Date f_receiverdate) {
+		this.f_receiverdate = f_receiverdate;
+	}
+	public String getF_receiverdate_op() {
+		return f_receiverdate_op;
+	}
+	public void setF_receiverdate_op(String f_receiverdate_op) {
+		this.f_receiverdate_op = f_receiverdate_op;
+	}
+	public String getF_checkcondition() {
+		return f_checkcondition;
+	}
+	public void setF_checkcondition(String f_checkcondition) {
+		this.f_checkcondition = f_checkcondition;
+	}
+	public String getF_checkcondition_op() {
+		return f_checkcondition_op;
+	}
+	public void setF_checkcondition_op(String f_checkcondition_op) {
+		this.f_checkcondition_op = f_checkcondition_op;
+	}
+	public String getF_transfersign() {
+		return f_transfersign;
+	}
+	public void setF_transfersign(String f_transfersign) {
+		this.f_transfersign = f_transfersign;
+	}
+	public String getF_transfersign_op() {
+		return f_transfersign_op;
+	}
+	public void setF_transfersign_op(String f_transfersign_op) {
+		this.f_transfersign_op = f_transfersign_op;
+	}
+	public Integer getF_transferid() {
+		return f_transferid;
+	}
+	public void setF_transferid(Integer f_transferid) {
+		this.f_transferid = f_transferid;
+	}
+	public String getF_transferid_op() {
+		return f_transferid_op;
+	}
+	public void setF_transferid_op(String f_transferid_op) {
+		this.f_transferid_op = f_transferid_op;
+	}
+	public String getF_checkersign() {
+		return f_checkersign;
+	}
+	public void setF_checkersign(String f_checkersign) {
+		this.f_checkersign = f_checkersign;
+	}
+	public String getF_checkersign_op() {
+		return f_checkersign_op;
+	}
+	public void setF_checkersign_op(String f_checkersign_op) {
+		this.f_checkersign_op = f_checkersign_op;
+	}
+	public Integer getF_checkerid() {
+		return f_checkerid;
+	}
+	public void setF_checkerid(Integer f_checkerid) {
+		this.f_checkerid = f_checkerid;
+	}
+	public String getF_checkerid_op() {
+		return f_checkerid_op;
+	}
+	public void setF_checkerid_op(String f_checkerid_op) {
+		this.f_checkerid_op = f_checkerid_op;
+	}
+	public Date getF_checkersigndate() {
+		return f_checkersigndate;
+	}
+	public void setF_checkersigndate(Date f_checkersigndate) {
+		this.f_checkersigndate = f_checkersigndate;
+	}
+	public String getF_checkersigndate_op() {
+		return f_checkersigndate_op;
+	}
+	public void setF_checkersigndate_op(String f_checkersigndate_op) {
+		this.f_checkersigndate_op = f_checkersigndate_op;
+	}
+	public String getF_portcondition() {
+		return f_portcondition;
+	}
+	public void setF_portcondition(String f_portcondition) {
+		this.f_portcondition = f_portcondition;
+	}
+	public String getF_portcondition_op() {
+		return f_portcondition_op;
+	}
+	public void setF_portcondition_op(String f_portcondition_op) {
+		this.f_portcondition_op = f_portcondition_op;
+	}
+	public String getF_operator2() {
+		return f_operator2;
+	}
+	public void setF_operator2(String f_operator2) {
+		this.f_operator2 = f_operator2;
+	}
+	public String getF_operator2_op() {
+		return f_operator2_op;
+	}
+	public void setF_operator2_op(String f_operator2_op) {
+		this.f_operator2_op = f_operator2_op;
+	}
+	public Integer getF_operatorid2() {
+		return f_operatorid2;
+	}
+	public void setF_operatorid2(Integer f_operatorid2) {
+		this.f_operatorid2 = f_operatorid2;
+	}
+	public String getF_operatorid2_op() {
+		return f_operatorid2_op;
+	}
+	public void setF_operatorid2_op(String f_operatorid2_op) {
+		this.f_operatorid2_op = f_operatorid2_op;
+	}
+	public Date getF_operatordate2() {
+		return f_operatordate2;
+	}
+	public void setF_operatordate2(Date f_operatordate2) {
+		this.f_operatordate2 = f_operatordate2;
+	}
+	public String getF_operatordate2_op() {
+		return f_operatordate2_op;
+	}
+	public void setF_operatordate2_op(String f_operatordate2_op) {
+		this.f_operatordate2_op = f_operatordate2_op;
+	}
+	public String getF_securityopinion() {
+		return f_securityopinion;
+	}
+	public void setF_securityopinion(String f_securityopinion) {
+		this.f_securityopinion = f_securityopinion;
+	}
+	public String getF_securityopinion_op() {
+		return f_securityopinion_op;
+	}
+	public void setF_securityopinion_op(String f_securityopinion_op) {
+		this.f_securityopinion_op = f_securityopinion_op;
+	}
+	public String getF_securitysign() {
+		return f_securitysign;
+	}
+	public void setF_securitysign(String f_securitysign) {
+		this.f_securitysign = f_securitysign;
+	}
+	public String getF_securitysign_op() {
+		return f_securitysign_op;
+	}
+	public void setF_securitysign_op(String f_securitysign_op) {
+		this.f_securitysign_op = f_securitysign_op;
+	}
+	public Integer getF_securityid() {
+		return f_securityid;
+	}
+	public void setF_securityid(Integer f_securityid) {
+		this.f_securityid = f_securityid;
+	}
+	public String getF_securityid_op() {
+		return f_securityid_op;
+	}
+	public void setF_securityid_op(String f_securityid_op) {
+		this.f_securityid_op = f_securityid_op;
+	}
+	public Date getF_securitysigndate() {
+		return f_securitysigndate;
+	}
+	public void setF_securitysigndate(Date f_securitysigndate) {
+		this.f_securitysigndate = f_securitysigndate;
+	}
+	public String getF_securitysigndate_op() {
+		return f_securitysigndate_op;
+	}
+	public void setF_securitysigndate_op(String f_securitysigndate_op) {
+		this.f_securitysigndate_op = f_securitysigndate_op;
+	}
+	public String getF_firstperson() {
+		return f_firstperson;
+	}
+	public void setF_firstperson(String f_firstperson) {
+		this.f_firstperson = f_firstperson;
+	}
+	public String getF_firstperson_op() {
+		return f_firstperson_op;
+	}
+	public void setF_firstperson_op(String f_firstperson_op) {
+		this.f_firstperson_op = f_firstperson_op;
+	}
+	public Integer getF_firstpid() {
+		return f_firstpid;
+	}
+	public void setF_firstpid(Integer f_firstpid) {
+		this.f_firstpid = f_firstpid;
+	}
+	public String getF_firstpid_op() {
+		return f_firstpid_op;
+	}
+	public void setF_firstpid_op(String f_firstpid_op) {
+		this.f_firstpid_op = f_firstpid_op;
+	}
+	public Date getF_firstsubdate() {
+		return f_firstsubdate;
+	}
+	public void setF_firstsubdate(Date f_firstsubdate) {
+		this.f_firstsubdate = f_firstsubdate;
+	}
+	public String getF_firstsubdate_op() {
+		return f_firstsubdate_op;
+	}
+	public void setF_firstsubdate_op(String f_firstsubdate_op) {
+		this.f_firstsubdate_op = f_firstsubdate_op;
+	}
+	public String getF_openportelse() {
+		return f_openportelse;
+	}
+	public void setF_openportelse(String f_openportelse) {
+		this.f_openportelse = f_openportelse;
+	}
+	public String getF_openportelse_op() {
+		return f_openportelse_op;
+	}
+	public void setF_openportelse_op(String f_openportelse_op) {
+		this.f_openportelse_op = f_openportelse_op;
+	}
+	public String getF_portelse() {
+		return f_portelse;
+	}
+	public void setF_portelse(String f_portelse) {
+		this.f_portelse = f_portelse;
+	}
+	public String getF_portelse_op() {
+		return f_portelse_op;
+	}
+	public void setF_portelse_op(String f_portelse_op) {
+		this.f_portelse_op = f_portelse_op;
+	}
+	public String getF_conditionelse() {
+		return f_conditionelse;
+	}
+	public void setF_conditionelse(String f_conditionelse) {
+		this.f_conditionelse = f_conditionelse;
+	}
+	public String getF_conditionelse_op() {
+		return f_conditionelse_op;
+	}
+	public void setF_conditionelse_op(String f_conditionelse_op) {
+		this.f_conditionelse_op = f_conditionelse_op;
+	}
+	public String getF_closeSolutionelse() {
+		return f_closeSolutionelse;
+	}
+	public void setF_closeSolutionelse(String solutionelse) {
+		f_closeSolutionelse = solutionelse;
+	}
+	public String getF_closeSolutionelse_op() {
+		return f_closeSolutionelse_op;
+	}
+	public void setF_closeSolutionelse_op(String solutionelse_op) {
+		f_closeSolutionelse_op = solutionelse_op;
+	}
+
+}

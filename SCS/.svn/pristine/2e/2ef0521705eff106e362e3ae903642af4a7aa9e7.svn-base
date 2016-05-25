@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<table width="100%" border="1">
+  <caption>
+    外来人员维修、送外维修审批表
+  </caption>
+  <tr>
+    <td width="20%">申请人</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">设备责任人</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">维修方式</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>设备编号</td>
+    <td colspan="2">&nbsp;</td>
+    <td>设备密级</td>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="4">外来人员维修涉密设备</td>
+    <td colspan="2">外来人员单位</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">是否与外来人员单位签订保密协议</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">是否有相关资质</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">拟定旁站陪同人</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="5">送外维修涉密设备</td>
+    <td colspan="2">送外单位</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">是否拆除存储介质和固件</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">是否与外送单位签订保密协议</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">送外单位是否具有相关资质</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">拟定送修人</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="2">信息化管理部门意见</td>
+    <td colspan="5">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>签字</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="4">送外维修涉密设备情况</td>
+    <td colspan="2">设备使用人移交设备签字</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">送修人接收签字</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">送修时间</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">返回时间</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">是否与外来人员或送外维修单位人员签订保密协议</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">故障原因</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">维修过程和方法</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">维修结果</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">维修人员签字</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">旁站陪同人员签字</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="2">送外维修涉密设备交接情况</td>
+    <td colspan="2">设备使用人接收设备签字</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">送修人移交设备签字</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>备注</td>
+    <td colspan="5">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

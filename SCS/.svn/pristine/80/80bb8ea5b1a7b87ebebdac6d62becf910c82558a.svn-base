@@ -1,0 +1,364 @@
+package com.manage.videomeeting.action.info;
+
+import java.util.Date;
+
+import com.base.framework.web.PageInfoView;
+
+public class VideoMeetingPageInfo extends PageInfoView{
+	
+	/**
+	 * 
+	 */
+	private Integer f_id;
+	private String f_id_op;
+	private Integer f_version;
+	private String f_version_op;
+	private String f_meetingname;
+	private String f_meetingname_op;
+	private String f_applyorgname;
+	private String f_applyorgname_op;
+	private String f_applyorgid;
+	private String f_applyorgid_op;
+	private String f_applicant;
+	private String f_applicant_op;
+	private Integer f_applicantid;
+	private String f_applicantid_op;
+	private String f_cellphone;
+	private String f_cellphone_op;
+	private Integer f_meetingtype;
+	private String f_meetingtype_op;
+	private String f_meetingplace;
+	private String f_meetingplace_op;
+	private String f_meetplaceqt;
+	private String f_meetplaceqt_op;
+	private String f_meetingagenda;
+	private String f_meetingagenda_op;
+	private String f_jingqu;
+	private String f_jingqu_op;
+	private String f_jingwai;
+	private String f_jingwai_op;
+	private Date f_meetingtime;
+	private String f_meetingtime_op;
+	private Date f_jointdebugtime;
+	private String f_jointdebugtime_op;
+	private Integer f_isppt;
+	private String f_isppt_op;
+	private Integer f_meetingmode;
+	private String f_meetingmode_op;
+	private String f_speakplace;
+	private String f_speakplace_op;
+	private String f_deptopinion;
+	private String f_deptopinion_op;
+	private String f_deptsign;
+	private String f_deptsign_op;
+	private String f_deptid;
+	private String f_deptid_op;
+	private Date f_deptsigndate;
+	private String f_deptsigndate_op;
+	
+	private String f_firstperson;
+	private String f_firstperson_op;
+	private Integer f_firstpid;
+	private String f_firstpid_op;
+	
+	public Integer getF_id() {
+		return f_id;
+	}
+	public void setF_id(Integer f_id) {
+		this.f_id = f_id;
+	}
+	public String getF_id_op() {
+		return f_id_op;
+	}
+	public void setF_id_op(String f_id_op) {
+		this.f_id_op = f_id_op;
+	}
+	public Integer getF_version() {
+		return f_version;
+	}
+	public void setF_version(Integer f_version) {
+		this.f_version = f_version;
+	}
+	public String getF_version_op() {
+		return f_version_op;
+	}
+	public void setF_version_op(String f_version_op) {
+		this.f_version_op = f_version_op;
+	}
+	public String getF_meetingname() {
+		return f_meetingname;
+	}
+	public void setF_meetingname(String f_meetingname) {
+		this.f_meetingname = f_meetingname;
+	}
+	public String getF_meetingname_op() {
+		return f_meetingname_op;
+	}
+	public void setF_meetingname_op(String f_meetingname_op) {
+		this.f_meetingname_op = f_meetingname_op;
+	}
+	public String getF_applyorgname() {
+		return f_applyorgname;
+	}
+	public void setF_applyorgname(String f_applyorgname) {
+		this.f_applyorgname = f_applyorgname;
+	}
+	public String getF_applyorgname_op() {
+		return f_applyorgname_op;
+	}
+	public void setF_applyorgname_op(String f_applyorgname_op) {
+		this.f_applyorgname_op = f_applyorgname_op;
+	}
+	public String getF_applyorgid() {
+		return f_applyorgid;
+	}
+	public void setF_applyorgid(String f_applyorgid) {
+		this.f_applyorgid = f_applyorgid;
+	}
+	public String getF_applyorgid_op() {
+		return f_applyorgid_op;
+	}
+	public void setF_applyorgid_op(String f_applyorgid_op) {
+		this.f_applyorgid_op = f_applyorgid_op;
+	}
+	public String getF_applicant() {
+		return f_applicant;
+	}
+	public void setF_applicant(String f_applicant) {
+		this.f_applicant = f_applicant;
+	}
+	public String getF_applicant_op() {
+		return f_applicant_op;
+	}
+	public void setF_applicant_op(String f_applicant_op) {
+		this.f_applicant_op = f_applicant_op;
+	}
+	public Integer getF_applicantid() {
+		return f_applicantid;
+	}
+	public void setF_applicantid(Integer f_applicantid) {
+		this.f_applicantid = f_applicantid;
+	}
+	public String getF_applicantid_op() {
+		return f_applicantid_op;
+	}
+	public void setF_applicantid_op(String f_applicantid_op) {
+		this.f_applicantid_op = f_applicantid_op;
+	}
+	public String getF_cellphone() {
+		return f_cellphone;
+	}
+	public void setF_cellphone(String f_cellphone) {
+		this.f_cellphone = f_cellphone;
+	}
+	public String getF_cellphone_op() {
+		return f_cellphone_op;
+	}
+	public void setF_cellphone_op(String f_cellphone_op) {
+		this.f_cellphone_op = f_cellphone_op;
+	}
+	public Integer getF_meetingtype() {
+		return f_meetingtype;
+	}
+	public void setF_meetingtype(Integer f_meetingtype) {
+		this.f_meetingtype = f_meetingtype;
+	}
+	public String getF_meetingtype_op() {
+		return f_meetingtype_op;
+	}
+	public void setF_meetingtype_op(String f_meetingtype_op) {
+		this.f_meetingtype_op = f_meetingtype_op;
+	}
+	public String getF_meetingplace() {
+		return f_meetingplace;
+	}
+	public void setF_meetingplace(String f_meetingplace) {
+		this.f_meetingplace = f_meetingplace;
+	}
+	public String getF_meetingplace_op() {
+		return f_meetingplace_op;
+	}
+	public void setF_meetingplace_op(String f_meetingplace_op) {
+		this.f_meetingplace_op = f_meetingplace_op;
+	}
+	public String getF_meetplaceqt() {
+		return f_meetplaceqt;
+	}
+	public void setF_meetplaceqt(String f_meetplaceqt) {
+		this.f_meetplaceqt = f_meetplaceqt;
+	}
+	public String getF_meetplaceqt_op() {
+		return f_meetplaceqt_op;
+	}
+	public void setF_meetplaceqt_op(String f_meetplaceqt_op) {
+		this.f_meetplaceqt_op = f_meetplaceqt_op;
+	}
+	public String getF_meetingagenda() {
+		return f_meetingagenda;
+	}
+	public void setF_meetingagenda(String f_meetingagenda) {
+		this.f_meetingagenda = f_meetingagenda;
+	}
+	public String getF_meetingagenda_op() {
+		return f_meetingagenda_op;
+	}
+	public void setF_meetingagenda_op(String f_meetingagenda_op) {
+		this.f_meetingagenda_op = f_meetingagenda_op;
+	}
+	public String getF_jingqu() {
+		return f_jingqu;
+	}
+	public void setF_jingqu(String f_jingqu) {
+		this.f_jingqu = f_jingqu;
+	}
+	public String getF_jingqu_op() {
+		return f_jingqu_op;
+	}
+	public void setF_jingqu_op(String f_jingqu_op) {
+		this.f_jingqu_op = f_jingqu_op;
+	}
+	public String getF_jingwai() {
+		return f_jingwai;
+	}
+	public void setF_jingwai(String f_jingwai) {
+		this.f_jingwai = f_jingwai;
+	}
+	public String getF_jingwai_op() {
+		return f_jingwai_op;
+	}
+	public void setF_jingwai_op(String f_jingwai_op) {
+		this.f_jingwai_op = f_jingwai_op;
+	}
+	public Date getF_meetingtime() {
+		return f_meetingtime;
+	}
+	public void setF_meetingtime(Date f_meetingtime) {
+		this.f_meetingtime = f_meetingtime;
+	}
+	public String getF_meetingtime_op() {
+		return f_meetingtime_op;
+	}
+	public void setF_meetingtime_op(String f_meetingtime_op) {
+		this.f_meetingtime_op = f_meetingtime_op;
+	}
+	public Date getF_jointdebugtime() {
+		return f_jointdebugtime;
+	}
+	public void setF_jointdebugtime(Date f_jointdebugtime) {
+		this.f_jointdebugtime = f_jointdebugtime;
+	}
+	public String getF_jointdebugtime_op() {
+		return f_jointdebugtime_op;
+	}
+	public void setF_jointdebugtime_op(String f_jointdebugtime_op) {
+		this.f_jointdebugtime_op = f_jointdebugtime_op;
+	}
+	public Integer getF_isppt() {
+		return f_isppt;
+	}
+	public void setF_isppt(Integer f_isppt) {
+		this.f_isppt = f_isppt;
+	}
+	public String getF_isppt_op() {
+		return f_isppt_op;
+	}
+	public void setF_isppt_op(String f_isppt_op) {
+		this.f_isppt_op = f_isppt_op;
+	}
+	public Integer getF_meetingmode() {
+		return f_meetingmode;
+	}
+	public void setF_meetingmode(Integer f_meetingmode) {
+		this.f_meetingmode = f_meetingmode;
+	}
+	public String getF_meetingmode_op() {
+		return f_meetingmode_op;
+	}
+	public void setF_meetingmode_op(String f_meetingmode_op) {
+		this.f_meetingmode_op = f_meetingmode_op;
+	}
+	public String getF_speakplace() {
+		return f_speakplace;
+	}
+	public void setF_speakplace(String f_speakplace) {
+		this.f_speakplace = f_speakplace;
+	}
+	public String getF_speakplace_op() {
+		return f_speakplace_op;
+	}
+	public void setF_speakplace_op(String f_speakplace_op) {
+		this.f_speakplace_op = f_speakplace_op;
+	}
+	public String getF_deptopinion() {
+		return f_deptopinion;
+	}
+	public void setF_deptopinion(String f_deptopinion) {
+		this.f_deptopinion = f_deptopinion;
+	}
+	public String getF_deptopinion_op() {
+		return f_deptopinion_op;
+	}
+	public void setF_deptopinion_op(String f_deptopinion_op) {
+		this.f_deptopinion_op = f_deptopinion_op;
+	}
+	public String getF_deptsign() {
+		return f_deptsign;
+	}
+	public void setF_deptsign(String f_deptsign) {
+		this.f_deptsign = f_deptsign;
+	}
+	public String getF_deptsign_op() {
+		return f_deptsign_op;
+	}
+	public void setF_deptsign_op(String f_deptsign_op) {
+		this.f_deptsign_op = f_deptsign_op;
+	}
+	public String getF_deptid() {
+		return f_deptid;
+	}
+	public void setF_deptid(String f_deptid) {
+		this.f_deptid = f_deptid;
+	}
+	public String getF_deptid_op() {
+		return f_deptid_op;
+	}
+	public void setF_deptid_op(String f_deptid_op) {
+		this.f_deptid_op = f_deptid_op;
+	}
+	public Date getF_deptsigndate() {
+		return f_deptsigndate;
+	}
+	public void setF_deptsigndate(Date f_deptsigndate) {
+		this.f_deptsigndate = f_deptsigndate;
+	}
+	public String getF_deptsigndate_op() {
+		return f_deptsigndate_op;
+	}
+	public void setF_deptsigndate_op(String f_deptsigndate_op) {
+		this.f_deptsigndate_op = f_deptsigndate_op;
+	}
+	public String getF_firstperson() {
+		return f_firstperson;
+	}
+	public void setF_firstperson(String f_firstperson) {
+		this.f_firstperson = f_firstperson;
+	}
+	public String getF_firstperson_op() {
+		return f_firstperson_op;
+	}
+	public void setF_firstperson_op(String f_firstperson_op) {
+		this.f_firstperson_op = f_firstperson_op;
+	}
+	public Integer getF_firstpid() {
+		return f_firstpid;
+	}
+	public void setF_firstpid(Integer f_firstpid) {
+		this.f_firstpid = f_firstpid;
+	}
+	public String getF_firstpid_op() {
+		return f_firstpid_op;
+	}
+	public void setF_firstpid_op(String f_firstpid_op) {
+		this.f_firstpid_op = f_firstpid_op;
+	}
+}

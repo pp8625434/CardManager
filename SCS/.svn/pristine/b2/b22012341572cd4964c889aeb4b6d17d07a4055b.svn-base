@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.manage.flowchart.model.FlowNodes" table="p_flownodes" >
+    
+         <id name="id" type="java.lang.Integer">
+            <column name="ID"/>
+            <generator class="native" />
+        </id>
+        <many-to-one name="fId" class="com.manage.flowchart.model.Flowchart" outer-join="auto"  not-null="false" not-found="ignore" fetch="select" foreign-key="none">
+            <column name="fid"  not-null="false"/>
+        </many-to-one>
+        
+       
+        
+        <property name="nId" type="java.lang.String">
+        	<column name="nid"/>
+        </property>
+     	<property name="name" type="java.lang.String">
+        	<column name="name"/>
+        </property>
+        
+     	<property name="left" type="java.lang.Integer">
+            <column name="left" />
+        </property>
+        <property name="top" type="java.lang.Integer">
+            <column name="top" />
+        </property>
+         <property name="type" type="java.lang.String">
+            <column name="type" />
+        </property>
+         <property name="width" type="java.lang.Integer">
+            <column name="width" />
+         </property>
+          <property name="height" type="java.lang.Integer">
+            <column name="height" />
+         </property>
+         <property name="alt" type="java.lang.String">
+            <column name="alt" />
+         </property>
+         <property name="mark" type="java.lang.String">
+            <column name="mark" />
+         </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 本部涉密载体外出复制审批单管理 -->
+	<package name="classifiedcopy" extends="print" namespace="/classifiedcopy">
+		
+		<action name="classifiedcopyList" class="com.manage.classifiedcopy.action.ClassifiedcopyAction" method="classifiedcopyList" >
+			<result name="success">/admin/classifiedcopy/classifiedcopyList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="classifiedcopyInfo" class="com.manage.classifiedcopy.action.ClassifiedcopyAction" method="classifiedcopyInfo" >
+			<result name="success">/admin/classifiedcopy/classifiedcopyInfo.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="classifiedcopyEdit" class="com.manage.classifiedcopy.action.ClassifiedcopyAction" method="classifiedcopyEdit" >
+			<result name="success">/admin/classifiedcopy/classifiedcopyEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="saveClassifiedcopy" class="com.manage.classifiedcopy.action.ClassifiedcopyAction" method="saveClassifiedcopy" >
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="delClassifiedcopy" class="com.manage.classifiedcopy.action.ClassifiedcopyAction" method="delClassifiedcopy" >
+			<result name="success" type="chain">classifiedcopyList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="toExamClassifiedcopy" class="com.manage.classifiedcopy.action.ClassifiedcopyAction" method="toExamClassifiedcopy" >
+			<result name="success">/admin/classifiedcopy/examClassifiedcopy.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="examClassifiedcopy" class="com.manage.classifiedcopy.action.ClassifiedcopyAction" method="examClassifiedcopy" >
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+	</package>
+	
+</struts>
+
+
+

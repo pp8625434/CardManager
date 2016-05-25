@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 保密协议书管理 -->
+	<package name="conagreement" extends="print" namespace="/conagreement">
+		
+		<action name="conagreementList" class="com.manage.conagreement.action.ConagreementAction" method="conagreementList" >
+			<result name="success">/admin/conagreement/conagreementList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="conagreementInfo" class="com.manage.conagreement.action.ConagreementAction" method="conagreementInfo" >
+			<result name="success">/admin/conagreement/conagreementInfo.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="conagreementEdit" class="com.manage.conagreement.action.ConagreementAction" method="conagreementEdit" >
+			<result name="success">/admin/conagreement/conagreementEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="saveConagreement" class="com.manage.conagreement.action.ConagreementAction" method="saveConagreement" >
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="delConagreement" class="com.manage.conagreement.action.ConagreementAction" method="delConagreement" >
+			<result name="success" type="chain">conagreementList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+	</package>
+	
+</struts>
+
+
+

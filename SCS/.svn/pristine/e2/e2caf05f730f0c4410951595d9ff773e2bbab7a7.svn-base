@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 用户管理 -->
+	<package name="user" extends="print" namespace="/user">
+		
+		<action name="addUser" class="com.manage.user.action.UserAction" method="addUser" >
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="loadobject"></interceptor-ref>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="userList" class="com.manage.user.action.UserAction" method="listUser" >
+			<result>/admin/user/userList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<!-- 客户管理 -->
+		<!-- <action name="findClinetList" class="com.manage.user.action.ClientAction" method="findClinetList" >
+			<result name="success">/admin/userclient/persionalUserList.jsp</result>
+			<result name="company">/admin/userclient/companyUserList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="addPersionUser" class="com.manage.user.action.ClientAction" method="addPersionUser">
+			<result name="success">/admin/userclient/persionalUserAdd.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="removePersionUser" class="com.manage.user.action.ClientAction" method="removePersionUser">
+			<result name="success" type="chain">findClinetList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="savePersionUser" class="com.manage.user.action.ClientAction" method="savePersionUser">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="loadobject"></interceptor-ref>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action> -->
+		
+		
+		<action name="frameGradeUserList" class="com.manage.user.action.UserAction" method="frameGradeUserList" >
+			<result>/admin/grade/frameUserList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="saveFrameGradeUser" class="com.manage.user.action.UserAction" method="saveFrameGradeUser" >
+			<result type="redirectAction">frameGradeUserList?gradeId=${gradeId}</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="saveFrameOrgGradeUser" class="com.manage.user.action.UserAction" method="saveFrameOrgGradeUser" >
+			<result type="redirectAction">frameGradeUserList?gradeId=${gradeId}</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="deleteUser" class="com.manage.user.action.UserAction" method="deleteUser">
+			<result name="success" type="chain">userList</result>
+			<result type="chain" name="managerlist">managerUserList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="deleteUsers" class="com.manage.user.action.UserAction" method="deleteUsers">
+			<result name="success" type="chain">userList</result>
+			<result type="chain" name="managerlist">managerUserList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="toEditUser" class="com.manage.user.action.UserAction" method="toEditUser" >
+			<result>/admin/user/userEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />	
+		</action>
+		
+		<action name="editUser" class="com.manage.user.action.UserAction" method="editUser" >
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="loadobject"></interceptor-ref>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="upload" class="com.manage.user.action.UserAction" method="upload" >
+			<result name="success">/admin/user/uploadOk.jsp</result>
+			<result name="input">/admin/user/uploadOk.jsp</result>
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">1048576</param>
+				<param name="allowedExtensions">jpg,jpeg,png,gif,bmp,tif</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"/>
+		</action>
+		
+		<action name="toAddUser" class="com.manage.user.action.UserAction" method="toAddUser" >
+			<result>/admin/user/userAdd.jsp</result>
+			<interceptor-ref name="modelParamsStack" />	
+		</action>
+		
+		<action name="personalSetting" class="com.manage.user.action.UserAction" method="personalSetting" >
+			<result>/admin/user/personalSetting.jsp</result>
+			<interceptor-ref name="modelParamsStack" />	
+		</action>
+		
+		<action name="sycUser" class="com.manage.user.action.UserAction" method="sycUser" >
+			<result type="redirectAction">userList</result>
+			<interceptor-ref name="loadobject"></interceptor-ref>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="modifyUser" class="com.manage.user.action.UserAction" method="modifyUser" >
+			<result type="redirectAction" name="success">userList</result>
+			<result type="redirectAction" name="managerlist">managerUserList</result>
+			<!-- <interceptor-ref name="loadobject"></interceptor-ref> -->
+			<interceptor-ref name="modelParamsStack" />	
+			<!-- <interceptor-ref name="JurismodelParamsStack" /> -->
+		</action>
+		
+		<action name="managerUserList" class="com.manage.user.action.UserAction" method="getManagerUserList" >
+			<result name="success">/admin/user/ManagerUserList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<!-- IP用户管理开始 -->
+		<action name="ipUserList" class="com.manage.user.action.IpUserAction" method="ipUserList" >
+			<result>/admin/user/ipUserList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="viewIpUser" class="com.manage.user.action.IpUserAction" method="viewIpUser" >
+			<result>/admin/user/ipUserEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="saveIpUser" class="com.manage.user.action.IpUserAction" method="saveIpUser" >
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="removeIpUser" class="com.manage.user.action.IpUserAction" method="removeIpUser" >
+			<result name="success" type="chain">ipUserList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<!-- IP用户管理结束 -->
+		
+		<!-- 数据库备份下载 -->
+		<action name="downLoadDB" class="com.manage.user.action.UserAction" method="downLoadDB" >
+			<result name="success">/admin/user/DBList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<!-- 试用管理 -->
+		<action name="tempUserList" class="com.manage.user.action.TempUserAction" method="tempUserList" >
+			<result name="success">/admin/user/tempUserList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="tempUsersave" class="com.manage.user.action.TempUserAction" method="saveTempUser" >
+			<result name="success">/tempUserInfo.jsp</result>
+			<interceptor-ref name="defaultStack" />
+		</action>
+		
+		<action name="tempUserlock" class="com.manage.user.action.TempUserAction" method="lockTempUser" >
+			<result name="success" type="chain">tempUserList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="viewtempUser" class="com.manage.user.action.TempUserAction" method="viewTempUser" >
+			<result name="success">/admin/user/tempUserChange.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="changeTempUser" class="com.manage.user.action.TempUserAction" method="changeTempUser">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="toAddConnection" class="com.manage.user.action.TempUserAction" method="toAddConnection">
+			<result name="success">/admin/user/tempUserConnectionAdd.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="saveConnection" class="com.manage.user.action.TempUserAction" method="saveConnection">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="tempUserConnectionList" class="com.manage.user.action.TempUserAction" method="tempUserConnectionList">
+			<result name="success">/admin/user/tempUserConnectionList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="removeConnection" class="com.manage.user.action.TempUserAction" method="removeConnection">
+			<result name="success" type="chain">tempUserConnectionList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="removeAllConnection" class="com.manage.user.action.TempUserAction" method="removeAllConnection">
+			<result name="success" type="chain">tempUserConnectionList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="exportUser" class="com.manage.user.action.UserAction" method="exportUser" >
+			<result name="success" type="stream">
+				<param name="contentType">
+					application/vnd.ms-excel
+				</param>
+				<param name="inputName">
+					userStream
+				</param>
+				<param name="contentDisposition">  
+                    filename="userexports.xls" 
+                </param>  
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<action name="importUser" class="com.manage.user.action.UserAction" method="importUser" >
+			<result name="success">/admin/user/importUserOk.jsp</result>
+			<result name="input">/admin/user/importUserOk.jsp</result>
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">1048576</param>
+				<param name="allowedExtensions">xls</param>
+			</interceptor-ref>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+	<package name="json" extends="json-default" namespace="/user">
+		<action name="checkName" class="com.manage.user.action.UserAction" method="checkName" >
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="vailPassword" class="com.manage.user.action.UserAction" method="vailPassword" >
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="personalSetting_do" class="com.manage.user.action.UserAction" method="personalSetting_do" >
+			<result type="json">
+				<param name="root">result</param> 
+			</result>
+		</action>
+		<action name="removeAllIpUser" class="com.manage.user.action.IpUserAction" method="removeAllIpUser">
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		<action name="checkIpUserName" class="com.manage.user.action.IpUserAction" method="checkIpUserName">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="changePassWord" class="com.manage.user.action.UserAction" method="changePassWord">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="checkFileExist" extends="json-default" namespace="/user">
+		<action name="checkFileExist" class="com.manage.user.action.UserAction" method="checkFileExist" >
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+	
+</struts>
+
+
+

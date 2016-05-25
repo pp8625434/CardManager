@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 部门保密工作自查表 -->
+	<package name="depseccheck" extends="print" namespace="/depseccheck" >
+		<action name="depsecCheckList" class="com.manage.depseccheck.action.DepsecCheckAction"  method="depsecCheckList">
+			<result name="success">/admin/depseccheck/depsecCheckList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="depsecCheckSave" class="com.manage.depseccheck.action.DepsecCheckAction" method="depsecCheckSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="depsecCheckAdd" class="com.manage.depseccheck.action.DepsecCheckAction" method="depsecCheckAdd">
+			<result name="success">/admin/depseccheck/depsecCheckEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="depsecCheckDel" class="com.manage.depseccheck.action.DepsecCheckAction" method="depsecCheckDel">
+			<result name="success" type="chain">
+				<param name="actionName">depsecCheckList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="depsecCheckInfo" class="com.manage.depseccheck.action.DepsecCheckAction" method="depsecCheckInfo">
+			<result name="success">/admin/depseccheck/depsecCheckInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

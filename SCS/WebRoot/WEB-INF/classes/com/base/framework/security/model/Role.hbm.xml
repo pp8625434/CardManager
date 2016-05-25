@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.framework.security.model.Role" table="p_role" >
+        <id name="id" type="integer">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <version name="version" type="integer" column="version"/>
+        <property name="name" type="string">
+            <column name="name" length="50" not-null="true"/>
+        </property>
+        <property name="displayRef" type="string">
+            <column name="displayRef" length="50"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="100"/>
+        </property>
+        <property name="createor" type="integer">
+            <column name="creator" />
+        </property>
+        
+        <property name="isglob" type="integer">
+            <column name="isglob" />
+        </property>
+    
+    </class>
+</hibernate-mapping>

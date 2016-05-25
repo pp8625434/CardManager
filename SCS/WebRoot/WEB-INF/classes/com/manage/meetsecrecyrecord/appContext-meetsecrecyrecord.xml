@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Ware Manager And DAO Configration==================== -->  
+    <bean id="com.manage.meetsecrecyrecord.dao.impl.MeetSecrecyRecordDaoImpl" class="com.manage.meetsecrecyrecord.dao.impl.MeetSecrecyRecordDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.meetsecrecyrecord.dao.MeetSecrecyRecordDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.meetsecrecyrecord.dao.MeetSecrecyRecordDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.meetsecrecyrecord.dao.impl.MeetSecrecyRecordDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.meetsecrecyrecord.model.MeetSecrecyRecord" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.meetsecrecyrecord.service.impl.MeetSecrecyRecordManagerImpl">
+                <property name="dao" ref="com.manage.meetsecrecyrecord.dao.MeetSecrecyRecordDao"/>
+                <property name="modelClass" value="com.manage.meetsecrecyrecord.model.MeetSecrecyRecord"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

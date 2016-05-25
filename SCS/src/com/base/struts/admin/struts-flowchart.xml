@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 画流程图 -->
+	<package name="flowchart" extends="print" namespace="/flowchart">
+		<action name="findFlowchartList" class="com.manage.flowchart.action.FlowchartAction" method="findFlowchartList">
+			<result name="success">/flowchart/flowchartList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="perCreateFlowchart" class="com.manage.flowchart.action.FlowchartAction" method="perCreateFlowchart">
+			<result name="success">/flowchart/addFlowchart.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="saveFlowchart" class="com.manage.flowchart.action.FlowchartAction" method="saveFlowchart">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="perDrawFlowchart" class="com.manage.flowchart.action.FlowchartAction" method="perDrawFlowchart">
+			<result name="success">/flowchart/drawFlowchart.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="configFlowchart" class="com.manage.flowchart.action.FlowchartAction" method="configFlowchart">
+			<result name="success">/flowchart/configFlowchart.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="deleteFlowchart" class="com.manage.flowchart.action.FlowchartAction" method="deleteFlowchart">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+	</package>
+	
+	<package name="flowJson"  extends="json-default"  namespace="/flowchart">
+		<action name="saveFlowNodesAndLines" class="com.manage.flowchart.action.FlowchartAction" method="saveFlowNodesAndLines" >
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		<!-- 配置节点 -->
+		<action name="saveNodesConfig" class="com.manage.flowchart.action.FnConfigAction" method="saveNodesConfig">
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+	</package>
+</struts>
+
+
+

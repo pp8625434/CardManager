@@ -1,0 +1,9 @@
+package com.manage.flowchart.service;
+
+import com.base.framework.service.Manager;
+
+public interface FlowchartManager extends Manager{
+	
+	public void saveFlowchart();
+
+}

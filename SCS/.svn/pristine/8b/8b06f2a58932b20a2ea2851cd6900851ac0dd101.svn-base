@@ -1,0 +1,12 @@
+package com.manage.temp.service.impl;
+
+
+import com.manage.temp.service.SStatesecretsTabManager;
+
+import com.base.framework.service.impl.ManagerImpl;
+
+public class SStatesecretsTabManagerImpl extends ManagerImpl implements SStatesecretsTabManager{
+    
+   
+		
+}

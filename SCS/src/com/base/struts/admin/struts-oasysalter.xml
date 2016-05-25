@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- OA系统组织结构变更表 -->
+	<package name="oasysalter" extends="print" namespace="/oasysalter" >
+		<action name="oaSysAlterList" class="com.manage.oasysalter.action.OaSysAlterAction"  method="oaSysAlterList">
+			<result name="success">/admin/oasysalter/oaSysAlterList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="oaSysAlterSave" class="com.manage.oasysalter.action.OaSysAlterAction" method="oaSysAlterSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="oaSysAlterAdd" class="com.manage.oasysalter.action.OaSysAlterAction" method="oaSysAlterAdd">
+			<result name="success">/admin/oasysalter/oaSysAlterEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="oaSysAlterDel" class="com.manage.oasysalter.action.OaSysAlterAction" method="oaSysAlterDel">
+			<result name="success" type="chain">
+				<param name="actionName">oaSysAlterList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="oaSysAlterInfo" class="com.manage.oasysalter.action.OaSysAlterAction" method="oaSysAlterInfo">
+			<result name="success">/admin/oasysalter/oaSysAlterInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

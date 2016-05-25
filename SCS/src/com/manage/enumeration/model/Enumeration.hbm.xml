@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.manage.enumeration.model.Enumeration" table="p_enumeration" >
+        <id name="id" type="integer">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <version name="version" type="integer" column="version"/>
+        <property name="enName" type="string">
+            <column name="enName" length="50" not-null="true"/>
+        </property>
+        <property name="displayRef" type="string">
+            <column name="displayRef" length="100"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="255"/>
+        </property>
+        <property name="enumerationType" type="integer">
+            <column name="enumerationType" />
+        </property>
+        <property name="creator" type="integer">
+            <column name="creator" />
+        </property>
+        <property name="isIndexShow" type="integer">
+            <column name="isIndexSHow" />
+        </property>
+        <property name="pxorder" type="integer">
+            <column name="pxorder" />
+        </property>
+        <!-- 
+        <many-to-one name="creator" class="com.manage.user.model.User" outer-join="auto"  not-null="false" not-found="ignore" fetch="select" foreign-key="none">
+            <column name="creator"  not-null="false"/>
+        </many-to-one>
+		-->
+        <bag name="enumerationValues" cascade="all,delete-orphan" lazy="false" order-by="pxorder" >
+            <key foreign-key="none">
+                <column name="enumeration" not-null="false"/>
+            </key>
+            <one-to-many class="com.manage.enumeration.model.EnumerationValue" />
+        </bag>    
+    </class>
+</hibernate-mapping>

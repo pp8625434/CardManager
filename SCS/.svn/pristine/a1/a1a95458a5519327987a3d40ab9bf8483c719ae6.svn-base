@@ -1,0 +1,8 @@
+package com.manage.temp.dao.impl;
+
+import com.base.framework.dao.impl.DaoImpl;
+import com.manage.temp.dao.CancelinternetDao;
+
+public class CancelinternetDaoImpl extends DaoImpl implements CancelinternetDao{
+
+}

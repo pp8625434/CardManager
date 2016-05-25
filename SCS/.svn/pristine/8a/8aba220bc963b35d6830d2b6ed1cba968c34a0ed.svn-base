@@ -1,0 +1,32 @@
+package com.test;
+
+import java.util.Date;
+
+public class createPageInfo {
+
+	/**
+	 * @Date May 13, 2016
+	 * @see 
+	 * @user dl
+	 * @param a
+	 */
+	public static void main(String[] a){
+		
+
+
+
+
+
+
+
+		String str = "private Integer id;	private Integer version;	private String sysname;	private String applydept;	private Integer applydeptid;	private String applicant;	private Integer applicantid;	private Date appliydate;	private String sysalterreason;	private String altercontent;	private String applydeptopinion;	private String applydeptsign;	private Integer applydeptsignid;	private Date applydeptsigndate;	private String infordeptopinion;	private String infordeptsign;	private Integer infordeptsignid;	private Date infordeptsigndate;	private String operateresult;	private String sysmanager;	private Integer sysmanagerid;	private Date managersigndate;		private String firstperson;	private Integer firstpid;	private Date firstsubdate;";
+		String[] strArr = str.split(";");
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < strArr.length; i++) {
+			String[] tempArr = strArr[i].split(" ");
+			sb.append(tempArr[0]).append(" ").append(tempArr[1]).append(" ").append("f_"+tempArr[2]).append(";");
+			sb.append(tempArr[0]).append(" ").append("String").append(" ").append("f_"+tempArr[2]+"_op").append(";");
+		}
+		System.out.println(sb.toString());
+	}
+}

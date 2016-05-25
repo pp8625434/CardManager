@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.manage.login.model.LoginLog" table="p_loginlog" >
+    
+        <id name="id" type="java.lang.String">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        
+        <property name="userid" type="integer">
+            <column name="userid" />
+        </property>
+        <property name="username" type="string">
+            <column name="username" length="50"/>
+        </property>
+        <property name="userip" type="string">
+            <column name="userip" length="100"/>
+        </property>
+        <property name="logindate" type="timestamp">
+            <column name="logindate" />
+        </property>
+        <property name="isfront" type="integer">
+            <column name="isfront"/>
+        </property>    
+    </class>
+</hibernate-mapping>

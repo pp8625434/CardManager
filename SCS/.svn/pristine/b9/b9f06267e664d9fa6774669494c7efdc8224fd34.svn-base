@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 上国际互联网计算机保密责任书管理 -->
+	<package name="secretonline" extends="print" namespace="/secretonline">
+		
+		<action name="secretonlineList" class="com.manage.secretonline.action.SecretonlineAction" method="secretonlineList" >
+			<result name="success">/admin/secretonline/secretonlineList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="secretonlineInfo" class="com.manage.secretonline.action.SecretonlineAction" method="secretonlineInfo" >
+			<result name="success">/admin/secretonline/secretonlineInfo.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="secretonlineEdit" class="com.manage.secretonline.action.SecretonlineAction" method="secretonlineEdit" >
+			<result name="success">/admin/secretonline/secretonlineEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="saveSecretonline" class="com.manage.secretonline.action.SecretonlineAction" method="saveSecretonline" >
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="delSecretonline" class="com.manage.secretonline.action.SecretonlineAction" method="delSecretonline" >
+			<result name="success" type="chain">secretonlineList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+	</package>
+	
+</struts>
+
+
+

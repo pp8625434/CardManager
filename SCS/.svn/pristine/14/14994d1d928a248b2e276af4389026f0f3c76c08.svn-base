@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>table.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+	<script type="text/javascript" language="javascript" src="js/util/jquery-2.2.3.js" ></script>
+	<script type="text/javascript" src="js/datepicker/WdatePicker.js"></script>
+	<script type="text/javascript" language="javascript" src="js/util/formUtil.js" ></script>
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+	<script type="text/javascript">
+		function on_submits(){
+			alert("自定义的方法");
+			return true;
+		}
+	</script>
+  </head>
+  
+  <body>
+  	<form action="ddd" method="post" onsubmit="return on_submits();" >
+    <table  class="bordered">
+    	<tr>
+    		<td width="20%" colspan="2" >申请人</td>
+    		<td width="30%" colspan="2"><input type="text" name="sqr" id="sqr" checkrepeat="yes" tablename="p_user" columnname="name" rmes="用户名重复" isnull="no" dorder="2"  mes="申请人不能空" /> </td>
+    		<td width="20%" >部门</td>
+    		<td width="30%" colspan="2"><input type="text" name="bm" id="bm" isnull="no" dorder="1" mes="部门不能为空"  /></td>
+    	</tr>
+    	<tr>
+    		<td>个人简介</td>
+    		<td colspan="6" > <textarea name="grjj" id="grjj" ></textarea> </td>
+    	</tr>
+    	<tr>
+    		<td width="5%" >序号</td>
+    		<td colspan="2">涉密载体内容<br/>（或文件名称）</td>
+    		<td width="5%">份数</td>
+    		<td>每　份<br/>总页数</td>
+    		<td width="5%">密级</td>
+    		<td>准引号</td>
+    	</tr>
+    	<tr>
+    		<td>&nbsp;</td>
+    		<td colspan="2"><input type="text" name="kk" id="kk" isnull="no" mes="kk不能空" dtype="number" /></td>
+    		<td><input type="text" name="kk1" id="kk1" isnull="no" mes="kk1不能空" dtype="number" /></td>
+    		<td><input type="text" name="kk2" id="kk2" isnull="no" mes="kk2不能空" dtype="number" /></td>
+    		<td><input type="text" name="kk3" id="kk3" isnull="no" mes="kk3不能空" dtype="number" /></td>
+    		<td><input type="text" name="kk4" id="kk4" isnull="no" mes="kk4不能空" dtype="number" /></td>
+    	</tr>
+    	<tr>
+    		<td>&nbsp;</td>
+    		<td colspan="2"><input type="text" /></td>
+    		<td><input type="text" /></td>
+    		<td><input type="text" /></td>
+    		<td><input type="text" /></td>
+    		<td><input type="text" /></td>
+    	</tr>
+    	<tr>
+    		<td>&nbsp;</td>
+    		<td colspan="2"><input type="text" /></td>
+    		<td><input type="text" /></td>
+    		<td><input type="text" /></td>
+    		<td><input type="text" /></td>
+    		<td><input type="text" /></td>
+    	</tr>
+    	<tr>
+    		<td>&nbsp;</td>
+    		<td colspan="2"><input type="text" /></td>
+    		<td><input type="text" /></td>
+    		<td><input type="text" /></td>
+    		<td><input type="text" /></td>
+    		<td><input type="text" /></td>
+    	</tr>
+    	<tr>
+    		<td colspan="2">复印用途</td>
+    		<td colspan="5" style="text-align: left;" >
+    			<input type="checkbox" name="fyyt" id="c1" isnull="no" mes="请选择复印用途" >会议材料
+    			<input type="checkbox" name="fyyt" id="c2" >向上级报送
+    			<input type="checkbox" name="fyyt" id="c3">本部传递
+    			<input type="checkbox" name="fyyt" id="c4">发往所属单位
+    			<input type="checkbox" name="fyyt" id="c5">其他
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="2">承制单位</td>
+    		<td colspan="5" style="text-align: left;" >
+    			<input type="radio" name="czdw" id="d1" isnull="no" mes="请选择承制单位" >航天印刷所
+    			<input type="radio" name="czdw" id="d2">512所
+    			<input type="radio" name="czdw" id="d3">廊坊光达印刷有限公司
+    			<input type="radio" name="czdw" id="d4">其他
+    		</td>
+    	</tr>
+    	<tr>
+    		<td>测试</td>
+    		<td colspan="6" > <textarea name="grjj" id="grjj" ></textarea> </td>
+    	</tr>
+    	
+    </table>
+    	<input type="submit" value="提交" >
+    </form>
+  </body>
+</html>

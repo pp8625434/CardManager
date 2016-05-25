@@ -1,0 +1,144 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ include file="/includes/main.jsp"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type="text/javascript" language="javascript"
+			src="../js/util/jquery-2.2.3.js"></script>
+		<script type="text/javascript" src="../js/datepicker/WdatePicker.js"></script>
+		<script type="text/javascript" language="javascript"
+			src="../js/util/formUtil.js"></script>
+		<link rel="stylesheet" type="text/css" href="../style/style.css">
+		<script type="text/javascript">
+			
+		</script>
+
+	</head>
+
+	<body>
+		<form id="testForm" action="asdasdas" onsubmit="onForm_Submits();">
+			<table width="100%" class="bordered">
+				<caption>
+					视频会议系统使用申请表
+				</caption>
+				<tr>
+					<td width="15%">
+						会议名称
+					</td>
+					<td colspan="5">
+						<input type="text" name="meetingname" id="meetingname" isnull="no" dorder="1"  mes="会议名称不能空" size="20"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						申请部门（单位）
+					</td>
+					<td colspan="2">
+						<input type="text" name="deptname" id="deptname" isnull="no" dorder="2"  mes="申请部门（单位）不能为空" size="20"/>
+					</td>
+					<td width="21%">
+						申请人
+					</td>
+					<td width="30%" colspan="2">
+						<input type="text" name="applyer" id="applyer" isnull="no" dorder="3"  mes="申请人不能空" size="20"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						联系电话
+					</td>
+					<td colspan="2">
+						<input type="text" name="telephone" id="telephone" isnull="no" dorder="4"  mes="联系电话不能为空" size="20"/>
+					</td>
+					<td>
+						会议形式
+					</td>
+					<td colspan="2">
+						<hi:select type="radio" emu="page_29_meetingtype" name="meetingtype" id="meetingtype" isnull="no" onclick="sqrlbqt('aaa');" dorder="5" mes="请选择会议形式" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						会议地点
+					</td>
+					<td colspan="5">
+						<hi:select type="checkbox" emu="page_29_meetingplace" name="meetingplace" id="meetingplace" isnull="no" onclick="sqrlbqt('aaa');" dorder="6" mes="请选择会议地点" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						会议议程
+					</td>
+					<td colspan="5">
+						<textarea rows="3" name="meetingprocess" id="meetingprocess"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="1">
+						视频会议参会单位
+					</td>
+					<td colspan="4">
+						<hi:select type="checkbox" emu="page_29_meetdeptJingOut" name="meetdeptJingOut" id="meetdeptJingOut" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						会议时间
+					</td>
+					<td colspan="2">
+						<input type="text" name="meetingdate" id="meetingdate" isnull="no" dorder="7" dtype="date(yyyy-MM-dd HH:mm)" mes="会议时间不能为空" />
+					</td>
+					<td rowspan="2">
+						是否需要播放PPT、录像片
+					</td>
+					<td colspan="2" rowspan="2">
+						<hi:select type="radio" emu="yesOrNo" name="isplay" id="isplay" isnull="no" dorder="8" mes="是否需要播放PPT、录像片"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						联调时间
+					</td>
+					<td colspan="2">
+						<input type="text" name="linkdate" id="linkdate" isnull="no" dorder="9" dtype="date(yyyy-MM-dd HH:mm)" mes="联调时间不能为空" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						会议模式
+					</td>
+					<td colspan="5">
+						<hi:select type="radio" emu="page_29_meetModule" name="meetModule" id="meetModule" isnull="no" dorder="10" mes="请选择会议模式"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						发言会场
+					</td>
+					<td colspan="5">
+						<hi:select type="checkbox" emu="page_29_meetdeptJingOut" name="speakplace" id="speakplace" />
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="2">
+						承办部门/单位意见
+					</td>
+					<td colspan="5">
+						<textarea rows="3" name="cbdeptopinion" id="cbdeptopinion"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						签字
+					</td>
+					<td colspan="4">
+						<hi:select type="radio" emu="yesNo" name="managersign" id="managersign" isnull="no" dorder="17" mes="请承办部门/单位签字"/>
+					</td>
+				</tr>
+			</table>
+			<input type="submit" value="提交" />
+		</form>
+	</body>
+</html>

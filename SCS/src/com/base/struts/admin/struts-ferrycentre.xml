@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 建立摆渡中心申请表 -->
+	<package name="ferrycentre" extends="print" namespace="/ferrycentre" >
+		<action name="ferryCentreList" class="com.manage.ferrycentre.action.FerryCentreAction"  method="ferryCentreList">
+			<result name="success">/admin/ferrycentre/ferryCentreList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="ferryCentreSave" class="com.manage.ferrycentre.action.FerryCentreAction" method="ferryCentreSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="ferryCentreAdd" class="com.manage.ferrycentre.action.FerryCentreAction" method="ferryCentreAdd">
+			<result name="success">/admin/ferrycentre/ferryCentreEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="ferryCentreDel" class="com.manage.ferrycentre.action.FerryCentreAction" method="ferryCentreDel">
+			<result name="success" type="chain">
+				<param name="actionName">ferryCentreList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="ferryCentreInfo" class="com.manage.ferrycentre.action.FerryCentreAction" method="ferryCentreInfo">
+			<result name="success">/admin/ferrycentre/ferryCentreInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,227 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ include file="/includes/main.jsp"%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css"
+			href="<%=request.getContextPath()%>/admin/css/style.css">
+		<link rel="stylesheet" type="text/css"
+			href="<%=request.getContextPath()%>/admin/css/content.css">
+		<script type="text/javascript"
+			src="<%=request.getContextPath()%>/js/framework/hi_Include.js"></script>
+		<script type="text/javascript"
+			src="<%=request.getContextPath()%>/js/common/validator.js"></script>
+		<script type="text/javascript"
+			src="${applicationScope.ctx}/uploader/jquery-1.8.0.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style/style.css">
+		
+	</head>
+	<body class="adminMain">
+		<div class="mainTitle">
+			非涉密便携式计算机携带外出审批详情
+		</div>
+		<div class="mainConText">
+			<form  name="formSearch" id="formSearch" enctype="multipart/form-data">
+				<table width="100%" class="bordered">
+					<caption>
+						非涉密便携式计算机携带外出审批表
+					</caption>
+					<tr>
+						<td width="21%">
+							所在部门
+						</td>
+						<td colspan="2">
+							<s:property value="notSecretPcOut.deptname"/>
+						</td>
+						<td width="15%">
+							借用人
+						</td>
+						<td colspan="2">
+							<s:property value="notSecretPcOut.borrower"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							外出地点
+						</td>
+						<td colspan="2">
+							<s:property value="notSecretPcOut.outplace"/>
+						</td>
+						<td>
+							设备编号
+						</td>
+						<td colspan="2">
+							<s:property value="notSecretPcOut.devicenum"/>
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="2">
+							使用介质
+						</td>
+						<td colspan="2">
+							光盘来源
+						</td>
+						<td colspan="3">
+							<s:property value="notSecretPcOut.diskfrom"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							移动介质编号
+						</td>
+						<td>
+							<s:property value="notSecretPcOut.mediumnum"/>
+						</td>
+						<td width="15%">
+							是否为非密
+						</td>
+						<td width="26%">
+							<hi:select disabled="true" type="radio" emu="yesOrNo" name="notSecretPcOut.issecret" id="notSecretPcOut.issecret" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							借用事由及拟处理信息内容
+						</td>
+						<td colspan="5">
+							<s:property value="notSecretPcOut.borrowreason"/>
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="2">
+							保密责任书
+						</td>
+						<td colspan="5">
+							<p align="left">
+								请借用人遵守如下规定：
+							</p>
+							<p align="left">
+								一、遵守国家和院有关便携式计算机的保密管理规定。
+							</p>
+							<p align="left">
+								二、对便携式计算机进行妥善保管，不私自转借他人，不随意丢放。
+							</p>
+							<p align="left">
+								三、不在该便携式计算机内处理、存储涉密信息。
+							</p>
+							<p align="left">
+								四、不在办公用便携式计算机上连接互联网专用介质。
+							</p>
+							<p align="left">
+								五、严禁以上任何方式接入国际互联网。
+							</p>
+							<p align="left">
+								六、严禁将该便携式计算机与涉密设备及涉密信息系统连接。
+							</p>
+							<p align="left">
+								七、在规定时间内返还，并按规定办理返回检查手续。
+							</p>
+							<p align="left">
+								八、如有违犯，愿意按规定接受处罚。
+							</p>
+							<p align="left">
+								本人已清晰阅读并了解上述条款的含义，保证遵守上述条款的约束。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="15%">
+							借用人签字
+						</td>
+						<td colspan="4">
+							<hi:select disabled="true" type="radio" emu="yesNo" name="notSecretPcOut.borrowersign" id="notSecretPcOut.borrowersign" />
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="2">
+							部门领导意见
+						</td>
+						<td colspan="5">
+							<s:property value="notSecretPcOut.deptleaderopinion"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							签字
+						</td>
+						<td colspan="4">
+							<hi:select disabled="true" type="radio" emu="yesNo" name="notSecretPcOut.deptleadersign" id="notSecretPcOut.deptleadersign" />
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="2">
+							设备移交情况
+						</td>
+						<td colspan="5">
+							<s:property value="notSecretPcOut.devtransfer"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							借用人领用签字
+						</td>
+						<td colspan="4">
+							<hi:select disabled="true" type="radio" emu="yesNo" name="notSecretPcOut.receivesign" id="notSecretPcOut.receivesign" />
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="4">
+							返回检查及归还情况
+						</td>
+						<td colspan="5">
+							<s:property value="notSecretPcOut.returncondition"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							检查人签字
+						</td>
+						<td colspan="4">
+							<hi:select disabled="true" type="radio" emu="yesNo" name="notSecretPcOut.checkersign" id="notSecretPcOut.checkersign" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							设备管理人员接收设备签字
+						</td>
+						<td colspan="4">
+							<hi:select disabled="true" type="radio" emu="yesNo" name="notSecretPcOut.devmanager" id="notSecretPcOut.devmanager" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="5">
+							注：如有违规情况移交保密管理部门进行处理。
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="3">
+							保密管理部门意见
+						</td>
+						<td colspan="5">
+							<s:property value="notSecretPcOut.securityopinion"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							签字
+						</td>
+						<td colspan="4">
+							<hi:select disabled="true" type="radio" emu="yesNo" name="notSecretPcOut.securitysign" id="notSecretPcOut.securitysign"  />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="5">
+							注：如无违规情况不用保密管理部门填写意见。
+						</td>
+					</tr>
+				</table>
+				
+				<div class="btnBox">
+					<input type="button" class="btnInput2 chancleButton" value="返回" />
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

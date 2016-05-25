@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 设备接入/退出涉密信息系统审批 -->
+	<package name="deviceiosys" extends="print" namespace="/deviceiosys" >
+		<action name="deviceIoSysList" class="com.manage.deviceiosys.action.DeviceIoSysAction"  method="deviceIoSysList">
+			<result name="success">/admin/deviceiosys/deviceIoSysList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="deviceIoSysSave" class="com.manage.deviceiosys.action.DeviceIoSysAction" method="deviceIoSysSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="deviceIoSysAdd" class="com.manage.deviceiosys.action.DeviceIoSysAction" method="deviceIoSysAdd">
+			<result name="success">/admin/deviceiosys/deviceIoSysEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="deviceIoSysDel" class="com.manage.deviceiosys.action.DeviceIoSysAction" method="deviceIoSysDel">
+			<result name="success" type="chain">
+				<param name="actionName">deviceIoSysList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="deviceIoSysInfo" class="com.manage.deviceiosys.action.DeviceIoSysAction" method="deviceIoSysInfo">
+			<result name="success">/admin/deviceiosys/deviceIoSysInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

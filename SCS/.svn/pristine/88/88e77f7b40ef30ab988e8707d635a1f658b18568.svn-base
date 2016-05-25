@@ -1,0 +1,7 @@
+package com.manage.table.action;
+
+import com.base.framework.web.struts.BaseAction;
+
+public class TablesAction extends BaseAction{
+
+}

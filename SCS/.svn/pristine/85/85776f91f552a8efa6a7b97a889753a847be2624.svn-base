@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 部门或个人涉密载体台账管理 -->
+	<package name="classifiedtz" extends="print" namespace="/classifiedtz">
+		
+		<action name="classifiedtzList" class="com.manage.classifiedtz.action.ClassifiedtzAction" method="classifiedtzList" >
+			<result name="success">/admin/classifiedtz/classifiedtzList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="classifiedtzInfo" class="com.manage.classifiedtz.action.ClassifiedtzAction" method="classifiedtzInfo" >
+			<result name="success">/admin/classifiedtz/classifiedtzInfo.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="classifiedtzEdit" class="com.manage.classifiedtz.action.ClassifiedtzAction" method="classifiedtzEdit" >
+			<result name="success">/admin/classifiedtz/classifiedtzEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="saveClassifiedtz" class="com.manage.classifiedtz.action.ClassifiedtzAction" method="saveClassifiedtz" >
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="delClassifiedtz" class="com.manage.classifiedtz.action.ClassifiedtzAction" method="delClassifiedtz" >
+			<result name="success" type="chain">classifiedtzList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+	</package>
+	
+</struts>
+
+
+

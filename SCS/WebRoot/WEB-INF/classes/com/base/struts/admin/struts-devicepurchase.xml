@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 年度设备购置需求表 -->
+	<package name="devicepurchase" extends="print" namespace="/devicepurchase" >
+		<action name="devicePurchaseList" class="com.manage.devicepurchase.action.DevicePurchaseAction"  method="devicePurchaseList">
+			<result name="success">/admin/devicepurchase/devicePurchaseList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="devicePurchaseSave" class="com.manage.devicepurchase.action.DevicePurchaseAction" method="devicePurchaseSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="devicePurchaseAdd" class="com.manage.devicepurchase.action.DevicePurchaseAction" method="devicePurchaseAdd">
+			<result name="success">/admin/devicepurchase/devicePurchaseEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="devicePurchaseDel" class="com.manage.devicepurchase.action.DevicePurchaseAction" method="devicePurchaseDel">
+			<result name="success" type="chain">
+				<param name="actionName">devicePurchaseList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="devicePurchaseInfo" class="com.manage.devicepurchase.action.DevicePurchaseAction" method="devicePurchaseInfo">
+			<result name="success">/admin/devicepurchase/devicePurchaseInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 布线系统季度检查记录表 -->
+	<package name="wiresysrecord" extends="print" namespace="/wiresysrecord" >
+		<action name="wireSysRecordList" class="com.manage.wiresysrecord.action.WireSysRecordAction"  method="wireSysRecordList">
+			<result name="success">/admin/wiresysrecord/wireSysRecordList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="wireSysRecordSave" class="com.manage.wiresysrecord.action.WireSysRecordAction" method="wireSysRecordSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="wireSysRecordAdd" class="com.manage.wiresysrecord.action.WireSysRecordAction" method="wireSysRecordAdd">
+			<result name="success">/admin/wiresysrecord/wireSysRecordEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="wireSysRecordDel" class="com.manage.wiresysrecord.action.WireSysRecordAction" method="wireSysRecordDel">
+			<result name="success" type="chain">
+				<param name="actionName">wireSysRecordList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="wireSysRecordInfo" class="com.manage.wiresysrecord.action.WireSysRecordAction" method="wireSysRecordInfo">
+			<result name="success">/admin/wiresysrecord/wireSysRecordInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

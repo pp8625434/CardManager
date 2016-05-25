@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 视频会议系统使用申请表 -->
+	<package name="videomeeting" extends="print" namespace="/videomeeting" >
+		<action name="videoMeetingList" class="com.manage.videomeeting.action.VideoMeetingAction"  method="videoMeetingList">
+			<result name="success">/admin/videomeeting/videoMeetingList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="videoMeetingSave" class="com.manage.videomeeting.action.VideoMeetingAction" method="videoMeetingSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="videoMeetingAdd" class="com.manage.videomeeting.action.VideoMeetingAction" method="videoMeetingAdd">
+			<result name="success">/admin/videomeeting/videoMeetingEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="videoMeetingDel" class="com.manage.videomeeting.action.VideoMeetingAction" method="videoMeetingDel">
+			<result name="success" type="chain">
+				<param name="actionName">videoMeetingList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="videoMeetingInfo" class="com.manage.videomeeting.action.VideoMeetingAction" method="videoMeetingInfo">
+			<result name="success">/admin/videomeeting/videoMeetingInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

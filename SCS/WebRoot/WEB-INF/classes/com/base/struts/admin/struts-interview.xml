@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 本部接受采访审批表 -->
+	<package name="interview" extends="print" namespace="/interview" >
+		<action name="interviewList" class="com.manage.interview.action.InterviewAction"  method="interviewList">
+			<result name="success">/admin/interview/interviewList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="interviewSave" class="com.manage.interview.action.InterviewAction" method="interviewSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="interviewAdd" class="com.manage.interview.action.InterviewAction" method="interviewAdd">
+			<result name="success">/admin/interview/interviewEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="interviewDel" class="com.manage.interview.action.InterviewAction" method="interviewDel">
+			<result name="success" type="chain">
+				<param name="actionName">interviewList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="interviewInfo" class="com.manage.interview.action.InterviewAction" method="interviewInfo">
+			<result name="success">/admin/interview/interviewInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- js判断帮助类 -->
+	<package name="jsutil" extends="print" namespace="/js/util">
+		<action name="checkrepeat" class="com.base.framework.js.action.JsUtilsAction" >
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>
+
+
+

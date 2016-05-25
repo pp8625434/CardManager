@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Ware Manager And DAO Configration==================== -->  
+    <bean id="com.manage.sysauthoralter.dao.impl.SysAuthorAlterDaoImpl" class="com.manage.sysauthoralter.dao.impl.SysAuthorAlterDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.sysauthoralter.dao.SysAuthorAlterDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.sysauthoralter.dao.SysAuthorAlterDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.sysauthoralter.dao.impl.SysAuthorAlterDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.sysauthoralter.model.SysAuthorAlter" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.sysauthoralter.service.impl.SysAuthorAlterManagerImpl">
+                <property name="dao" ref="com.manage.sysauthoralter.dao.SysAuthorAlterDao"/>
+                <property name="modelClass" value="com.manage.sysauthoralter.model.SysAuthorAlter"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

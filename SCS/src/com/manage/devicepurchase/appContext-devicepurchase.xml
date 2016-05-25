@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Ware Manager And DAO Configration==================== -->  
+    <bean id="com.manage.devicepurchase.dao.impl.DevicePurchaseDaoImpl" class="com.manage.devicepurchase.dao.impl.DevicePurchaseDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.devicepurchase.dao.DevicePurchaseDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.devicepurchase.dao.DevicePurchaseDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.devicepurchase.dao.impl.DevicePurchaseDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.devicepurchase.model.DevicePurchase" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.devicepurchase.service.impl.DevicePurchaseManagerImpl">
+                <property name="dao" ref="com.manage.devicepurchase.dao.DevicePurchaseDao"/>
+                <property name="modelClass" value="com.manage.devicepurchase.model.DevicePurchase"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

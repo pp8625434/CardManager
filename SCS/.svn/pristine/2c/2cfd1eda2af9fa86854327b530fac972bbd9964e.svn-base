@@ -1,0 +1,103 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ include file="/includes/main.jsp"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type="text/javascript" language="javascript" src="<%=request.getContextPath()%>/js/util/jquery-2.2.3.js"></script>
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style/style.css">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/admin/css/content.css">
+		<script type="text/javascript" src="<%=request.getContextPath()%>/admin/telltalerecord/js/telltaleRecord.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/datepicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/util/formUtil.js"></script>
+		<script type="text/javascript">
+			
+		</script>
+	</head>
+
+	<body  class="adminMain">
+		<div class="mainConText">
+		<form name="formSearch" id="formSearch" method="post" action="<%=request.getContextPath()%>/telltalerecord/telltaleRecordSave.action" onsubmit="">
+			<input type="hidden" name="telltaleRecord.id" id="telltaleRecord.id"/>
+			<input type="hidden" name="telltaleRecord.version" id="telltaleRecord.version"/>
+			<table width="100%" class="bordered">
+				<caption>
+					系统失泄密记录表
+				</caption>
+				<tr>
+					<td width="25%">
+						事件类型
+					</td>
+					<td colspan="3">
+						<hi:select emu="page_44_telltaleRecord" name="telltaleRecord.eventtype" id="telltaleRecord.eventtype"  isnull="no" dorder="1"  mes="事件类型不能为空"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						发生时间
+					</td>
+					<td colspan="3">
+						<input type="text" name="telltaleRecord.happendate" id="telltaleRecord.happendate" isnull="no" dorder="2" dtype="date(yyyy-MM-dd HH:mm:ss)" mes="发生时间不能为空" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						发生原因
+					</td>
+					<td colspan="3">
+						<textarea rows="3" name="telltaleRecord.happenreason" id="telltaleRecord.happenreason" isnull="no" dorder="3"  mes="发生原因不能为空"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						影响范围
+					</td>
+					<td colspan="3">
+						<textarea rows="3" name="telltaleRecord.effectrange" id="telltaleRecord.effectrange" isnull="no" dorder="4"  mes="影响范围不能为空"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						补救措施
+					</td>
+					<td colspan="3">
+						<textarea rows="3" name="telltaleRecord.measures" id="telltaleRecord.measures" isnull="no" dorder="5"  mes="补救措施不能为空"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						最终结果
+					</td>
+					<td colspan="3">
+						<textarea rows="3" name="telltaleRecord.result" id="telltaleRecord.result" isnull="no" dorder="6"  mes="最终结果不能为空"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						填报人
+					</td>
+					<td width="25%">
+						<input type="text" name="telltaleRecord.informant" id="telltaleRecord.informant" isnull="no" dorder="10"  mes="填报人不能为空" size="20"/>
+						<input type="hidden" name="telltaleRecord.informantid" id="telltaleRecord.informantid"/>
+					</td>
+					<td width="25%">
+						部门审核人
+					</td>
+					<td width="25%">
+						<input type="text" name="telltaleRecord.checker" id="telltaleRecord.checker" isnull="no" dorder="11"  mes="部门审核人不能为空" size="20"/>
+						<input type="hidden" name="telltaleRecord.checkerid" id="telltaleRecord.checkerid"/>
+					</td>
+				</tr>
+			</table>
+			<br />
+			<div class="btnBox">
+				<input type="submit" id="addBut" value="保存"  class="btnInput1" />
+				&nbsp;
+				<input type="button" class="btnInput2 chancleButton" value="取消" 
+					onclick="cancelBtn();"/>
+			</div>
+		</form>
+		</div>
+	</body>
+</html>

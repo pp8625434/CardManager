@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 涉密信息打印输出审批登记管理 -->
+	<package name="classifiedprint" extends="print" namespace="/classifiedprint">
+		
+		<action name="classifiedprintList" class="com.manage.classifiedprint.action.ClassifiedprintAction" method="classifiedprintList" >
+			<result name="success">/admin/classifiedprint/classifiedprintList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="classifiedprintInfo" class="com.manage.classifiedprint.action.ClassifiedprintAction" method="classifiedprintInfo" >
+			<result name="success">/admin/classifiedprint/classifiedprintInfo.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="classifiedprintEdit" class="com.manage.classifiedprint.action.ClassifiedprintAction" method="classifiedprintEdit" >
+			<result name="success">/admin/classifiedprint/classifiedprintEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="saveClassifiedprint" class="com.manage.classifiedprint.action.ClassifiedprintAction" method="saveClassifiedprint" >
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="delClassifiedprint" class="com.manage.classifiedprint.action.ClassifiedprintAction" method="delClassifiedprint" >
+			<result name="success" type="chain">classifiedprintList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+	</package>
+	
+</struts>
+
+
+

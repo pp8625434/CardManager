@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    
+    <!-- ===================== Role Manager And DAO Configration==================== -->  
+    <bean id="com.base.framework.security.dao.impl.RoleDaoImpl" class="com.base.framework.security.dao.impl.RoleDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.base.framework.security.dao.RoleDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.base.framework.security.dao.RoleDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.base.framework.security.dao.impl.RoleDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.base.framework.security.model.Role" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.base.framework.security.service.impl.RoleManagerImpl">
+                <property name="dao" ref="com.base.framework.security.dao.RoleDao"/>
+                <property name="modelClass" value="com.base.framework.security.model.Role"/>
+            </bean>
+        </property>
+    </bean>
+   
+   <!-- ===================== UserRole Manager And DAO Configration==================== -->  
+    <bean id="com.base.framework.security.dao.impl.UserRoleDaoImpl" class="com.base.framework.security.dao.impl.UserRoleDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.base.framework.security.dao.UserRoleDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.base.framework.security.dao.UserRoleDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.base.framework.security.dao.impl.UserRoleDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.base.framework.security.model.UserRole" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.base.framework.security.service.impl.UserRoleManagerImpl">
+                <property name="dao" ref="com.base.framework.security.dao.UserRoleDao"/>
+                <property name="modelClass" value="com.base.framework.security.model.UserRole"/>
+            </bean>
+        </property>
+    </bean>
+    
+    <!-- ===================== RoleMenuLink Manager And DAO Configration==================== -->
+     <bean id="com.base.framework.security.dao.impl.RoleMenuLinkDaoImpl" class="com.base.framework.security.dao.impl.RoleMenuLinkDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.base.framework.security.dao.RoleMenuLinkDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.base.framework.security.dao.RoleMenuLinkDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.base.framework.security.dao.impl.RoleMenuLinkDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.base.framework.security.model.RoleMenuLink" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.base.framework.security.service.impl.RoleMenuLinkManagerImpl">
+                <property name="dao" ref="com.base.framework.security.dao.RoleMenuLinkDao"/>
+                <property name="modelClass" value="com.base.framework.security.model.RoleMenuLink"/>
+            </bean>
+        </property>
+    </bean>
+    
+   <!-- ===================== UserGroup Manager And DAO Configration==================== -->  
+   <!-- 
+    <bean id="org.hi.framework.security.dao.hibernate.UserGroupDAOHibernate" class="org.hi.framework.security.dao.hibernate.UserGroupDAOHibernate">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="org.hi.framework.security.dao.UserGroupDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="org.hi.framework.security.dao.UserGroupDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>org.hi.framework.security.dao.hibernate.UserGroupDAOHibernate</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="org.hi.framework.security.model.UserGroup" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="org.hi.framework.security.service.impl.UserGroupManagerImpl">
+                <property name="DAO" ref="org.hi.framework.security.dao.UserGroupDAO"/>
+                <property name="modelClass" value="org.hi.framework.security.model.UserGroup"/>
+            </bean>
+        </property>
+    </bean>
+
+   
+
+    <bean id="org.hi.framework.security.dao.hibernate.GroupRoleDAOHibernate" class="org.hi.framework.security.dao.hibernate.GroupRoleDAOHibernate">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="org.hi.framework.security.dao.GroupRoleDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="org.hi.framework.security.dao.GroupRoleDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>org.hi.framework.security.dao.hibernate.GroupRoleDAOHibernate</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="org.hi.framework.security.model.GroupRole" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="org.hi.framework.security.service.impl.GroupRoleManagerImpl">
+                <property name="DAO" ref="org.hi.framework.security.dao.GroupRoleDAO"/>
+                <property name="modelClass" value="org.hi.framework.security.model.GroupRole"/>
+            </bean>
+        </property>
+    </bean>
+    
+    -->
+</beans>

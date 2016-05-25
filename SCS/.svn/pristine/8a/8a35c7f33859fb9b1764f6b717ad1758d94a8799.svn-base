@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Ware Manager And DAO Configration==================== -->  
+    <bean id="com.manage.telltalerecord.dao.impl.TelltaleRecordDaoImpl" class="com.manage.telltalerecord.dao.impl.TelltaleRecordDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.telltalerecord.dao.TelltaleRecordDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.telltalerecord.dao.TelltaleRecordDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.telltalerecord.dao.impl.TelltaleRecordDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.telltalerecord.model.TelltaleRecord" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.telltalerecord.service.impl.TelltaleRecordManagerImpl">
+                <property name="dao" ref="com.manage.telltalerecord.dao.TelltaleRecordDao"/>
+                <property name="modelClass" value="com.manage.telltalerecord.model.TelltaleRecord"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

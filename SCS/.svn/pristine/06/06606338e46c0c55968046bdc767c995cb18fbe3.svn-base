@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.manage.flowchart.model.FlowNodesConfig" table="p_flownodesconfig" >
+    
+          <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+     	
+        
+          <property name="fid" type="java.lang.Integer">
+        	<column name="fid"/>
+        </property>
+        
+        <property name="nid" type="java.lang.String">
+        	<column name="nid"/>
+        </property>
+     	
+     	 <property name="ntype" type="java.lang.Integer">
+        	<column name="ntype"/>
+        </property>
+        <property name="userid" type="java.lang.Integer">
+        	<column name="userid"/>
+        </property>
+         <property name="orgid" type="java.lang.Integer">
+        	<column name="orgid"/>
+        </property>
+         <property name="roleid" type="java.lang.Integer">
+        	<column name="roleid"/>
+        </property>
+         <property name="orgroleid" type="java.lang.Integer">
+        	<column name="orgroleid"/>
+        </property>
+          <property name="orgtype" type="java.lang.Integer">
+        	<column name="orgtype"/>
+        </property>
+    </class>
+</hibernate-mapping>

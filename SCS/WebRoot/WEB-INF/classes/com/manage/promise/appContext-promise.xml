@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Enumeration Manager And DAO Configration==================== -->  
+    <bean id="com.manage.promise.dao.impl.PromiseDaoImpl" class="com.manage.promise.dao.impl.PromiseDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.promise.dao.PromiseDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.promise.dao.PromiseDao"/>
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.promise.dao.impl.PromiseDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.promise.model.Promise" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.promise.service.impl.PromiseManagerImpl">
+                <property name="dao" ref="com.manage.promise.dao.PromiseDao"/>
+                <property name="modelClass" value="com.manage.promise.model.Promise"/>
+            </bean>
+        </property>
+    </bean>
+</beans>

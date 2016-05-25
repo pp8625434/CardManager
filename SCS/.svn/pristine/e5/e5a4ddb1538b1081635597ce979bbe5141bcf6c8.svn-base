@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.manage.table.model.Tables" table="p_tables" >
+     <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+      <!--   <property name="version" type="java.lang.Integer">
+            <column name="VERSION" precision="11" scale="0" />
+        </property> -->
+        
+        <property name="tableName" type="java.lang.String">
+        	<column name="tablename"/>
+        </property>
+        
+     	<property name="tableDesc" type="java.lang.String">
+        	<column name="tabledesc"/>
+        </property>
+       
+    </class>
+</hibernate-mapping>

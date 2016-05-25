@@ -1,0 +1,87 @@
+package com.manage.flowchart.action;
+
+import java.util.List;
+
+import com.base.framework.SpringContextHolder;
+import com.base.framework.paging.PageInfo;
+import com.base.framework.web.PageInfoUtil;
+import com.base.framework.web.PageParamsUtil;
+import com.base.framework.web.struts.BaseAction;
+import com.manage.flowchart.action.info.FlowchartPageInfo;
+import com.manage.flowchart.model.Flowchart;
+import com.manage.flowchart.service.FlowchartManager;
+import com.manage.menu.model.Menu;
+import com.manage.menu.service.MenuManager;
+
+@SuppressWarnings("serial")
+public class FlowchartAction extends BaseAction{
+	
+	
+	private Flowchart  flowchart;
+	
+	private List<Flowchart> flowchartList;
+	
+	private FlowchartPageInfo pageInfo;
+	
+	private String params;
+	
+	
+	private FlowchartManager fMgr =  (FlowchartManager) SpringContextHolder.getBean(Flowchart.class);
+
+	
+	
+	/**
+	 * 获得流程图list
+	 * @return
+	 * @throws Exception
+	 */
+	public String findFlowchartList() throws Exception{
+		pageInfo = pageInfo == null? new FlowchartPageInfo():pageInfo;
+		PageInfo sarchPageInfo = PageInfoUtil.populate(pageInfo);
+		flowchartList = fMgr.findFlowchartList(sarchPageInfo);
+		return SUCCESS;
+	}
+	
+	/**
+	 * 创建流程图
+	 * @return
+	 * @throws Exception
+	 */
+	public String perCreateFlowchart() throws Exception{
+		String params = PageParamsUtil.getPageParam(pageInfo);
+		this.getRequest().setAttribute("params", params);
+		flowchart = fMgr.findFlowchartById(flowchart.getId());
+		return SUCCESS;
+	}
+	
+	
+	
+	
+	
+	public Flowchart getFlowchart() {
+		return flowchart;
+	}
+	public void setFlowchart(Flowchart flowchart) {
+		this.flowchart = flowchart;
+	}
+	public List<Flowchart> getFlowchartList() {
+		return flowchartList;
+	}
+	public void setFlowchartList(List<Flowchart> flowchartList) {
+		this.flowchartList = flowchartList;
+	}
+	public FlowchartPageInfo getPageInfo() {
+		return pageInfo;
+	}
+	public void setPageInfo(FlowchartPageInfo pageInfo) {
+		this.pageInfo = pageInfo;
+	}
+
+	public String getParams() {
+		return params;
+	}
+
+	public void setParams(String params) {
+		this.params = params;
+	}
+}

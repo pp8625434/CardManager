@@ -1,0 +1,99 @@
+package com.manage.flowchart.model;
+
+import java.io.Serializable;
+import java.util.List;
+
+
+
+public class Flowchart implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8013591936633413321L;
+	
+	
+	private Integer Id;
+	
+	private Integer version;
+	
+	private String fcname;
+	
+	private Integer flowId;
+	
+	private List<FlowNodes> nodes;
+	
+	private List<FlowLines> lines;
+	
+	private String areas = "{}";
+	
+	private Integer initNum;
+
+	public Integer getId() {
+		return Id;
+	}
+
+	public void setId(Integer id) {
+		Id = id;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
+	public String getFcname() {
+		return fcname;
+	}
+
+	public void setFcname(String fcname) {
+		this.fcname = fcname;
+	}
+
+	public Integer getFlowId() {
+		return flowId;
+	}
+
+	public void setFlowId(Integer flowId) {
+		this.flowId = flowId;
+	}
+
+	public List<FlowNodes> getNodes() {
+		return nodes;
+	}
+
+	public void setNodes(List<FlowNodes> nodes) {
+		this.nodes = nodes;
+	}
+
+	public List<FlowLines> getLines() {
+		return lines;
+	}
+
+	public void setLines(List<FlowLines> lines) {
+		this.lines = lines;
+	}
+
+	public String getAreas() {
+		return areas;
+	}
+
+	public void setAreas(String areas) {
+		this.areas = areas;
+	}
+
+	public Integer getInitNum() {
+		return initNum;
+	}
+
+	public void setInitNum(Integer initNum) {
+		this.initNum = initNum;
+	}
+	
+	
+	
+
+}

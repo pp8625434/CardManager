@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Enumeration Manager And DAO Configration==================== -->  
+    <bean id="com.manage.smediumborrow.dao.impl.SmediumborrowDaoImpl" class="com.manage.smediumborrow.dao.impl.SmediumborrowDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.smediumborrow.dao.SmediumborrowDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.smediumborrow.dao.SmediumborrowDao"/>
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.smediumborrow.dao.impl.SmediumborrowDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.smediumborrow.model.SSmediumborrowTab" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.smediumborrow.service.impl.SmediumborrowManagerImpl">
+                <property name="dao" ref="com.manage.smediumborrow.dao.SmediumborrowDao"/>
+                <property name="modelClass" value="com.manage.smediumborrow.model.SSmediumborrowTab"/>
+            </bean>
+        </property>
+    </bean>
+    
+
+</beans>

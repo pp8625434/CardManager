@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 保密要害部门、部位撤销表管理 -->
+	<package name="keypartundo" extends="print" namespace="/keypartundo">
+		
+		<action name="keypartundoList" class="com.manage.keypartundo.action.KeypartundoAction" method="keypartundoList" >
+			<result name="success">/admin/keypartundo/keypartundoList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="keypartundoInfo" class="com.manage.keypartundo.action.KeypartundoAction" method="keypartundoInfo" >
+			<result name="success">/admin/keypartundo/keypartundoInfo.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="keypartundoEdit" class="com.manage.keypartundo.action.KeypartundoAction" method="keypartundoEdit" >
+			<result name="success">/admin/keypartundo/keypartundoEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="saveKeypartundo" class="com.manage.keypartundo.action.KeypartundoAction" method="saveKeypartundo" >
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="delKeypartundo" class="com.manage.keypartundo.action.KeypartundoAction" method="delKeypartundo" >
+			<result name="success" type="chain">keypartundoList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+	</package>
+	
+</struts>
+
+
+

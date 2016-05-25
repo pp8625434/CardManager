@@ -1,0 +1,12 @@
+package com.manage.temp.service.impl;
+
+
+import com.manage.temp.service.SClassifiedtzTabManager;
+
+import com.base.framework.service.impl.ManagerImpl;
+
+public class SClassifiedtzTabManagerImpl extends ManagerImpl implements SClassifiedtzTabManager{
+    
+   
+		
+}

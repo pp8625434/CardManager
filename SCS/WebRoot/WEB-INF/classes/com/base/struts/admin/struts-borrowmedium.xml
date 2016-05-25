@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 部门存储介质借用登记管理 -->
+	<package name="borrowmedium" extends="print" namespace="/borrowmedium">
+		
+		<action name="borrowmediumList" class="com.manage.borrowmedium.action.BorrowmediumAction" method="borrowmediumList" >
+			<result name="success">/admin/borrowmedium/borrowmediumList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="borrowmediumInfo" class="com.manage.borrowmedium.action.BorrowmediumAction" method="borrowmediumInfo" >
+			<result name="success">/admin/borrowmedium/borrowmediumInfo.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="borrowmediumEdit" class="com.manage.borrowmedium.action.BorrowmediumAction" method="borrowmediumEdit" >
+			<result name="success">/admin/borrowmedium/borrowmediumEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="saveBorrowmedium" class="com.manage.borrowmedium.action.BorrowmediumAction" method="saveBorrowmedium" >
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="delBorrowmedium" class="com.manage.borrowmedium.action.BorrowmediumAction" method="delBorrowmedium" >
+			<result name="success" type="chain">borrowmediumList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+	</package>
+	
+</struts>
+
+
+

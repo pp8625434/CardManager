@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 涉密协作配套单位保密监督检查表（样本） -->
+	<package name="cooperationcheck" extends="print" namespace="/cooperationcheck" >
+		<action name="cooperationCheckList" class="com.manage.cooperationcheck.action.CooperationCheckAction"  method="cooperationCheckList">
+			<result name="success">/admin/cooperationcheck/cooperationCheckList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="cooperationCheckSave" class="com.manage.cooperationcheck.action.CooperationCheckAction" method="cooperationCheckSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="cooperationCheckAdd" class="com.manage.cooperationcheck.action.CooperationCheckAction" method="cooperationCheckAdd">
+			<result name="success">/admin/cooperationcheck/cooperationCheckEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="cooperationCheckDel" class="com.manage.cooperationcheck.action.CooperationCheckAction" method="cooperationCheckDel">
+			<result name="success" type="chain">
+				<param name="actionName">cooperationCheckList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="cooperationCheckInfo" class="com.manage.cooperationcheck.action.CooperationCheckAction" method="cooperationCheckInfo">
+			<result name="success">/admin/cooperationcheck/cooperationCheckInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

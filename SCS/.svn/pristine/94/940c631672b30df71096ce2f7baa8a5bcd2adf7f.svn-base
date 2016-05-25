@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+    <!-- For mail settings and future properties files -->
+	<bean id="baseConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<!-- <property name="location" value="/WEB-INF/classes/hibernate.properties"></property> -->
+		<property name="locations">
+	       <list>
+	          <value>/WEB-INF/classes/hibernate.properties</value>
+	          <value>/WEB-INF/classes/memcached.properties</value>
+	        </list>
+	    </property>
+	</bean>
+	
+    <!-- using c3p0 connection pool 
+	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"  destroy-method="close" lazy-init="true">
+		  <property name="driverClass" value="${jdbc.driverClass}" /> 
+		  <property name="jdbcUrl" value="${jdbc.jdbcUrl}" /> 
+		  <property name="user" value="${jdbc.user}" /> 
+		  <property name="password" value="${jdbc.password}" /> 
+		  <property name="minPoolSize" value="${jdbc.miniPoolSize}" /> 
+		  <property name="maxPoolSize" value="${jdbc.maxPoolSize}" /> 
+		  <property name="initialPoolSize" value="${jdbc.initialPoolSize}" /> 
+		  <property name="maxIdleTime" value="${jdbc.maxIdleTime}" /> 
+		  <property name="maxStatements" value="${jdbc.maxStatements}" /> 
+		  <property name="acquireIncrement" value="${jdbc.acquireIncrement}" /> 
+		  <property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}" /> 
+	  </bean>
+	  -->
+      <!-- 配置 Druid 数据源 -->
+	  <bean name="DataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+			<property name="url" value="${jdbc.jdbcUrl}" />
+			<property name="username" value="${jdbc.user}" />
+			<property name="password" value="${jdbc.password}" />
+			<property name="validationQuery" value="${jdbc.validationQuery}" />
+			<!-- 初始化连接大小 -->
+			<property name="initialSize" value="${jdbc.initialSize}" />
+			<!-- 连接池最大使用连接数量 -->
+			<property name="maxActive" value="${jdbc.maxActive}" />
+			<!-- 连接池最大空闲 -->
+			<property name="maxIdle" value="${jdbc.maxIdle}" />
+			<!-- 连接池最小空闲 -->
+			<property name="minIdle" value="${jdbc.minIdle}" />
+			<!-- 获取连接最大等待时间 -->
+			<property name="maxWait" value="${jdbc.maxWait}" />
+			<property name="testOnBorrow" value="${jdbc.testOnBorrow}" />
+			<property name="testOnReturn" value="${jdbc.testOnReturn}" />
+			<property name="testWhileIdle" value="${jdbc.testWhileIdle}" />
+			<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+			<property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}" />
+			<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+			<property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}" />
+			<!-- 打开removeAbandoned功能 -->
+			<property name="removeAbandoned" value="${jdbc.removeAbandoned}" />
+			<!-- 1800秒，也就是30分钟 -->
+			<property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}" />
+			<!-- 关闭abanded连接时输出错误日志 -->
+			<property name="logAbandoned" value="${jdbc.logAbandoned}" />
+			<!-- 监控数据库 -->
+			<property name="filters" value="${jdbc.filters}" />
+		    <property name="poolPreparedStatements" value="${jdbc.poolPreparedStatements}" />
+		    <property name="maxPoolPreparedStatementPerConnectionSize" value="${jdbc.maxPoolPreparedStatementPerConnectionSize}" />
+		</bean>
+      
+   
+	 <!-- Memcached配置 -->  
+    <bean id="memcachedPool" class="com.danga.MemCached.SockIOPool"  
+        factory-method="getInstance" init-method="initialize" destroy-method="shutDown">  
+        <property name="servers">  
+            <list>  
+                <value>${memcached.server}</value>  
+            </list>  
+        </property>  
+        <property name="initConn">  
+            <value>${memcached.initConn}</value>  
+        </property>  
+        <property name="minConn">  
+            <value>${memcached.minConn}</value>  
+        </property>  
+        <property name="maxConn">  
+            <value>${memcached.maxConn}</value>  
+        </property>  
+        <property name="maintSleep">  
+            <value>${memcached.maintSleep}</value>  
+        </property>  
+        <property name="nagle">  
+            <value>${memcached.nagle}</value>  
+        </property>  
+        <property name="socketTO">  
+            <value>${memcached.socketTO}</value>  
+        </property>  
+    </bean>  
+    
+	<!--  SessionFactory for Hibernate -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="DataSource" />
+		<property name="mappingLocations">
+			<value>classpath*:/**/*.hbm.xml</value>
+		</property>
+		<property name="hibernateProperties">
+	            <props>
+	            <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+	            <!-- Create/update the database tables automatically when the JVM starts up -->
+	            <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+	            <!-- Turn batching off for better error messages -->
+	            <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+	            <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+
+				
+				<!--  <property name="hibernate.c3p0.validate">true</property> -->
+				<prop key="hibernate.max_fetch_depth">${hibernate.max_fetch_depth}</prop>
+				
+				<prop key="cache.use_second_level_cache">${cache.use_second_level_cache}</prop>
+	            <prop key="hibernate.cache.use_query_cache">${cache.use_second_level_cache}</prop>
+	            <prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
+	            
+	            <prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+	            <prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
+	            <prop key="hibernate.cglib.use_reflection_optimizer">true</prop>
+	            <prop key="hibernate.query.factory_class">${hibernate.query.factory_class}</prop>
+			</props>
+		</property>
+		<property name="lobHandler" ref="lobHandler"/>
+	</bean>
+
+	<!--for attachment, DefaultLobHandler support SqlServer,MySQL,Oracle 10g and so on; OracleLobHandler support Oracle 9i and Oracle 10g-->
+	<bean id="lobHandler" 
+		class="org.springframework.jdbc.support.lob.DefaultLobHandler"
+		lazy-init="true"/>
+	
+    <!-- Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <!-- Transaction template for Managers -->
+    <bean id="txProxyTemplate" abstract="true"
+       class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+       <property name="transactionManager" ref="transactionManager"/>
+       <property name="transactionAttributes">
+           <props>
+               <prop key="save*">PROPAGATION_REQUIRED</prop>
+               <prop key="update*">PROPAGATION_REQUIRED</prop>
+               <prop key="create*">PROPAGATION_REQUIRED</prop>
+               <prop key="process*">PROPAGATION_REQUIRED</prop>                               
+               <prop key="delete*">PROPAGATION_REQUIRED</prop>               
+               <prop key="remove*">PROPAGATION_REQUIRED</prop>
+               <prop key="executeSQLForUpdate*">PROPAGATION_REQUIRED</prop>
+               <prop key="*">PROPAGATION_REQUIRED</prop>
+           </props>
+       </property>
+   </bean>
+   
+   	<bean class="com.base.framework.SpringContextHolder" />
+   	<bean id="systemGlobalsConfig" class="com.base.framework.BaseFrameworkConfig">
+   		<property name="location" value="/WEB-INF/classes/systemGlobals.properties"></property>
+   	</bean>
+   	
+   <!-- ===================== Base Manager And Base DAO Configration  begin==================== -->  
+	<bean id="dao" class="com.base.framework.dao.impl.DaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- Generic manager that can be used to do basic CRUD operations on any objects -->
+	<bean id="manager" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.base.framework.service.impl.ManagerImpl">
+                <property name="dao" ref="dao"/>
+            </bean>
+        </property>
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+    
+    <bean id="com.base.framework.service.Manager" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.base.framework.service.impl.ManagerImpl">
+                <property name="dao" ref="dao"/>
+            </bean>
+        </property>
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+ 
+</beans>

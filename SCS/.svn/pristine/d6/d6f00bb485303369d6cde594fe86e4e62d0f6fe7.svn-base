@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 应用系统业务模块增加、删除、配置变更审批表 -->
+	<package name="notsecretpcout" extends="print" namespace="/notsecretpcout" >
+		<action name="notSecretPcOutList" class="com.manage.notsecretpcout.action.NotSecretPcOutAction"  method="notSecretPcOutList">
+			<result name="success">/admin/notsecretpcout/notSecretPcOutList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="notSecretPcOutSave" class="com.manage.notsecretpcout.action.NotSecretPcOutAction" method="notSecretPcOutSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="notSecretPcOutAdd" class="com.manage.notsecretpcout.action.NotSecretPcOutAction" method="notSecretPcOutAdd">
+			<result name="success">/admin/notsecretpcout/notSecretPcOutEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="notSecretPcOutDel" class="com.manage.notsecretpcout.action.NotSecretPcOutAction" method="notSecretPcOutDel">
+			<result name="success" type="chain">
+				<param name="actionName">notSecretPcOutList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="notSecretPcOutInfo" class="com.manage.notsecretpcout.action.NotSecretPcOutAction" method="notSecretPcOutInfo">
+			<result name="success">/admin/notsecretpcout/notSecretPcOutInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 专用存储介质借用审批管理 -->
+	<package name="smediumborrow" extends="print" namespace="/smediumborrow">
+		
+		<action name="smediumborrowList" class="com.manage.smediumborrow.action.SmediumborrowAction" method="smediumborrowList" >
+			<result name="success">/admin/smediumborrow/smediumborrowList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="smediumborrowInfo" class="com.manage.smediumborrow.action.SmediumborrowAction" method="smediumborrowInfo" >
+			<result name="success">/admin/smediumborrow/smediumborrowInfo.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="smediumborrowEdit" class="com.manage.smediumborrow.action.SmediumborrowAction" method="smediumborrowEdit" >
+			<result name="success">/admin/smediumborrow/smediumborrowEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="saveSmediumborrow" class="com.manage.smediumborrow.action.SmediumborrowAction" method="saveSmediumborrow" >
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="delSmediumborrow" class="com.manage.smediumborrow.action.SmediumborrowAction" method="delSmediumborrow" >
+			<result name="success" type="chain">smediumborrowList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+	</package>
+	
+</struts>
+
+
+

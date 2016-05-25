@@ -1,0 +1,14 @@
+package com.manage.flowchart.service.Impl;
+
+import com.base.framework.service.impl.ManagerImpl;
+import com.manage.flowchart.service.FlowchartManager;
+
+public class FlowchartManagerImpl  extends ManagerImpl implements FlowchartManager{
+
+	@Override
+	public void saveFlowchart() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

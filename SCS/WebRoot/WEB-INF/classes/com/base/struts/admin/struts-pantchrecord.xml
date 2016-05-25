@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 配线间周检查记录表 -->
+	<package name="pantchrecord" extends="print" namespace="/pantchrecord" >
+		<action name="pantchRecordList" class="com.manage.pantchrecord.action.PantchRecordAction"  method="pantchRecordList">
+			<result name="success">/admin/pantchrecord/pantchRecordList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="pantchRecordSave" class="com.manage.pantchrecord.action.PantchRecordAction" method="pantchRecordSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="pantchRecordAdd" class="com.manage.pantchrecord.action.PantchRecordAction" method="pantchRecordAdd">
+			<result name="success">/admin/pantchrecord/pantchRecordEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="pantchRecordDel" class="com.manage.pantchrecord.action.PantchRecordAction" method="pantchRecordDel">
+			<result name="success" type="chain">
+				<param name="actionName">pantchRecordList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="pantchRecordInfo" class="com.manage.pantchrecord.action.PantchRecordAction" method="pantchRecordInfo">
+			<result name="success">/admin/pantchrecord/pantchRecordInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Enumeration Manager And DAO Configration==================== -->  
+    <bean id="com.manage.classifiedtz.dao.impl.ClassifiedtzInfoDaoImpl" class="com.manage.classifiedtz.dao.impl.ClassifiedtzInfoDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.classifiedtz.dao.ClassifiedtzInfoDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.classifiedtz.dao.ClassifiedtzInfoDao"/>
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.classifiedtz.dao.impl.ClassifiedtzInfoDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.classifiedtz.model.SClassifiedtzInfoTab" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.classifiedtz.service.impl.ClassifiedtzInfoManagerImpl">
+                <property name="dao" ref="com.manage.classifiedtz.dao.ClassifiedtzInfoDao"/>
+                <property name="modelClass" value="com.manage.classifiedtz.model.SClassifiedtzInfoTab"/>
+            </bean>
+        </property>
+    </bean>
+    
+
+</beans>

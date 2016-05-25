@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 更换USBKEY申请表 -->
+	<package name="conagreementyb" extends="print" namespace="/conagreementyb" >
+		<action name="conAgreementybList" class="com.manage.conagreementyb.action.ConAgreementybAction"  method="conAgreementybList">
+			<result name="success">/admin/conagreementyb/conAgreementybList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="conAgreementybSave" class="com.manage.conagreementyb.action.ConAgreementybAction" method="conAgreementybSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="conAgreementybAdd" class="com.manage.conagreementyb.action.ConAgreementybAction" method="conAgreementybAdd">
+			<result name="success">/admin/conagreementyb/conAgreementybEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="conAgreementybDel" class="com.manage.conagreementyb.action.ConAgreementybAction" method="conAgreementybDel">
+			<result name="success" type="chain">
+				<param name="actionName">conAgreementybList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="conAgreementybInfo" class="com.manage.conagreementyb.action.ConAgreementybAction" method="conAgreementybInfo">
+			<result name="success">/admin/conagreementyb/conAgreementybInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

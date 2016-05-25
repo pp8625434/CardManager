@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 保密责任书 -->
+	<package name="confidentiality" extends="print" namespace="/confidentiality" >
+		<action name="confidentialityList" class="com.manage.confidentiality.action.ConfidentialityAction"  method="confidentialityList">
+			<result name="success">/admin/confidentiality/confidentialityList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="confidentialitySave" class="com.manage.confidentiality.action.ConfidentialityAction" method="confidentialitySave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="confidentialityAdd" class="com.manage.confidentiality.action.ConfidentialityAction" method="confidentialityAdd">
+			<result name="success">/admin/confidentiality/confidentialityEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="confidentialityDel" class="com.manage.confidentiality.action.ConfidentialityAction" method="confidentialityDel">
+			<result name="success" type="chain">
+				<param name="actionName">confidentialityList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="confidentialityInfo" class="com.manage.confidentiality.action.ConfidentialityAction" method="confidentialityInfo">
+			<result name="success">/admin/confidentiality/confidentialityInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

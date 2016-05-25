@@ -1,0 +1,12 @@
+package com.manage.temp.service.impl;
+
+
+import com.manage.temp.service.SCarrypartmediumTabManager;
+
+import com.base.framework.service.impl.ManagerImpl;
+
+public class SCarrypartmediumTabManagerImpl extends ManagerImpl implements SCarrypartmediumTabManager{
+    
+   
+		
+}

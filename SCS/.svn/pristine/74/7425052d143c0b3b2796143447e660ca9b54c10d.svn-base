@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Ware Manager And DAO Configration==================== -->  
+    <bean id="com.manage.cooperationcheck.dao.impl.CooperationCheckDaoImpl" class="com.manage.cooperationcheck.dao.impl.CooperationCheckDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.cooperationcheck.dao.CooperationCheckDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.cooperationcheck.dao.CooperationCheckDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.cooperationcheck.dao.impl.CooperationCheckDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.cooperationcheck.model.CooperationCheck" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.cooperationcheck.service.impl.CooperationCheckManagerImpl">
+                <property name="dao" ref="com.manage.cooperationcheck.dao.CooperationCheckDao"/>
+                <property name="modelClass" value="com.manage.cooperationcheck.model.CooperationCheck"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

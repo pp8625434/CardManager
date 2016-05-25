@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.manage.flowchart.model.Flowchart" table="p_flowchart" >
+    
+         <id name="id" type="java.lang.Integer">
+            <column name="ID"/>
+            <generator class="native" />
+        </id>
+        <property name="version" type="java.lang.Integer">
+            <column name="VERSION" precision="11" scale="0" />
+        </property>
+        
+        <property name="fcname" type="java.lang.String">
+        	<column name="fcname"/>
+        </property>
+     	
+     	<property name="flowId" type="java.lang.Integer">
+            <column name="flowId" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

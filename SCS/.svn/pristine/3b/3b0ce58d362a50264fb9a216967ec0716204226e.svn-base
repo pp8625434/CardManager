@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<table width="100%" border="1">
+  <caption>
+    应用系统入网审批表
+  </caption>
+  <tr>
+    <td width="25%">应用系统名称</td>
+    <td width="25%">&nbsp;</td>
+    <td width="25%">项目负责人</td>
+    <td width="25%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>业务主管部门</td>
+    <td>&nbsp;</td>
+    <td>部门负责人</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>系统开发单位</td>
+    <td>&nbsp;</td>
+    <td>开发单位联系人</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>开发单位资质</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>系统密级</td>
+    <td>&nbsp;</td>
+    <td>接入位置</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>适用范围</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>系统功能简述</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>项目立项与验收资料</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>系统运行所需软硬件环境</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="2">系统安全策略</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="3">（附件详述系统符合保密标准BMB17与BMB22的安全策略设置）</td>
+  </tr>
+  <tr>
+    <td rowspan="2">立项部门意见</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>签字</td>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="2">保密管理部门意见</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>签字</td>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="2">信息化管理部门意见</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>签字</td>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

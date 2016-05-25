@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Menu Manager And DAO Configration==================== -->  
+    <bean id="com.manage.menu.dao.impl.MenuDaoImpl" class="com.manage.menu.dao.impl.MenuDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.menu.dao.MenuDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.menu.dao.MenuDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.menu.dao.impl.MenuDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.menu.model.Menu" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.menu.service.impl.MenuManagerImpl">
+                <property name="dao" ref="com.manage.menu.dao.MenuDao"/>
+                <property name="modelClass" value="com.manage.menu.model.Menu"/>
+            </bean>
+        </property>
+    </bean>
+
+   <!-- ===================== MenuLink Manager And DAO Configration==================== -->  
+    <bean id="com.manage.menu.dao.impl.MenuLinkDaoImpl" class="com.manage.menu.dao.impl.MenuLinkDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.menu.dao.MenuLinkDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.menu.dao.MenuLinkDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.menu.dao.impl.MenuLinkDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.menu.model.MenuLink" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.menu.service.impl.MenuLinkManagerImpl">
+                <property name="dao" ref="com.manage.menu.dao.MenuLinkDao"/>
+                <property name="modelClass" value="com.manage.menu.model.MenuLink"/>
+            </bean>
+        </property>
+    </bean>
+    
+    <!-- ===================== BMenuLink Manager And DAO Configration==================== -->  
+    <bean id="com.manage.menu.dao.impl.BMenuLinkDaoImpl" class="com.manage.menu.dao.impl.BMenuLinkDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.menu.dao.BMenuLinkDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.menu.dao.BMenuLinkDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.menu.dao.impl.BMenuLinkDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.menu.model.BMenuLink" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.menu.service.impl.BMenuLinkManagerImpl">
+                <property name="dao" ref="com.manage.menu.dao.BMenuLinkDao"/>
+                <property name="modelClass" value="com.manage.menu.model.BMenuLink"/>
+            </bean>
+        </property>
+    </bean>
+    <!-- ===================== Url Manager And DAO Configration==================== -->  
+    <bean id="com.manage.menu.dao.impl.UrlDaoImpl" class="com.manage.menu.dao.impl.UrlDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.menu.dao.UrlDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.menu.dao.UrlDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.menu.dao.impl.UrlDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.menu.model.Url" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.menu.service.impl.UrlManagerImpl">
+                <property name="dao" ref="com.manage.menu.dao.UrlDao"/>
+                <property name="modelClass" value="com.manage.menu.model.Url"/>
+            </bean>
+        </property>
+    </bean>
+</beans>

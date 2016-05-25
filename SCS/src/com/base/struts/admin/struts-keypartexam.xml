@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 保密要害部门、部位审定表管理 -->
+	<package name="keypartexam" extends="print" namespace="/keypartexam">
+		
+		<action name="keypartexamList" class="com.manage.keypartexam.action.KeypartexamAction" method="keypartexamList" >
+			<result name="success">/admin/keypartexam/keypartexamList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="keypartexamInfo" class="com.manage.keypartexam.action.KeypartexamAction" method="keypartexamInfo" >
+			<result name="success">/admin/keypartexam/keypartexamInfo.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="keypartexamEdit" class="com.manage.keypartexam.action.KeypartexamAction" method="keypartexamEdit" >
+			<result name="success">/admin/keypartexam/keypartexamEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="saveKeypartexam" class="com.manage.keypartexam.action.KeypartexamAction" method="saveKeypartexam" >
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="delKeypartexam" class="com.manage.keypartexam.action.KeypartexamAction" method="delKeypartexam" >
+			<result name="success" type="chain">keypartexamList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+	</package>
+	
+</struts>
+
+
+

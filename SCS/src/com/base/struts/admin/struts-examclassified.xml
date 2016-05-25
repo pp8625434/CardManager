@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 涉密人员密级审定管理 -->
+	<package name="examclassification" extends="print" namespace="/examclassification">
+		
+		<action name="classifiedList" class="com.manage.examclassification.action.ClassifiedAction" method="classifiedList" >
+			<result name="success">/admin/examclassification/classifiedList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="classifiedInfo" class="com.manage.examclassification.action.ClassifiedAction" method="classifiedInfo" >
+			<result name="success">/admin/examclassification/classifiedInfo.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="classifiedEdit" class="com.manage.examclassification.action.ClassifiedAction" method="classifiedEdit" >
+			<result name="success">/admin/examclassification/classifiedEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="saveClassified" class="com.manage.examclassification.action.ClassifiedAction" method="saveClassified" >
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="toApproveClassified" class="com.manage.examclassification.action.ClassifiedAction" method="toApproveClassified" >
+			<result name="success">/admin/examclassification/classifiedApprove.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="approveClassified" class="com.manage.examclassification.action.ClassifiedAction" method="approveClassified" >
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="delClassified" class="com.manage.examclassification.action.ClassifiedAction" method="delClassified" >
+			<result name="success" type="chain">classifiedList</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+	</package>
+	<!--  <package name="proJson" extends="json-default" namespace="/examclassification">
+		<action name="saveProject" class="com.manage.examclassification.action.ClassifiedAction" method="saveProject">
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+	</package>-->
+</struts>
+
+
+

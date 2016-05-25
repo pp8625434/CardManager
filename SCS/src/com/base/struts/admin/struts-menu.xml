@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="menu" extends="print" namespace="/admin">
+
+	  <action name="menuList"
+			class="com.manage.menu.action.MenuAction"  method="menuList">
+			<result name="success">/admin/menu/menuList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="menuSave"
+			class="com.manage.menu.action.MenuAction" method="saveMenu">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="menuEdit"
+			class="com.manage.menu.action.MenuAction" method="viewMenu"> 
+			<result name="success">/admin/menu/menuEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="menuView"
+			class="com.manage.menu.action.MenuAction" method="viewMenu">
+			<result name="success">/admin/menu/menuEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>	
+		
+		<action name="menuRemove"
+			class="com.manage.menu.action.MenuAction" method="removeMenu">
+			<result name="success" type="chain">menuList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="menuRemoveAll"
+			class="com.manage.menu.action.MenuAction" method="removeAllMenu">
+			<result name="success" type="chain">menuList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="menuLookup"
+			class="com.manage.menu.action.MenuAction"  method="menuList">
+			<result name="success">/admin/menu/menuList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+
+	  <action name="menuLinkList"
+			class="com.manage.menu.action.MenuLinkAction" method="menuLinkList">
+			<result name="success">/admin/menu/menuLinkList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="menuLinkSave"
+			class="com.manage.menu.action.MenuLinkAction" method="saveMenuLink">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+			<!-- <interceptor-ref name="loadobject" /> -->
+		</action>
+		
+		<action name="menuLinkEdit"
+			class="com.manage.menu.action.MenuLinkAction" method="editMenuLink">
+			<result name="success">/admin/menu/menuLinkEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+			<!-- <interceptor-ref name="loadobject" /> -->
+		</action>
+		
+		<action name="menuLinkView"
+			class="com.manage.menu.action.MenuLinkAction" method="viewMenuLink">
+			<result name="success">/admin/menu/menuLinkEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="menuLinkRemove"
+			class="com.manage.menu.action.MenuLinkAction" method="removeMenuLink">
+			<result name="success" type="chain">menuLinkList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="menuLinkRemoveAll"
+			class="com.manage.menu.action.MenuLinkAction" method="removeAllMenuLink">
+			<result name="success" type="chain">menuLinkList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="MenuLinkLookup"
+			class="com.manage.menu.action.MenuLinkAction" method="menuLinkList" >
+			<result name="success">/admin/menu/menuLinkList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="sysMenu" class="com.manage.menu.action.SysMenuAction" method="sysMenu" >
+			<!-- <result name="success" >/admin/left.jsp </result> -->
+			<result name="success" >/admin/index.jsp </result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+</package>
+<package name="menuJson" extends="json-default" namespace="/admin">
+		<action name="checkMenuName" class="com.manage.menu.action.MenuAction" method="checkMenuName" >
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="checkMenuLinkName" class="com.manage.menu.action.MenuLinkAction" method="checkMenuLinkName" >
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+</package>	
+</struts>

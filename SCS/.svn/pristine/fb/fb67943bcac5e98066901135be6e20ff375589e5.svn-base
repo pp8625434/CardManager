@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.manage.org.model.Org" table="p_org">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <version name="version" type="integer" column="version"/>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" length="100" not-null="true" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" length="255" />
+        </property>
+        <property name="parent" type="java.lang.Integer">
+            <column name="PARENT" not-null="true"/>
+        </property>
+        <property name="parentName" type="java.lang.String">
+            <column name="PARENTNAME" length="100"  />
+        </property>
+        <property name="deleted" type="java.lang.Integer">
+            <column name="DELETED"/>
+        </property>
+        <property name="orgType" type="java.lang.String">
+            <column name="ORGTYPE" />
+        </property>
+        <property name="clickNum" type="java.lang.Integer">
+            <column name="CLICKNUM" />
+        </property>
+        <property name="creator" type="java.lang.Integer">
+            <column name="creator" />
+        </property>
+        <property name="creatorName" type="java.lang.String">
+        	<column name="CREATORNAME"/> 
+        </property>
+        <!-- 
+        <many-to-one name="creator" class="com.manage.user.model.User"  outer-join="auto"  not-null="false"  fetch="select" foreign-key="none">
+            <column name="CREATOR"  not-null="false" />
+        </many-to-one>
+         -->
+        <property name="address" type="java.lang.String">
+            <column name="ADDRESS" length="200" />
+        </property>
+        <property name="createDate" type="java.util.Date">
+            <column name="CREATEDATE"  />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Enumeration Manager And DAO Configration==================== -->  
+    <bean id="com.manage.examclassification.dao.impl.ExamClassificationDaoImpl" class="com.manage.examclassification.dao.impl.ExamClassificationDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.examclassification.dao.ExamClassificationDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.examclassification.dao.ExamClassificationDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.examclassification.dao.impl.ExamClassificationDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.examclassification.model.SExamClassificationTab" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.examclassification.service.impl.SExamClassificationTabManagerImpl">
+                <property name="dao" ref="com.manage.examclassification.dao.ExamClassificationDao"/>
+                <property name="modelClass" value="com.manage.examclassification.model.SExamClassificationTab"/>
+            </bean>
+        </property>
+    </bean>
+    
+
+</beans>

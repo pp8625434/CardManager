@@ -1,0 +1,7 @@
+package com.manage.flowchart.dao.impl;
+
+import com.base.framework.dao.impl.DaoImpl;
+
+public class FlowchartDaoImpl extends DaoImpl{
+
+}

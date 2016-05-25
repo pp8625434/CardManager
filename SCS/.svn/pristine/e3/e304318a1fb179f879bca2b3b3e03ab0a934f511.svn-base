@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Ware Manager And DAO Configration==================== -->  
+    <bean id="com.manage.notsecretpcout.dao.impl.NotSecretPcOutDaoImpl" class="com.manage.notsecretpcout.dao.impl.NotSecretPcOutDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.notsecretpcout.dao.NotSecretPcOutDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.notsecretpcout.dao.NotSecretPcOutDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.notsecretpcout.dao.impl.NotSecretPcOutDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.notsecretpcout.model.NotSecretPcOut" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.notsecretpcout.service.impl.NotSecretPcOutManagerImpl">
+                <property name="dao" ref="com.manage.notsecretpcout.dao.NotSecretPcOutDao"/>
+                <property name="modelClass" value="com.manage.notsecretpcout.model.NotSecretPcOut"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

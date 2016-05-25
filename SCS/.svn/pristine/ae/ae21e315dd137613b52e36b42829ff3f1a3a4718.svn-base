@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Enumeration Manager And DAO Configration==================== -->  
+    <bean id="com.manage.carrypartmedium.dao.impl.CarrypartmediumDaoImpl" class="com.manage.carrypartmedium.dao.impl.CarrypartmediumDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.carrypartmedium.dao.CarrypartmediumDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.carrypartmedium.dao.CarrypartmediumDao"/>
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.carrypartmedium.dao.impl.CarrypartmediumDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.carrypartmedium.model.SCarrypartmediumTab" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.carrypartmedium.service.impl.CarrypartmediumManagerImpl">
+                <property name="dao" ref="com.manage.carrypartmedium.dao.CarrypartmediumDao"/>
+                <property name="modelClass" value="com.manage.carrypartmedium.model.SCarrypartmediumTab"/>
+            </bean>
+        </property>
+    </bean>
+    
+
+</beans>

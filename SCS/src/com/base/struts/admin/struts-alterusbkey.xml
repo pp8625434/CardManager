@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 更换USBKEY申请表 -->
+	<package name="alterusbkey" extends="print" namespace="/alterusbkey" >
+		<action name="alterUsbkeyList" class="com.manage.alterusbkey.action.AlterUsbkeyAction"  method="alterUsbkeyList">
+			<result name="success">/admin/alterusbkey/alterUsbkeyList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="alterUsbkeySave" class="com.manage.alterusbkey.action.AlterUsbkeyAction" method="alterUsbkeySave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="alterUsbkeyAdd" class="com.manage.alterusbkey.action.AlterUsbkeyAction" method="alterUsbkeyAdd">
+			<result name="success">/admin/alterusbkey/alterUsbkeyEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="alterUsbkeyDel" class="com.manage.alterusbkey.action.AlterUsbkeyAction" method="alterUsbkeyDel">
+			<result name="success" type="chain">
+				<param name="actionName">alterUsbkeyList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="alterUsbkeyInfo" class="com.manage.alterusbkey.action.AlterUsbkeyAction" method="alterUsbkeyInfo">
+			<result name="success">/admin/alterusbkey/alterUsbkeyInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

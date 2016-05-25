@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 涉密会议保密方案执行情况记录表 -->
+	<package name="meetsecrecyrecord" extends="print" namespace="/meetsecrecyrecord" >
+		<action name="meetSecrecyRecordList" class="com.manage.meetsecrecyrecord.action.MeetSecrecyRecordAction"  method="meetSecrecyRecordList">
+			<result name="success">/admin/meetsecrecyrecord/meetSecrecyRecordList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="meetSecrecyRecordSave" class="com.manage.meetsecrecyrecord.action.MeetSecrecyRecordAction" method="meetSecrecyRecordSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="meetSecrecyRecordAdd" class="com.manage.meetsecrecyrecord.action.MeetSecrecyRecordAction" method="meetSecrecyRecordAdd">
+			<result name="success">/admin/meetsecrecyrecord/meetSecrecyRecordEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="meetSecrecyRecordDel" class="com.manage.meetsecrecyrecord.action.MeetSecrecyRecordAction" method="meetSecrecyRecordDel">
+			<result name="success" type="chain">
+				<param name="actionName">meetSecrecyRecordList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="meetSecrecyRecordInfo" class="com.manage.meetsecrecyrecord.action.MeetSecrecyRecordAction" method="meetSecrecyRecordInfo">
+			<result name="success">/admin/meetsecrecyrecord/meetSecrecyRecordInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

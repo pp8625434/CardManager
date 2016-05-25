@@ -1,0 +1,12 @@
+package com.manage.temp.service.impl;
+
+
+import com.manage.temp.service.SSecretonlineTabManager;
+
+import com.base.framework.service.impl.ManagerImpl;
+
+public class SSecretonlineTabManagerImpl extends ManagerImpl implements SSecretonlineTabManager{
+    
+   
+		
+}

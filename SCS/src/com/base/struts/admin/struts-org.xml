@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 管理员后台 机构管理 -->
+	<package name="org" extends="print" namespace="/org" >
+
+		<action name="orgList" class="com.manage.org.action.OrgAction"  method="orgList">
+			<result name="success">/admin/org/orgList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="configorgList" class="com.manage.org.action.OrgAction" method="orgList">
+			<result name="success">/admin/org/orgList.jsp</result>
+		</action>
+		
+		<action name="orgSave" class="com.manage.org.action.OrgAction" method="saveOrg">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="orgEdit" class="com.manage.org.action.OrgAction" method="viewOrg"> 
+			<result name="success">/admin/org/orgEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="orgView" class="com.manage.org.action.OrgAction" method="viewOrg">
+			<result name="success">/admin/org/orgEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>		
+		
+		<action name="orgRemove" class="com.manage.org.action.OrgAction" method="removeOrg">
+			<result name="success" type="chain">
+				<param name="actionName">orgList</param>
+				<param name="pageInfo.f_parent">${org.parent}</param>
+				<param name="isdeleted">${isdeleted}</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		
+		<action name="selOrg" class="com.manage.org.action.OrgAction"  method="selOrg">
+			<result name="success">/admin/user/selOrg.jsp</result>
+		</action>
+		
+	</package>
+	<package name="orgJson" extends="json-default" namespace="/org">
+		<action name="checkOrg" class="com.manage.org.action.OrgAction" method="checkOrg" >
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="delJson" extends="json-default" namespace="/org">
+		<action name="checkDataBeforeDelete" class="com.manage.org.action.OrgAction" method="checkDataBeforeDelete" >
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		<action name="orgRemoveAll" class="com.manage.org.action.OrgAction" method="removeAllOrg">
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+			
+		</action>
+	</package>
+	
+	<package name="getOrgTree" extends="json-default" namespace="/org">
+		<action name="getOrgTree" class="com.manage.org.action.OrgAction" method="getOrgTree" >
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		<!-- 商圈树 -->
+		<action name="getSQTree" class="com.manage.org.action.OrgAction" method="getSQTree" >
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+	</package>
+</struts>

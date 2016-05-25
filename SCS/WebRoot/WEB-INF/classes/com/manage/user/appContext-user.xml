@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Enumeration Manager And DAO Configration==================== -->  
+    <bean id="com.manage.user.dao.impl.UserDaoImpl" class="com.manage.user.dao.impl.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.user.dao.UserDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.user.dao.UserDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.user.dao.impl.UserDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.user.model.User" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.user.service.impl.UserManagerImpl">
+                <property name="dao" ref="com.manage.user.dao.UserDao"/>
+                <property name="modelClass" value="com.manage.user.model.User"/>
+            </bean>
+        </property>
+    </bean>
+    
+
+</beans>

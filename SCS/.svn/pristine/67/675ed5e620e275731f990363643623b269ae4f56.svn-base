@@ -1,0 +1,66 @@
+package com.manage.flowchart.model;
+
+import java.io.Serializable;
+
+
+
+public class Flowchart implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8013591936633413321L;
+	
+	
+	private Integer Id;
+	
+	private Integer version;
+	
+	private String fcname;
+	
+	private Integer flowId;
+	
+	private String jsonData;
+
+	public Integer getId() {
+		return Id;
+	}
+
+	public void setId(Integer id) {
+		Id = id;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
+	public String getFcname() {
+		return fcname;
+	}
+
+	public void setFcname(String fcname) {
+		this.fcname = fcname;
+	}
+
+	public Integer getFlowId() {
+		return flowId;
+	}
+
+	public void setFlowId(Integer flowId) {
+		this.flowId = flowId;
+	}
+
+	public String getJsonData() {
+		return jsonData;
+	}
+
+	public void setJsonData(String jsonData) {
+		this.jsonData = jsonData;
+	}
+	
+
+}

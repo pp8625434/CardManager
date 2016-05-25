@@ -1,0 +1,269 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ include file="/includes/main.jsp"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/admin/css/style.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/admin/css/content.css">
+
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/gooflow/GooFlow2.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/gooflow/default.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/gooflow/rightmenu.css" />
+
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/gooflow/jquery.min-1.8.3.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/ztree/js/json2.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/gooflow/GooFunc.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/gooflow/GooFlow.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/gooflow/GooFlow_color.js"></script>
+<script type="text/javascript">
+	var property = {
+		width : 650,
+		height : 450,
+		toolBtns : [ "start round", "end round", "task" ],
+		//toolBtns : [ "start round", "end round", "task", "node", "chat",
+		//		"state", "plug", "join", "fork", "complex mix" ],
+		haveHead : true,
+		//headBtns : [ "new", "open", "save", "undo", "redo", "reload" ],//如果haveHead=true，则定义HEAD区的按钮
+		headBtns : ["undo", "redo"],
+		haveTool : true,
+		haveGroup : false,
+		useOperStack : true
+	};
+	var remark = {
+		cursor : "选择指针",
+		direct : "结点连线",
+		start : "入口结点",
+		"end" : "结束结点",
+		"task" : "任务结点"
+		//node : "自动结点",
+		//chat : "决策结点",
+		//state : "状态结点",
+		//plug : "附加插件",
+		//fork : "分支结点",
+		//"join" : "联合结点",
+		//"complex mix" : "复合结点",
+		//group : "组织划分框编辑开关"
+	};
+	var demo;
+	$(document).ready(function() {
+
+		//禁掉右键
+		$(document).bind("contextmenu", function(e) {
+			return false;
+		});
+
+		demo = $.createGooFlow($("#demo"), property);
+		demo.setNodeRemarks(remark);
+		//demo.loadData(jsondata);
+		
+		//添加借点时触发的方法
+		demo.onItemAdd = function(id,type,json){
+			if(type =="line"){
+				json.name="提交";
+			}
+			if(json.type =="start round"){
+				json.name="开始";
+				if(JSON.stringify(demo.exportData()).indexOf("start round")>0){
+					alert("当前流程只能有一个开始节点");
+					return false;	
+				}
+			}
+			if(json.type=="end round"){
+				json.name="结束";
+				if(JSON.stringify(demo.exportData()).indexOf("end round")>0){
+					alert("当前流程只能有一个结束节点");
+					return false;	
+				}
+			}
+			
+			return true;
+		}
+		
+		demo.onItemFocus = function(id, model) {
+			var obj;
+			$("#ele_model").val(model);
+			$("#ele_id").val(id);
+			if (model == "line") {
+				obj = this.$lineData[id];
+				$("#ele_type").val(obj.M);
+				$("#ele_left").val("");
+				$("#ele_top").val("");
+				$("#ele_width").val("");
+				$("#ele_height").val("");
+				$("#ele_from").val(obj.from);
+				$("#ele_to").val(obj.to);
+			} else if (model == "node") {
+				obj = this.$nodeData[id];
+				$("#ele_type").val(obj.type);
+				$("#ele_left").val(obj.left);
+				$("#ele_top").val(obj.top);
+				$("#ele_width").val(obj.width);
+				$("#ele_height").val(obj.height);
+				$("#ele_from").val("");
+				$("#ele_to").val("");
+			}
+			$("#ele_name").val(obj.name);
+			return true;
+		};
+		demo.onItemBlur = function(id, model) {
+			document.getElementById("propertyForm").reset();
+			return true;
+		};
+	});
+
+	function saveFlowchart() {
+		alert(JSON.stringify(demo.exportData()));
+		document.getElementById("result").value=JSON.stringify(demo.exportData());
+	}
+
+	function editDome() {
+		if (model == "line") {
+			obj = this.$lineData[id];
+			$("#ele_type").val(obj.M);
+			$("#ele_left").val("");
+			$("#ele_top").val("");
+			$("#ele_width").val("");
+			$("#ele_height").val("");
+			$("#ele_from").val(obj.from);
+			$("#ele_to").val(obj.to);
+		} else if (model == "node") {
+			obj = this.$nodeData[id];
+			$("#ele_type").val(obj.type);
+			$("#ele_left").val(obj.left);
+			$("#ele_top").val(obj.top);
+			$("#ele_width").val(obj.width);
+			$("#ele_height").val(obj.height);
+			$("#ele_from").val("");
+			$("#ele_to").val("");
+		}
+	}
+</script>
+
+</head>
+
+<body class="adminMain">
+
+	<div class="mainTitle">创建流程图</div>
+
+
+
+
+	<div class="mainConText">
+		 <div id="demo" style="float: left; margin-top: 10px;"></div> 
+		 <div style="float: right; margin-right:150px; ">
+		 	<form class="myForm" id="propertyForm">
+			<table class="tableEdit">
+			<tr>
+				<td colspan="2">属性设置</td>
+			</tr>
+			<tr>
+				<td >Id：</td>
+				<td ><input type="text" id="ele_id" /></td>
+				
+			</tr>
+			<tr>
+				<td >Name：</td>
+				<td ><input type="text" id="ele_name" /></td>
+			</tr>
+			<tr>
+				<td>Type：</td>
+				<td><input type="text" id="ele_type" /></td>
+			</tr>
+			<tr>
+				<td>Model：</td>
+				<td><input type="text" id="ele_model" /></td>
+			</tr>
+			<tr>
+				<td>Left-r：</td>
+				<td><input type="text" id="ele_left" /></td>
+			</tr>
+			<tr>
+				<td>Top-r：</td>
+				<td><input type="text" id="ele_top" /></td>
+			</tr>
+			<tr>
+				<td>Width：</td>
+				<td><input type="text" id="ele_width" /></td>
+			</tr>
+			<tr>
+				<td>Height：</td>
+				<td><input type="text" id="ele_height" /></td>
+			</tr>
+			<tr>
+				<td>From：</td>
+				<td><input type="text" id="ele_from" /></td>
+			</tr>
+			<tr>
+				<td>To：</td>
+				<td><input type="text" id="ele_to" /></td>
+			</tr>
+			
+			<!-- <tr>
+					<td>
+						<div style="float: left; width: 300px;">
+							<form class="myForm" id="propertyForm">
+							<div class="form_title">属性设置</div>
+							<div class="form_content">
+							  <table>
+							    <tr><td >Id：</td><td><input type="text"  id="ele_id"/></td></tr>
+							    <tr><td >Name：</td><td><input type="text"  id="ele_name"/></td></tr>
+							    <tr><td >Type：</td><td><input type="text"  id="ele_type"/></td></tr>
+							    <tr><td >Model：</td><td><input type="text"  id="ele_model"/></td></tr>
+							    <tr><td >Left-r：</td><td><input type="text"  id="ele_left"/></td></tr>
+							    <tr><td >Top-r：</td><td><input type="text"  id="ele_top"/></td></tr>
+							    <tr><td >Width：</td><td><input type="text"  id="ele_width"/></td></tr>
+							    <tr><td >Height：</td><td><input type="text"  id="ele_height"/></td></tr>
+							    <tr><td >From：</td><td><input type="text"  id="ele_from"/></td></tr>
+							    <tr><td >To：</td><td><input type="text" id="ele_to"/></td></tr>
+							  </table>
+							</div>
+							<div class="form_btn_div">
+							  <input type="reset" value="重置"/>
+							  <input type="button" value="确定" onclick="editDome()"/>
+							</div>
+							</form>
+						</div>
+					</td>
+					<td >
+						
+					</td>
+				</tr> -->
+		</table>
+		</form>
+			<div class="btnBox">
+				<input type="button" class="btnInput1" value="保存" onclick="saveFlowchart();" /> 
+				&nbsp; 	<input type="button"class="btnInput2 chancleButton" value="取消" />
+			</div>
+		</div>
+		<input id="submit" type="button" value='导出结果' onclick="Export()"/>
+	 	<textarea id="result" row="6"></textarea>
+
+	</div>
+
+	<DIV id="div_flowNodeRightMenu2" class=smart_menu_box
+		style="LEFT: 1530px; DISPLAY: none; TOP: 233px">
+		<DIV id=div_menuBody class=smart_menu_body>
+			<UL id=ul_section_1 class=smart_menu_ul>
+				<LI id=li_menuItem_1 class=smart_menu_li><A class=smart_menu_a
+					href="javascript:">权限设置</A></LI>
+				<LI id=li_menuItem_1 class=smart_menu_li><A class=smart_menu_a
+					href="javascript:">人员管理</A></LI>
+				<LI id=li_menuItem_1 class=smart_menu_li_separate>&nbsp;</LI>
+				<LI id=li_menuItem_1 class=smart_menu_li><A class=smart_menu_a
+					href="javascript:">关闭</A></LI>
+			</UL>
+		</DIV>
+	</DIV>
+</body>
+</html>

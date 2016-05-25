@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.manage.flowchart.model.FlowNodes" table="p_flownodes" >
+    
+          <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+     <!--    <many-to-one name="fId" class="com.manage.flowchart.model.Flowchart" outer-join="auto"  not-null="false" not-found="ignore" fetch="select" foreign-key="none">
+            <column name="fId"  not-null="false"/>
+        </many-to-one> -->
+        
+          <property name="fId" type="java.lang.Integer">
+        	<column name="fId"/>
+        </property>
+        
+        <property name="nId" type="java.lang.String">
+        	<column name="nId"/>
+        </property>
+     	<property name="name" type="java.lang.String">
+        	<column name="name"/>
+        </property>
+        
+     	<property name="left" type="java.lang.Integer">
+            <column name="nleft" />
+        </property>
+        <property name="top" type="java.lang.Integer">
+            <column name="ntop" />
+        </property>
+         <property name="type" type="java.lang.String">
+            <column name="ntype" />
+        </property>
+         <property name="width" type="java.lang.Integer">
+            <column name="width" />
+         </property>
+          <property name="height" type="java.lang.Integer">
+            <column name="height" />
+         </property>
+         <property name="alt" type="java.lang.String">
+            <column name="nalt" />
+         </property>
+         <property name="marked" type="java.lang.String">
+            <column name="marked" />
+         </property>
+    </class>
+</hibernate-mapping>

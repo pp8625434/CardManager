@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- 用户登录日志-->
+	<!--<bean id="com.manage.help.dao.impl.FeedbackDaoImpl" class="com.manage.help.dao.impl.FeedbackDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="com.manage.help.dao.FeedbackDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces" value="com.manage.help.dao.FeedbackDao"></property>
+		<property name="interceptorNames">
+			<list>
+				<value>com.manage.help.dao.impl.FeedbackDaoImpl</value>
+			</list>
+		</property>
+	</bean>
+		<bean id="com.manage.help.model.Feedback" parent="txProxyTemplate">
+			<property name="target">
+				<bean class="com.manage.help.service.impl.FeedbackManagerImpl">
+					<property name="dao" ref="com.manage.help.dao.FeedbackDao"></property>
+					<property name="modelClass" value="com.manage.help.model.Feedback"></property>
+				</bean>
+			</property>
+	</bean>
+-->
+	<bean id="com.manage.login.dao.impl.LoginLogDaoImpl" class="com.manage.login.dao.impl.LoginLogDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="com.manage.login.dao.LoginLogDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces" value="com.manage.login.dao.LoginLogDao"></property>
+		<property name="interceptorNames">
+			<list>
+				<value>com.manage.login.dao.impl.LoginLogDaoImpl</value>
+			</list>
+		</property>
+	</bean>
+		<bean id="com.manage.login.model.LoginLog" parent="txProxyTemplate">
+			<property name="target">
+				<bean class="com.manage.login.service.impl.LoginLogManagerImpl">
+					<property name="dao" ref="com.manage.login.dao.LoginLogDao"></property>
+					<property name="modelClass" value="com.manage.login.model.LoginLog"></property>
+				</bean>
+			</property>
+		</bean>
+	
+</beans>

@@ -1,0 +1,131 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ include file="/includes/main.jsp"%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css"
+			href="<%=request.getContextPath()%>/admin/css/style.css">
+		<link rel="stylesheet" type="text/css"
+			href="<%=request.getContextPath()%>/admin/css/content.css">
+		<script type="text/javascript"
+			src="<%=request.getContextPath()%>/js/framework/hi_Include.js"></script>
+		<script type="text/javascript"
+			src="<%=request.getContextPath()%>/js/common/validator.js"></script>
+		<script type="text/javascript"
+			src="${applicationScope.ctx}/uploader/jquery-1.8.0.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style/style.css">
+		
+	</head>
+	<body class="adminMain">
+		<div class="mainTitle">
+			应用系统业务模块增加、删除、配置变更审批详情
+		</div>
+		<div class="mainConText">
+			<form  name="formSearch" id="formSearch" enctype="multipart/form-data">
+				<table width="100%"  class="bordered">
+					<caption>
+						应用系统业务模块增加、删除、配置变更审批表
+					</caption>
+					<tr>
+						<td width="16%">
+							业务系统名称
+						</td>
+						<td colspan="5">
+							<s:property value="appSysAlter.sysname"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							申请单位
+						</td>
+						<td width="16%">
+							<s:property value="appSysAlter.applydept"/>
+						</td>
+						<td width="16%">
+							申请人员
+						</td>
+						<td width="16%">
+							<s:property value="appSysAlter.applicant"/>
+						</td>
+						<td width="16%">
+							申请日期
+						</td>
+						<td width="18%">
+							<s:date name="appSysAlter.appliydate" format="yyyy-MM-dd HH:mm:ss"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							业务系统变更原因
+						</td>
+						<td colspan="5">
+							<s:property value="appSysAlter.sysalterreason"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							增加（删除）模块名称/配置变更内容（包括业务模块的功能和流程，可附页）
+						</td>
+						<td colspan="5">
+							<s:property value="appSysAlter.altercontent"/>
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="2">
+							申请部门意见
+						</td>
+						<td colspan="5">
+							<s:property value="appSysAlter.applydeptopinion"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							签字
+						</td>
+						<td colspan="4">
+							<hi:select disabled="true" type="radio" emu="yesNo" name="appSysAlter.applydeptsign" id="appSysAlter.applydeptsign" />
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="2">
+							信息化管理部门意见
+						</td>
+						<td colspan="5">
+							<s:property value="appSysAlter.infordeptopinion"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							签字
+						</td>
+						<td colspan="4">
+							<hi:select disabled="true" type="radio" emu="yesNo" name="appSysAlter.infordeptsign" id="appSysAlter.infordeptsign" />
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="2">
+							配置变更操作结果（有系统管理员填写）
+						</td>
+						<td colspan="5">
+							<s:property value="appSysAlter.operateresult"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							系统管理员签字
+						</td>
+						<td colspan="4">
+							<hi:select disabled="true" type="radio" emu="yesNo" name="appSysAlter.sysmanager" id="appSysAlter.sysmanager" />
+						</td>
+					</tr>
+				</table>
+				
+				<div class="btnBox">
+					<input type="button" class="btnInput2 chancleButton" value="返回" />
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

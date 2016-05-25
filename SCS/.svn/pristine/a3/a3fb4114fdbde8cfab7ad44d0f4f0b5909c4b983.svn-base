@@ -1,0 +1,91 @@
+package com.manage.flowchart.model;
+
+/**
+ * 流程图 线
+ * @author GuoFeng
+ *
+ */
+public class FlowLines {
+	
+	private Integer FId;
+	
+	private String Id;
+	
+	private String type;
+	
+	private Integer M;
+	
+	private String from;
+	
+	private String to;
+	
+	private String name;
+	
+	private boolean mark;
+
+	public String getId() {
+		return Id;
+	}
+
+	public void setId(String id) {
+		Id = id;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Integer getM() {
+		return M;
+	}
+
+	public void setM(Integer m) {
+		M = m;
+	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public boolean isMark() {
+		return mark;
+	}
+
+	public void setMark(boolean mark) {
+		this.mark = mark;
+	}
+
+	public Integer getFId() {
+		return FId;
+	}
+
+	public void setFId(Integer fId) {
+		FId = fId;
+	}
+	
+	
+}

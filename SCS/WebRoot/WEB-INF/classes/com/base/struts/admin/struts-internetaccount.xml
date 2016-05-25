@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 开通/撤销互联网账号审批表 -->
+	<package name="internetaccount" extends="print" namespace="/internetaccount" >
+		<action name="internetAccountList" class="com.manage.internetaccount.action.InternetAccountAction"  method="internetAccountList">
+			<result name="success">/admin/internetaccount/internetAccountList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="internetAccountSave" class="com.manage.internetaccount.action.InternetAccountAction" method="internetAccountSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="internetAccountAdd" class="com.manage.internetaccount.action.InternetAccountAction" method="internetAccountAdd">
+			<result name="success">/admin/internetaccount/internetAccountEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="internetAccountDel" class="com.manage.internetaccount.action.InternetAccountAction" method="internetAccountDel">
+			<result name="success" type="chain">
+				<param name="actionName">internetAccountList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="internetAccountInfo" class="com.manage.internetaccount.action.InternetAccountAction" method="internetAccountInfo">
+			<result name="success">/admin/internetaccount/internetAccountInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

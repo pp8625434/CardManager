@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 员工保密工作自查表 -->
+	<package name="empseccheck" extends="print" namespace="/empseccheck" >
+		<action name="empSecCheckList" class="com.manage.empseccheck.action.EmpSecCheckAction"  method="empSecCheckList">
+			<result name="success">/admin/empseccheck/empSecCheckList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="empSecCheckSave" class="com.manage.empseccheck.action.EmpSecCheckAction" method="empSecCheckSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="empSecCheckAdd" class="com.manage.empseccheck.action.EmpSecCheckAction" method="empSecCheckAdd">
+			<result name="success">/admin/empseccheck/empSecCheckEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="empSecCheckDel" class="com.manage.empseccheck.action.EmpSecCheckAction" method="empSecCheckDel">
+			<result name="success" type="chain">
+				<param name="actionName">empSecCheckList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="empSecCheckInfo" class="com.manage.empseccheck.action.EmpSecCheckAction" method="empSecCheckInfo">
+			<result name="success">/admin/empseccheck/empSecCheckInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,901 @@
+/**
+ *快速实现表单校验的帮助类
+ *赵磊
+ *2016-4-18
+ *html标签添加了新的属性，属性列表如下
+ *属性名称			说明									可选参数
+ *dtype				验证类型								详见下方dtype 参数说明
+ *isnull			是否允许控件为空值						yes/no    yes不做非空判断 no如果未填写则会提示错误无法提交表单    参数为yes时可以不使用该属性
+ *mes				当判断控件为空时的提示内容				错误提示信息 例子：密码不能为空
+ *dorder			进行提交时控件验证的排序					0~99数字
+ *derrclass			当控件进行dtype验证时出错时使用的样式		样式名称		用于不能使用一般错误提示的控件 一般不用填写
+ *dmes				当控件进行dtype验证时格式错误时的提示信息	错误提示信息 例子：请输入数字		如果不用进行dtype判断则不适用该属性
+ *checkrepeat		是否进行数据重复验证					yes/no	  yes进行数据重复验证	no不进行数据重复验证  参数为no时可以不使用该属性	  目前的验证只支持单列进行验证  如果要使用该属性isnull必须要有而且为no
+ *tablename			进行数据重复验证时查询的表名称			数据库表名称
+ *columnname		进行数据重复验证时查询的列名称			数据库表中的列名
+ *rmes				进行数据重复验证时错误提示信息			用户名重复
+ *===========================================================================================================================================
+ *dtype 参数说明
+ *可选参数值							说明									参考格式								参考格式说明							
+ *date(格式)							控件输入的值必须为日期					yyyy 								控件只可以选择年
+ *																		yyyy-MM								控件只可以选择年月
+ *																		yyyy-MM-dd							控件只可以选择年月日
+ *																		yyyy-MM-dd HH:mm:ss					控件只可以选择年月日时分秒
+ *number(数字长度,小数位长度)			控制输入的值必须为数字					number								控件只能输入整数
+ *																		number(8)							控件只能输入长度是8位的整数数字
+ *																		number(8,2)							控件只能输入(不含小数位)长度是8位的小数(其中小数位是2位)
+ *mail								控件输入的值必须是e-mial地址				
+ *idnum								控件输入的值必须是身份证号														
+ *============================================================================================================================================
+*/
+
+/*
+*入口方法 在页面加载完成后对页面上的DOM空间进行格式设置，以及改写页面上form表单的提交方法
+*赵磊
+*2016-4-19
+*/
+//用来存储页面上需要验证的控件信息
+var diyDomArray = new Array();
+//js文件在服务器上的位置
+var zl_util_jsPath = null;
+//用于存储数据重复判断的对象信息
+var checkObj = null;
+$(document).ready(function(){
+	$("script").each(function(){
+		if($(this).prop("src").indexOf("formUtil.js")>0){
+			zl_util_jsPath = $(this).prop("src").substring(0,$(this).prop("src").indexOf("formUtil.js"));
+		}
+	});
+	if(zl_util_jsPath!=null){
+		//如果配置用的变量没有定义，则引入默认的配置信息
+		if("undefined" == typeof zl_form_util_confi){
+			$.getScript(zl_util_jsPath+"/util-config.js")
+				.done(function() {
+					$.getScript(zl_util_jsPath+"/card.js")
+					.done(function(){
+					  	//获取页面的表单中的onsubmit事件是否有绑定方法
+						var diysubmit_ = $("form").eq(0).attr('onsubmit');
+						if(diysubmit_ === undefined || diysubmit_ === "" || diysubmit_ === null){
+							$("form").eq(0).submit(function(){
+								//执行标签中的自定义属性的判断 +++++++++++++++++++++++++++++++++++++++++++++++++
+								return handleDiySubmit();
+							});
+						}else{
+							//如果表单中有自定义的onsubmit的事件，则对事件进行处理，然后执行该事件
+							//首先替换掉事件前面的Return
+							diysubmit_ = handleSubMitFunctionStr(diysubmit_);
+							//事件名称处理完毕
+							//需要先清空绑定的事件
+							$("form").eq(0).removeAttr("onsubmit");
+							//重新为表单绑定onsubmit事件
+							$("form").eq(0).submit(function(){
+								//先执行标签中的自定义属性的判断 +++++++++++++++++++++++++++++++++++++++++++++++
+								if(handleDiySubmit()){
+									//然后执行自定义的方法
+									var reObj = eval(diysubmit_);
+									return reObj;
+								}else{
+									return false;
+								}
+							});
+						}
+						//开始初始化HTML标签
+						handleAllDOMInfo();
+					})
+					.fail(function() {
+					  	alert("未能引入所需的帮助类文件，无法正常渲染表单！");
+					});
+				 })
+				.fail(function() {
+				  	alert("未能引入配置文件造成程序错误，无法正常渲染表单！");
+				});
+		}
+	}else{
+		alert("由于【formUtil.js】文件名称改变造成程序错误，无法正常渲染表单！");
+	}
+});
+
+/**
+*处理onsubmit事件中的方法名称
+*赵磊
+*2016-4-18
+*/
+function handleSubMitFunctionStr(hstr){
+	hstr = removeHeaderblank(hstr);
+	if(hstr.toLowerCase().indexOf("return ")===0 || hstr.toLowerCase().indexOf("return　")===0){
+		hstr = hstr.substring(7,hstr.length);
+	}
+	hstr = removeHeaderblank(hstr);
+	return hstr;
+}
+
+/**
+*处理字符串头部的中英文状态下的空格
+*赵磊
+*2016-4-19
+*/
+function removeHeaderblank(str){
+	while(str.length>1&&(str.substring(0,1)===" " || str.substring(0,1)==="　")){
+		str = str.substring(1,str.length);
+	}
+	return str;
+}
+
+/**
+*用于表单提交时的验证方法
+*赵磊
+*2016-4-19
+*/
+function handleDiySubmit(){
+	if(checkHtmlSubmit()){
+		//如果验证通过了，则进行ajax判断
+		if(checkObj!=null){
+			var checkvale = false;
+			$.ajax( {  
+				url:zl_util_jsPath + '/checkrepeat.action',// 跳转到 action  
+				data:{"tablename" : checkObj.tablename , "column" : checkObj.column , "checkvalue" : getHTMLText(checkObj)},  
+				type:'post',  
+				cache:false,  
+				dataType:'json',
+				async: false,  
+				success:function(data) {  
+					if(data.result === 1){
+						if(data.number === 0){
+							checkvale = true;
+							return true;
+						}else{
+							checkvale = false;
+							showErrCss(getHTMLObject(checkObj),checkObj.rmes);
+							return false;
+						}
+					}else{
+						checkvale = false;
+						return false;
+					}
+				},  
+				error : function() {  
+					checkvale = false;
+					return false;
+				}  
+			});
+			return checkvale;
+		}else{
+			return true;
+		}
+	}else{
+		return false;	
+	}
+}
+
+/**
+*用于获取HTML对象
+*赵磊
+*2016-4-25
+*/
+function getHTMLObject(obj){
+	if(obj.type == "checkbox" || obj.type == "radio"){
+		var jStr = "input[name='"+obj.name+"']";
+		return $(jStr).eq(0);
+	}else{
+		return $("#"+obj.id);
+	}
+}
+
+/**
+*用于获取HTML标签的值
+*赵磊
+*2016-4-25
+*/
+function getHTMLText(obj){
+	var checkvalue = null;
+	if(obj.type == "checkbox" || obj.type == "radio"){
+		var jStr = "input[name='"+obj.name+"']";
+		$(jStr).each(function(){
+			if($(this).prop("checked")){
+				checkvalue = $(this).val();
+				return false;
+			}
+		});
+		return checkvalue;
+	}else{
+		return $("#"+obj.id).val();
+	}
+}
+
+/**
+*用于表单提交时的html标签验证
+*赵磊
+*2016-4-25
+*/
+function checkHtmlSubmit(){
+	//按照页面渲染时获得的信息进行必填信息验证
+	for(var i=0;i<diyDomArray.length;i++){
+		var objInfo = diyDomArray[i];
+		if(objInfo.type === "checkbox" || objInfo.type === "radio"){//如果是复选框或者单选框
+			//只用验证是否已经选择即可
+			if(!checkCheckBoxStatus(objInfo)){
+				return false;
+			}
+		}
+		if(objInfo.type === "select"){
+			//只用验证是否已经选择即可
+			if(!checkSelectStatus(objInfo)){
+				return false;
+			}
+		}
+		if(objInfo.type === "text" || objInfo.type === "hidden" || objInfo.type === "textarea"){
+			//不仅要验证是否非空，还要对输入的数据进行验证
+			if(!checkInpuStatus(objInfo)){
+				return false;
+			}
+		}
+		
+	}
+	return true;
+}
+
+/**
+*用于input或者textarea是否填写值的判断
+*赵磊
+*2016-4-25
+*/
+function checkInpuStatus(obj){
+	if(Trim($("#"+obj.id).val(),"g")==""){
+		$("#"+obj.id).click(function(){
+			clearErrCss($(this));
+		});
+		showErrCss($("#"+obj.id),obj.mes);
+		return false;
+	}else{//如果不为空
+		if(obj.dtype === undefined || obj.dtype === null || obj.dtype === ""){
+			//如果不需要做类型验证，不为空的情况下直接返回true即可
+			return true;
+		}
+		//绑定日期时间的处理方式
+		if(obj.dtype!= undefined && obj.dtype.indexOf("date")>=0){
+			//如果是日期格式由于使用了控件去填写日期因此不用对类型进行判断直接返回true即可
+			return true;
+		}
+		//绑定数字的处理方式
+		if(obj.dtype!= undefined && obj.dtype.indexOf("number")>=0){
+			var obj = $("#"+obj.id);
+			var nObj = getNumberRule(obj);
+			if(!checkNumer(obj,nObj.decimal_length,nObj.number_length)){
+				return false;
+			}
+		}
+		//绑定邮件的处理方式
+		if(obj.dtype!= undefined && obj.dtype === "mail"){
+			var obj = $("#"+obj.id);
+			if(!checkMaillayout(obj)){
+				return false;
+			}
+		}
+		//绑定身份证的处理方式
+		if(obj.dtype!= undefined && obj.dtype === "idnum"){
+			var obj = $("#"+obj.id);
+			if(!checkIDCardNumber(obj)){
+				return false;
+			}
+		}
+		//其他类型方式时留存
+		
+		return true;
+	}
+}
+
+/**
+*用于验证复选框的是否被选中了
+*赵磊
+*2016-4-25
+*/
+function checkCheckBoxStatus(obj){
+	var jStr = "input[name='"+obj.name+"']";
+	var flag = false;
+	$(jStr).each(function(){
+		if($(this).prop("checked")){
+			flag = true;
+		}
+		//因为单选复选框目前不做验证，只能在判断时把单选方法上安装上清楚提示功能；
+		$(this).removeAttr("onclick");
+		$(this).click(function(){
+			clearErrCss($(this));
+		});
+	});
+	if(!flag){
+		showErrCss($(jStr).eq(0),obj.mes);
+		return false;
+	}else{
+		return true;
+	}
+}
+
+/**
+*用于验证select是否被选中
+*赵磊
+*2016-4-25
+*/
+function checkSelectStatus(obj){
+	if(Trim($("#"+obj.id).val(),"g")!=""){
+		return true;	
+	}else{
+		$("#"+obj.id).click(function(){
+			clearErrCss($(this));
+		});
+		showErrCss($("#"+obj.id),obj.mes);
+		return false;
+	}
+}
+
+/**
+*用于获取全部的页面HTML标签信息
+*赵磊
+*2016-4-19
+*/
+function handleAllDOMInfo(){
+	//是否需要重新对标签进行排序
+	var ordrsign = false;
+	//用来存储控件信息对象的数组
+	var domArray = new Array();
+	//用来存储控件name的数组
+	var nameArray = new Array();
+	
+	//引入错误div的样式
+	$("<link>").attr({
+		rel: "stylesheet",
+        type: "text/css",
+        href: zl_util_jsPath+"/"+zl_form_util_confi.skin
+    }).appendTo("head");
+    
+    //添加提示错误的div
+    $(document.body).append("<div id=\"zlUtilHasErrorDiv\" class=\"zlUtilHasErrorDiv\" ></div>");
+		
+	
+	//开始遍历所有可能会用到的标签
+	$("input").each(function(){
+		//进行页面表单的功能渲染
+		domRendering($(this));
+		if($(this).attr("checkrepeat")==="yes" && $(this).attr("isnull") === "no"){
+			checkObj = new checkObject();
+			checkObj.name = $(this).prop("name");
+			checkObj.id = $(this).prop("id");
+			checkObj.type= $(this).prop("type");
+			checkObj.rmes = $(this).attr("rmes");
+			checkObj.tablename = $(this).attr("tablename");
+			checkObj.column = $(this).attr("columnname");
+		}
+		if($(this).prop("type") == "text" || $(this).prop("type") == "hidden"){
+			if($(this).attr("isnull") === "no"){//只有需要必填验证的才需要放入domArray数组中
+				var obj = getNewObjValues($(this));
+				if(obj.dorder != undefined && obj.dorder != ""){
+					ordrsign = true;
+				}
+				domArray.push(obj);
+				nameArray.push(obj.name);
+			}
+		} 
+		if($(this).prop("type") == "radio" || $(this).prop("type") == "checkbox"){
+			if($(this).attr("isnull") === "no"){//只有需要必填验证的才需要放入domArray数组中
+				//先判断单选框/复选框是否已经收录了信息
+				var having = false;
+				var index = -1;
+				for(var i=0;i<nameArray.length;i++){
+					if(nameArray[i] == $(this).prop("name")){
+						having = true;
+						index = i;
+					}
+				}
+				if(having){//如果已经收录了信息
+					var obj = domArray[index];
+					obj = updateObjValues(obj,$(this));
+					if(obj.dorder != undefined && obj.dorder != ""){
+						ordrsign = true;
+					}
+					domArray[index] = obj;
+				}else{//如果没有收录控件信息
+					var obj = getNewObjValues($(this));
+					if(obj.dorder != undefined && obj.dorder != ""){
+						ordrsign = true;
+					}
+					domArray.push(obj);
+					nameArray.push(obj.name);
+				}
+			}
+		}
+	});
+	$("select").each(function(){
+		//无需进行页面表单的功能渲染
+		//domRendering($(this));
+		if($(this).attr("isnull") === "no"){//只有需要必填验证的才需要放入domArray数组中
+			var obj = getNewObjValues($(this));
+			obj.type = "select";
+			if(obj.dorder != undefined && obj.dorder != ""){
+				ordrsign = true;
+			}
+			domArray.push(obj);
+			nameArray.push(obj.name);
+		}
+		if($(this).attr("checkrepeat")==="yes" && $(this).attr("isnull") === "no"){
+			checkObj = new checkObject();
+			checkObj.name = $(this).prop("name");
+			checkObj.id = $(this).prop("id");
+			checkObj.type= "select";
+			checkObj.rmes = $(this).attr("rmes");
+			checkObj.tablename = $(this).attr("tablename");
+			checkObj.column = $(this).attr("columnname");
+		}
+	});
+	$("textarea").each(function(){
+		//进行页面表单的功能渲染
+		domRendering($(this));
+		if($(this).attr("isnull") === "no"){//只有需要必填验证的才需要放入domArray数组中
+			var obj = getNewObjValues($(this));
+			obj.type = "textarea";
+			if(obj.dorder != undefined && obj.dorder != ""){
+				ordrsign = true;
+			}
+			domArray.push(obj);
+			nameArray.push(obj.name);
+		}
+		
+		if($(this).attr("checkrepeat")==="yes" && $(this).attr("isnull") === "no"){
+			checkObj = new checkObject();
+			checkObj.name = $(this).prop("name");
+			checkObj.id = $(this).prop("id");
+			checkObj.type= "textarea";
+			checkObj.rmes = $(this).attr("rmes");
+			checkObj.tablename = $(this).attr("tablename");
+			checkObj.column = $(this).attr("columnname");
+		}
+	});
+	
+	//判断是否需要对数组进行排序
+	if(ordrsign){
+		//排序原则是先把有dorder的拿出来排序，没有dorder的按照收集信息时的顺序放置
+		//先将有dorder的数据拿出来进行排序，并在domArray移除有dorder的数据
+		for(var i=0;i<domArray.length;i++){
+			if(isNumber(domArray[i].dorder)){
+				diyDomArray.push(domArray[i]);
+			}
+		}
+		//将有排序字段的数组先进行排序  暂且使用冒泡排序吧以后对算法进行优化
+		if(diyDomArray.length>1){//数组长度大于1时才需要进行排序
+			var temp;
+			for(var i=diyDomArray.length;i>0;i--){
+				for(var j=0;j<(i-1);j++){
+					if((diyDomArray[j+1].dorder-diyDomArray[j].dorder)<0){
+						temp = diyDomArray[j];
+						diyDomArray[j] = diyDomArray[j+1];
+						diyDomArray[j+1] = temp;
+					}
+				}
+			}
+		}
+		//然后将剩余的控件拼接至数组中
+		for(var i=0;i<domArray.length;i++){
+			if(!isNumber(domArray[i].dorder)){
+				diyDomArray.push(domArray[i]);
+			}
+		}
+		//将domArray数组中的数据清空
+		domArray.splice(0,domArray.length);
+		nameArray.splice(0,nameArray.length);
+	}else{
+		//如果不需要排序则直接将数组中的数据给全局
+		for(var i=0;i<domArray.length;i++){
+			diyDomArray.push(domArray[i]);
+		}
+		//将domArray数组中的数据清空
+		domArray.splice(0,domArray.length);
+		nameArray.splice(0,nameArray.length);
+	}
+}
+/**
+* 判断V是否是数字
+* 赵磊
+* 2016-4-19
+*/
+function isNumber(v){
+	if(v === undefined){
+		return false;
+	}
+	v = Trim(v+"","g");
+	if(v === ""){
+		return false;
+	}
+	if(isNaN(v)){
+		return false;
+	}
+	return true;
+}
+
+/**
+*去掉字符串的空格
+*is_global = "g"时是去掉字符串的所有空格
+*赵磊
+*2016-4-19
+*/
+function Trim(str,is_global){
+   var result;
+   result = str.replace(/(^\s+)|(\s+$)/g,"");
+   if(is_global.toLowerCase()=="g")
+   {
+       result = result.replace(/\s/g,"");
+    }
+   return result;
+}
+
+/**
+*初始化时对控件进行渲染  如果有其他dtype类型时在此方法中进行扩展
+*赵磊
+*2016-4-19
+*/
+function domRendering($obj){
+	//绑定日期时间的处理方式
+	if($obj.attr("dtype")!= undefined && $obj.attr("dtype").indexOf("date")>=0){
+		handleDateInput($obj);
+	}
+	//绑定数字的处理方式
+	if($obj.attr("dtype")!= undefined && $obj.attr("dtype").indexOf("number")>=0){
+		handleNumberInput($obj);
+	}
+	//绑定邮件的处理方式
+	if($obj.attr("dtype")!= undefined && $obj.attr("dtype") === "mail"){
+		handleMailInput($obj);
+	}
+	//绑定身份证的处理方式
+	if($obj.attr("dtype")!= undefined && $obj.attr("dtype") === "idnum"){
+		handleIDCardNumberInput($obj);
+	}
+	//其他类型方式时留存
+}
+
+/**
+*处理邮件的input
+*赵磊
+*2016-4-20
+*/
+function handleMailInput($obj){
+	//在控件失去焦点的时候进行判断
+	$obj.blur(function(){
+		if($(this).val()!=""){
+			checkMaillayout($(this));
+		}
+	});
+	//绑定点击事的清空错误样式事件
+	$obj.click(function(){
+		clearErrCss($(this));
+	});
+}
+
+/**
+*判断邮件格式
+*赵磊
+*2016-4-25
+*/
+function checkMaillayout($obj){
+	var mailreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+	if(!mailreg.test($obj.val())){
+		var dmes = null;
+		if($obj.attr("dmes")!= undefined){
+			dmes = $obj.attr("dmes");
+		}else{
+			dmes = "邮件格式错误";
+		}
+		showErrCss($obj,dmes);
+		return false;
+	}
+	return true;
+}
+
+/*
+*处理日期类的input
+*赵磊
+*2016-4-19
+*/
+function handleDateInput($obj){
+	$obj.attr("readonly","readonly");
+	//检测日期格式字符串
+	var formatStr = $obj.attr("dtype").replace("date(","");
+	formatStr = formatStr.replace(")","");
+	$obj.click(function(){
+		clearErrCss($(this));
+		WdatePicker({dateFmt:formatStr});
+	});
+}
+
+/**
+*处理数值型的input
+*赵磊
+*2016-4-19
+*/
+function handleNumberInput($obj){
+	var nObj = getNumberRule($obj);
+	//绑定keyup事件
+	$obj.keyup(function(){
+		checkNumer($(this),nObj.decimal_length,nObj.number_length);
+	});
+	//绑定onclick事件
+	$obj.click(function(){
+		clearErrCss($(this));
+	})
+}
+
+/**
+*处理身份证类型的input
+*赵磊
+*2016-4-19
+*/
+function handleIDCardNumberInput($obj){
+	$obj.blur(function(){
+		if($(this).val()!=""){
+			checkIDCardNumber($(this));
+		}
+	});
+	//绑定点击事的清空错误样式事件
+	$obj.click(function(){
+		clearErrCss($(this));
+	});
+}
+
+/**
+*判断身份证的格式是否正确
+*赵磊
+*2016-4-25
+*/
+function checkIDCardNumber($obj){
+	var cardResult = checkCard($obj.val());
+	if(!cardResult.result){
+		var dmes = null;
+		if($obj.attr("dmes")!= undefined){
+			dmes = $obj.attr("dmes");
+		}else{
+			dmes = cardResult.mes;
+		}
+		showErrCss($obj,dmes);
+		return false;
+	}
+	return true;
+}
+
+/**
+*获得数字验证规范
+*赵磊
+*2016-4-20
+*/
+function getNumberRule($obj){
+	var fStr = $obj.attr("dtype");
+	fStr = fStr.replace("number","");
+	fStr = fStr.replace("(","");
+	fStr = fStr.replace(")","");
+	var numberObj = new numObject();;
+	if(fStr != "" && fStr.indexOf(",")>0){
+		if(!isNumber(fStr.replace(",",""))){
+			alert("name是【"+$obj.prop("name")+"】的input标签数字长度规则设置错误");
+		}else{
+			numberObj.number_length = parseInt(fStr.substring(0,fStr.indexOf(",")));
+			numberObj.decimal_length = parseInt(fStr.substring(fStr.indexOf(",")+1,fStr.length));
+		}
+	}else if(fStr != ""){
+		if(!isNumber(fStr)){
+			alert("name是【"+$obj.prop("name")+"】的input标签数字长度规则设置错误");
+		}else{
+			numberObj.number_length = parseInt(fStr);
+		}
+	}
+	return numberObj;
+}
+
+/**
+*验证数字格式的方法
+*赵磊
+*2016-4-20
+*/
+function checkNumer($obj,decimal_length,number_length){
+	if($obj.val()!=""){
+		var dmes = "";
+		switch (isDemandNumber($obj.val(),decimal_length,number_length)){
+			case 0 :
+				if($obj.attr("dmes")!= undefined){
+					dmes = $obj.attr("dmes");
+				}else{
+					dmes = "输入的不是数字";
+				}
+				break;
+			case 1 :
+				clearErrCss($obj);
+				return true;
+			case 2 :
+				if(decimal_length==0){
+					dmes = "只能输入整数";
+				}else{
+					dmes = "小数位不能超过"+decimal_length+"位";
+				}
+				break;
+			case 3 :
+				dmes = "输入数字超出长度限制，只能输入";
+				break;
+			default :
+				dmes = "未知错误";
+				break;
+		}
+		showErrCss($obj,dmes);
+		return false;
+	}else{
+		clearErrCss($obj);
+		return false;
+	}
+}
+/**
+*是否是要求的格式的数字
+*赵磊
+*2016-4-20
+*v 传入的数值
+*dl 小数位长度
+*nl 数据的整体长度
+*return 0:表示传递的不是数字  1:数字格式符合要求  2:小数位长度超限制  3:数字长度超出限制
+*/
+function isDemandNumber(num,dl,nl){
+	if(isNumber(num)){
+		//如果是数字
+		if((dl-0)==0){//如果小数位长度为0，则表示不允许有小数位
+			if((num+"").indexOf(".")>=0){
+				return 2; //小数位长度超限制
+			}else{//如果没有小数点
+				if(nl == -1){//如果对输入的数据长度不限制则直接返回验证正确
+					return 1; //数字格式符合要求
+				}else{
+					if(((num+"").length-nl)<=0){
+						return 1;  //数字符合要求
+					}else{
+						return 3; //数字长度超出限制
+					}
+				}
+			}
+		}else{
+			if((num+"").indexOf(".")<0){
+				return 1;  //数字符合要求
+			}else{
+				if(((num+"").length - ((num+"").indexOf(".")+1))<=dl){ //如果小数位小于允许的小数位
+					if(((num+"").length-nl)<=0){
+						return 1;  //数字符合要求
+					}else{
+						return 3; //数字长度超出限制
+					}
+				}else{
+					return 2; //小数位长度超限制
+				}
+			}
+		}
+	}else{
+		return 0; //表示传递的不是数字
+	}
+}
+
+/**
+*清空出错时的样式
+*赵磊
+*2016-4-19
+*/
+function clearErrCss($obj){
+	//设置错误提示的标签样式
+	if($obj.attr("derrclass") === undefined || $obj.attr("derrclass") === ""){
+		$obj.removeClass(zl_form_util_confi.errcss);
+	}else{
+		$obj.removeClass($obj.attr("derrclass"));
+	}
+	$("#zlUtilHasErrorDiv").hide();
+}
+
+/**
+*设置出错时的样式
+*赵磊
+*2016-4-19
+*/
+function showErrCss($obj,mes){
+	//设置错误提示的标签样式
+	if($obj.attr("derrclass") === undefined || $obj.attr("derrclass") === ""){
+		$obj.addClass(zl_form_util_confi.errcss);
+	}else{
+		$obj.addClass($obj.attr("derrclass"));
+	}
+	//弹出提示框
+	$("#zlUtilHasErrorDiv").css({"top":($obj.offset().top+$obj.outerHeight())+"px","left":($obj.offset().left+5)+"px"});
+	$("#zlUtilHasErrorDiv").html(mes);
+	$("#zlUtilHasErrorDiv").show();
+}
+/**
+*获取控件的信息
+*赵磊
+*2016-4-19
+*/
+function getNewObjValues($obj){
+	var obj = new domObjec();
+	obj.name = $obj.prop("name");
+	obj.id = $obj.prop("id");
+	obj.dtype = $obj.attr("dtype");
+	obj.mes = $obj.attr("mes");
+	obj.isnull = $obj.attr("isnull");
+	obj.type = $obj.prop("type");
+	obj.dorder = $obj.attr("dorder");
+	obj.dmes = $obj.attr("dmes");
+	return obj
+}
+
+/**
+*更新控件的信息
+*赵磊
+*2016-4-19
+*/
+function updateObjValues(o,$obj){
+	if(o.mes === "" || o.mes === undefined){
+		o.mes = $obj.attr("mes");
+	}
+	if(o.dorder === "" || o.dorder === undefined){
+		o.dorder = $obj.attr("dorder");
+	}
+	return o;
+}
+
+/**
+*存储数字验证的对象
+*赵磊
+*2016-4-20
+*/
+function numObject(){
+	//小数位长度
+	this.decimal_length = 0;
+	//数字长度
+	this.number_length = -1;
+}
+
+/**
+*定义存储信息对象
+*赵磊
+*2016-4-19
+*/
+function domObjec(){
+	//控件名称
+	this.name;
+	//控件ID
+	this.id;
+	//控件的自定义的类型
+	this.dtype;
+	//控件的报错信息
+	this.mes;
+	//控件是否可以运行为空
+	this.isnull;
+	//控件的类型
+	this.type;
+	//排序字段
+	this.dorder;
+	//类型判断错误提示
+	this.dmes;
+}
+
+/**
+*用于存储重复判断对象信息
+*赵磊
+*2016-4-25
+*/
+function checkObject(){
+	//控件的name名称
+	this.name;
+	//控件的ID
+	this.id;
+	//控件的类型
+	this.type;
+	//控件的重复报错信息
+	this.rmes;
+	//控件需要查询的表名
+	this.tablename;
+	//控件需要查询的列名
+	this.column;
+}
+
+//==========================================================万恶的分割线===此线以下用于写测试用的方法==================================
+function test(){
+	$('input[name="input6"]').each(function(){
+		alert($(this).val());
+	});
+}

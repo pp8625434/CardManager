@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 本部拍摄活动审批表 -->
+	<package name="filmingactivity" extends="print" namespace="/filmingactivity" >
+		<action name="filmingActivityList" class="com.manage.filmingactivity.action.FilmingActivityAction"  method="filmingActivityList">
+			<result name="success">/admin/filmingactivity/filmingActivityList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="filmingActivitySave" class="com.manage.filmingactivity.action.FilmingActivityAction" method="filmingActivitySave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="filmingActivityAdd" class="com.manage.filmingactivity.action.FilmingActivityAction" method="filmingActivityAdd">
+			<result name="success">/admin/filmingactivity/filmingActivityEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="filmingActivityDel" class="com.manage.filmingactivity.action.FilmingActivityAction" method="filmingActivityDel">
+			<result name="success" type="chain">
+				<param name="actionName">filmingActivityList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="filmingActivityInfo" class="com.manage.filmingactivity.action.FilmingActivityAction" method="filmingActivityInfo">
+			<result name="success">/admin/filmingactivity/filmingActivityInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

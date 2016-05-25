@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 外网邮箱开通、撤销申请审批表 -->
+	<package name="emailexamine" extends="print" namespace="/emailexamine" >
+		<action name="emailExamineList" class="com.manage.emailexamine.action.EmailExamineAction"  method="emailExamineList">
+			<result name="success">/admin/emailexamine/emailExamineList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="emailExamineSave" class="com.manage.emailexamine.action.EmailExamineAction" method="emailExamineSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="emailExamineAdd" class="com.manage.emailexamine.action.EmailExamineAction" method="emailExamineAdd">
+			<result name="success">/admin/emailexamine/emailExamineEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="emailExamineDel" class="com.manage.emailexamine.action.EmailExamineAction" method="emailExamineDel">
+			<result name="success" type="chain">
+				<param name="actionName">emailExamineList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="emailExamineInfo" class="com.manage.emailexamine.action.EmailExamineAction" method="emailExamineInfo">
+			<result name="success">/admin/emailexamine/emailExamineInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

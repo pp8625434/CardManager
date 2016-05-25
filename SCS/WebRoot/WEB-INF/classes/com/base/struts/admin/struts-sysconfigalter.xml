@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 系统配置变更审批表 -->
+	<package name="sysconfigalter" extends="print" namespace="/sysconfigalter" >
+		<action name="sysConfigAlterList" class="com.manage.sysconfigalter.action.SysConfigAlterAction"  method="sysConfigAlterList">
+			<result name="success">/admin/sysconfigalter/sysConfigAlterList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="sysConfigAlterSave" class="com.manage.sysconfigalter.action.SysConfigAlterAction" method="sysConfigAlterSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="sysConfigAlterAdd" class="com.manage.sysconfigalter.action.SysConfigAlterAction" method="sysConfigAlterAdd">
+			<result name="success">/admin/sysconfigalter/sysConfigAlterEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="sysConfigAlterDel" class="com.manage.sysconfigalter.action.SysConfigAlterAction" method="sysConfigAlterDel">
+			<result name="success" type="chain">
+				<param name="actionName">sysConfigAlterList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="sysConfigAlterInfo" class="com.manage.sysconfigalter.action.SysConfigAlterAction" method="sysConfigAlterInfo">
+			<result name="success">/admin/sysconfigalter/sysConfigAlterInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

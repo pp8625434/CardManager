@@ -1,0 +1,49 @@
+
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ include file="/includes/main.jsp"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="${applicationScope.ctx}/admin/css/style.css">
+		<link rel="stylesheet" type="text/css" href="${applicationScope.ctx}/admin/css/content.css">
+		<script type="text/javascript" src="${applicationScope.ctx}/js/framework/hi_Include.js"></script>
+		<script type="text/javascript" language="javascript" src="${applicationScope.ctx}/js/util/jquery-2.2.3.js" ></script>
+		<script type="text/javascript" src="${applicationScope.ctx}/js/datepicker/WdatePicker.js"></script>
+		
+		<script type="text/javascript" language="javascript" src="${applicationScope.ctx}/js/util/formUtil.js" ></script>
+		
+	</head>
+	<body class="adminMain">
+		<div class="mainTitle">
+			流程管理
+		</div>
+		<form action="${applicationScope.ctx}/flowchart/saveFlowchart.action" method="post"  onsubmit="return on_submits();">
+		<input type="hidden" name="params" value="<%=request.getAttribute("params") %>"/>		
+		<div class="mainConText">
+				<table class="tableEdit">
+					<tbody>
+						<tr>
+							<td width="10%">
+								流程名称:
+							</td>
+							<td>
+								<input type="text" size="50" maxlength="25" id="fcname" name="flowchart.fcname" 
+								 checkrepeat="yes" tablename="p_flowchart" columnname="fcname" rmes="流程名称重复" isnull="no"  mes="流程名称不能空" 
+								class="inputText2" value="<s:property value="flowchart.fcname"/>">
+								
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+						
+			<div class="btnBox">
+			<input type="submit" class="btnInput1" value="保存" />
+			&nbsp;
+			<input type="button" class="btnInput2 chancleButton" value="取消" />
+		</div>
+	
+		</form>
+	</body>
+</html>

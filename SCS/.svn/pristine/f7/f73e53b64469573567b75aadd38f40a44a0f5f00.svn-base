@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<table width="100%" border="1">
+  <caption>
+    设备维护、维护审批表
+  </caption>
+  <tr>
+    <td width="16%">设备负责人</td>
+    <td colspan="2">&nbsp;</td>
+    <td width="19%">所属部门</td>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>设备名称</td>
+    <td width="19%">&nbsp;</td>
+    <td width="17%">设备编号</td>
+    <td>&nbsp;</td>
+    <td width="13%">设备密级</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="6">设备负责人描述故障现象</td>
+    <td colspan="5">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="5">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="5">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="5">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>设备负责人签字</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="5">注：口令及账户解锁、更改由申请人本人签字备案即可。</td>
+  </tr>
+  <tr>
+    <td rowspan="3">&nbsp;</td>
+    <td colspan="5">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>诊断人员签字</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="5">注：1、口令及账户解锁、更改、安装、删除软件及驱动和工位调整，不需维修人员诊断。2、需外来人员维修和需外送维修须填写《外来人员维修、送外维修审批表》</td>
+  </tr>
+  <tr>
+    <td rowspan="2">申请人部门意见</td>
+    <td colspan="5">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>签字</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="2">信息化管理部门意见</td>
+    <td colspan="5">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>签字</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">如更换硬盘，新硬盘序列号为</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">如更换网卡，新网卡MAC地址为</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">故障原因</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">维修地点</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">维修过程和方法</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">维修结果</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">重装的操作系统日期</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">维修人签字</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">旁站陪同人员(设备负责人)签字</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="6">注：设备负责人负责将设备要素更新情况通知本部门台账管理人员。</td>
+  </tr>
+  <tr>
+    <td rowspan="2">交接记录（仅限于更换硬盘）</td>
+    <td colspan="2">旧硬盘序列号为</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>移交人签字</td>
+    <td>&nbsp;</td>
+    <td>接收人签字</td>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="2">信息档案部资产管理人员</td>
+    <td colspan="2">台账是否更新</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">签字</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

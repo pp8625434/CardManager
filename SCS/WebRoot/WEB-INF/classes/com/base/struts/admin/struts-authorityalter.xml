@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 用户权限变更审批表 -->
+	<package name="authorityalter" extends="print" namespace="/authorityalter" >
+		<action name="authorityAlterList" class="com.manage.authorityalter.action.AuthorityAlterAction"  method="authorityAlterList">
+			<result name="success">/admin/authorityalter/authorityAlterList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="authorityAlterSave" class="com.manage.authorityalter.action.AuthorityAlterAction" method="authorityAlterSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="authorityAlterAdd" class="com.manage.authorityalter.action.AuthorityAlterAction" method="authorityAlterAdd">
+			<result name="success">/admin/authorityalter/authorityAlterEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="authorityAlterDel" class="com.manage.authorityalter.action.AuthorityAlterAction" method="authorityAlterDel">
+			<result name="success" type="chain">
+				<param name="actionName">authorityAlterList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="authorityAlterInfo" class="com.manage.authorityalter.action.AuthorityAlterAction" method="authorityAlterInfo">
+			<result name="success">/admin/authorityalter/authorityAlterInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

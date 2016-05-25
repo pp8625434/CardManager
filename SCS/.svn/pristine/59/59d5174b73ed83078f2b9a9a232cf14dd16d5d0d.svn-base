@@ -1,0 +1,12 @@
+package com.manage.temp.service.impl;
+
+
+import com.manage.temp.service.SClassifiedcopyTabManager;
+
+import com.base.framework.service.impl.ManagerImpl;
+
+public class SClassifiedcopyTabManagerImpl extends ManagerImpl implements SClassifiedcopyTabManager{
+    
+   
+		
+}

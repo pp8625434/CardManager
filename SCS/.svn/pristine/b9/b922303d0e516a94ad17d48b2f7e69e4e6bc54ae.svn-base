@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Ware Manager And DAO Configration==================== -->  
+    <bean id="com.manage.sendoutmaintain.dao.impl.SendOutMaintainDaoImpl" class="com.manage.sendoutmaintain.dao.impl.SendOutMaintainDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.sendoutmaintain.dao.SendOutMaintainDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.sendoutmaintain.dao.SendOutMaintainDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.sendoutmaintain.dao.impl.SendOutMaintainDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.sendoutmaintain.model.SendOutMaintain" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.sendoutmaintain.service.impl.SendOutMaintainManagerImpl">
+                <property name="dao" ref="com.manage.sendoutmaintain.dao.SendOutMaintainDao"/>
+                <property name="modelClass" value="com.manage.sendoutmaintain.model.SendOutMaintain"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

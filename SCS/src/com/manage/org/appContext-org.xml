@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Org Manager And DAO Configration==================== -->  
+    <bean id="com.manage.org.dao.impl.OrgDaoImpl" class="com.manage.org.dao.impl.OrgDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.org.dao.OrgDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.org.dao.OrgDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.org.dao.impl.OrgDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.org.model.Org" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.org.service.impl.OrgManagerImpl">
+                <property name="dao" ref="com.manage.org.dao.OrgDao"/>
+                <property name="modelClass" value="com.manage.org.model.Org"/>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>无标题文档</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+</head>
+
+<body>
+<table width="97%" border="1">
+  <caption>
+    设备接入/退出涉密信息系统审批表
+  </caption>
+  <tr>
+    <td width="19%">申请人</td>
+    <td colspan="2">&nbsp;</td>
+    <td width="11%">电话</td>
+    <td colspan="2">&nbsp;</td>
+    <td width="8%">申请日期</td>
+    <td width="16%" colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">申请人类别</td>
+    <td colspan="7">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>类型</td>
+    <td colspan="3">&nbsp;</td>
+    <td width="11%">申请人密级</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">所在部门及处室</td>
+    <td colspan="7">&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="3">设备基本情况</td>
+    <td width="10%">设备类型</td>
+    <td colspan="7">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>设备编号</td>
+    <td colspan="3">&nbsp;</td>
+    <td width="13%">硬盘序列号</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>设备密级</td>
+    <td colspan="3">&nbsp;</td>
+    <td>存放地点</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">申请人申请开通系统名称</td>
+    <td colspan="7">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">申请人申请退出系统名称</td>
+    <td colspan="7">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">申请接入原因</td>
+    <td colspan="7">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">申请退出原因</td>
+    <td colspan="7">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2" rowspan="2">申请部门意见</td>
+    <td colspan="7">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="12%">签字</td>
+    <td colspan="6">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2" rowspan="2">信息化管理部门意见</td>
+    <td colspan="7">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>签字</td>
+    <td colspan="6">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2" rowspan="2">设备移交情况</td>
+    <td>设备负责人签字</td>
+    <td colspan="2">&nbsp;</td>
+    <td>接收人签字</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="7">注：设备负责人负责将设备要素更新情况通知本部门台账管理人员。</td>
+  </tr>
+  <tr>
+    <td colspan="9">一下部分由操作人员填写</td>
+  </tr>
+  <tr>
+    <td colspan="2" rowspan="3">存储介质信息清除、拆除、设备移交情况</td>
+    <td colspan="2">是否已完成信息清除</td>
+    <td>&nbsp;</td>
+    <td colspan="2">是否已拆除存储固件</td>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">设备是否移交</td>
+    <td colspan="5">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>操作人签字</td>
+    <td colspan="2">&nbsp;</td>
+    <td>接收人签字</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="6">开通（关闭）账户操作结果</td>
+    <td colspan="2">分配的IP地址</td>
+    <td colspan="6">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">关闭的IP地址</td>
+    <td colspan="6">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">交换机操作：</td>
+    <td colspan="2">&nbsp;</td>
+    <td>签字</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">&nbsp;</td>
+    <td colspan="2">操作人签字</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="8">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">操作人签字</td>
+    <td colspan="6">&nbsp;</td>
+  </tr>
+  <tr>
+    <td rowspan="4">信息档案部资产管理人员</td>
+    <td colspan="6">台账是否更新</td>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="6">是否将台账信息告知申请人部门台账管理员</td>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="3">是否到保密管理部门备案</td>
+    <td colspan="2">&nbsp;</td>
+    <td>签字</td>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">签字</td>
+    <td colspan="6">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

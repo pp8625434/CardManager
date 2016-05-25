@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 保密承诺书 -->
+	<package name="promise" extends="print" namespace="/promise" >
+		<action name="promiseList" class="com.manage.promise.action.PromiseAction"  method="promiseList">
+			<result name="success">/admin/promise/promiseList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="promiseSave" class="com.manage.promise.action.PromiseAction" method="promiseSave">
+			<result name="success">/admin/common/info.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="promiseAdd" class="com.manage.promise.action.PromiseAction" method="promiseAdd">
+			<result name="success">/admin/promise/promiseEdit.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="promiseDel" class="com.manage.promise.action.PromiseAction" method="promiseDel">
+			<result name="success" type="chain">
+				<param name="actionName">promiseList</param>
+			</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="promiseInfo" class="com.manage.promise.action.PromiseAction" method="promiseInfo">
+			<result name="success">/admin/promise/promiseInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>
