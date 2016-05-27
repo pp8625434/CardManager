@@ -15,8 +15,11 @@
         	<column name="fcname"/>
         </property>
      	
-     	<property name="flowId" type="java.lang.Integer">
-            <column name="flowId" />
+     	<property name="tid" type="java.lang.Integer">
+            <column name="tid" />
+        </property>
+        <property name="tname" type="java.lang.Integer">
+            <column name="tname" />
         </property>
         <property name="createDate" type="java.util.Date">
             <column name="createdate" />

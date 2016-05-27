@@ -16,10 +16,14 @@
         </property>
         
      	<property name="fielDesc" type="java.lang.String">
-        	<column name="tabledesc"/>
+        	<column name="fieldesc"/>
         </property>
        <property name="tid" type="java.lang.Integer">
         	<column name="tid"/>
+        </property>
+        
+        <property name="fielType" type="java.lang.Integer">
+        	<column name="fieltype"/>
         </property>
     </class>
 </hibernate-mapping>

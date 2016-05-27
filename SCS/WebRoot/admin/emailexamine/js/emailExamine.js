@@ -1,3 +1,9 @@
+
+function edit_emailExamine(id){
+	var para = pageInfo();
+	var str = ctx+"/emailexamine/emailExamineAdd.action?emailExamine.id="+id+"&"+para;
+	parent.addTab("编辑外网邮箱开通、撤销申请审批",str,"icon icon-nav");
+}
 //包含‘其他’选项时的提交验证
 function onForm_Submits(){
 	

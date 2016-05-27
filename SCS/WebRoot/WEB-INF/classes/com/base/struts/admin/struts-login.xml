@@ -53,5 +53,13 @@
 				<param name="root">data</param>
 			</result>
 		</action>
+		
+		<!-- 查询重复 -->
+		<action name="checkRepeat" class="com.manage.login.action.LoginAction" method="checkRepeat">
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		
 	</package>
 </struts>

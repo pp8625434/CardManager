@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<!-- 本部保密补贴考核扣发标准 -->
+	<package name="detainstandard" extends="print" namespace="/detainstandard" >
+		<action name="detainStandardInfo" class="com.manage.detainstandard.action.DetainStandardAction" method="detainStandardInfo">
+			<result name="success">/admin/detainstandard/detainStandardInfo.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	</package>
+</struts>

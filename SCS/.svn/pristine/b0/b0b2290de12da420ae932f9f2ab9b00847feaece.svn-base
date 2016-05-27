@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 表信息 -->
+	<package name="tables" extends="print" namespace="/table">
+		<action name="findTablesList" class="com.manage.table.action.TablesAction" method="findTablesList">
+			<result name="success">/table/tableList.jsp</result>
+			<interceptor-ref name="JurismodelParamsStack" />
+		</action>
+		<action name="editTables" class="com.manage.table.action.TablesAction" method="editTables">
+			<result name="success">/table/tableInfo.jsp</result>
+			<!-- <interceptor-ref name="JurismodelParamsStack" /> -->
+		</action>
+		<action name="saveTables" class="com.manage.table.action.TablesAction" method="saveTables">
+			<result name="success">/admin/common/info.jsp</result>
+			<!-- <interceptor-ref name="JurismodelParamsStack" /> -->
+		</action>
+		
+		<action name="deleteTable" class="com.manage.table.action.TablesAction" method="deleteTable">
+			<result name="success">/admin/common/info.jsp</result>
+		</action>
+		
+		<!-- 获得表字段信息 -->
+		<action name="findTableFieldInfo" class="com.manage.table.action.TablesAction" method="findTableFieldInfo">
+			<result name="success">/table/tableFieldInfo.jsp</result>
+		</action>
+	</package>
+	
+	<package name="tableJson"  extends="json-default"  namespace="/table">
+		<!-- 初始化表单信息 -->
+		<action name="initTableInfo" class="com.manage.table.action.TablesAction" method="initTableInfo" >
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		
+	</package>
+</struts>
+
+
+

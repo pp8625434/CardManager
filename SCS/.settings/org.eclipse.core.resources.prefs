@@ -1,4 +1,4 @@
-#Wed May 25 11:08:09 CST 2016
+#Fri May 27 11:01:12 CST 2016
 eclipse.preferences.version=1
 encoding//WebRoot/admin/alterusbkey/js/alterUsbkey.js=UTF-8
 encoding//WebRoot/admin/appsysalter/js/appSysAlter.js=UTF-8
@@ -15,6 +15,7 @@ encoding//WebRoot/admin/devicepurchase/js/devicePurchase.js=UTF-8
 encoding//WebRoot/admin/divulgesecret/js/divulgeSecret.js=UTF-8
 encoding//WebRoot/admin/emailexamine/js/emailExamine.js=UTF-8
 encoding//WebRoot/admin/empseccheck/js/empSecCheck.js=UTF-8
+encoding//WebRoot/admin/examclassification/js/examclassification.js=UTF-8
 encoding//WebRoot/admin/ferrycentre/js/ferryCentre.js=UTF-8
 encoding//WebRoot/admin/filmingactivity/js/filmingActivity.js=UTF-8
 encoding//WebRoot/admin/image.jsp=UTF-8
@@ -42,6 +43,7 @@ encoding//WebRoot/js/common/validator.js=UTF-8
 encoding//WebRoot/js/datepicker/WdatePicker.js=UTF-8
 encoding//WebRoot/js/framework/hi_Include.js=UTF-8
 encoding//WebRoot/js/util/formUtil.js=UTF-8
+encoding//WebRoot/table/js/table.js=UTF-8
 encoding//WebRoot/test/js/onForm_Submits.js=UTF-8
 encoding//src/systemGlobals.properties=UTF-8
 encoding/<project>=UTF-8

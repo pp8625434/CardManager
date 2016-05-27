@@ -9,10 +9,53 @@
 			<result name="success">/table/tableList.jsp</result>
 			<interceptor-ref name="JurismodelParamsStack" />
 		</action>
+		<action name="editTables" class="com.manage.table.action.TablesAction" method="editTables">
+			<result name="success">/table/tableInfo.jsp</result>
+			<!-- <interceptor-ref name="JurismodelParamsStack" /> -->
+		</action>
+		<action name="saveTables" class="com.manage.table.action.TablesAction" method="saveTables">
+			<result name="success">/admin/common/info.jsp</result>
+			<!-- <interceptor-ref name="JurismodelParamsStack" /> -->
+		</action>
 		
+		<action name="deleteTable" class="com.manage.table.action.TablesAction" method="deleteTable">
+			<result name="success">/admin/common/info.jsp</result>
+		</action>
+		
+		<!-- 获得表字段信息 -->
+		<action name="findTableFieldInfo" class="com.manage.table.action.TablesAction" method="findTableFieldInfo">
+			<result name="success">/table/tableFieldInfo.jsp</result>
+		</action>
+		
+		<!-- 添加表字段 -->
+		<action name="addTableField" class="com.manage.table.action.TablesAction" method="addTableField">
+			<result name="success">/table/tableAddField.jsp</result>
+		</action>
+		
+		<!-- 保存添加表字段 -->
+		<action name="saveTableField" class="com.manage.table.action.TablesAction" method="saveTableField">
+			<result name="success">/admin/common/info.jsp</result>
+		</action>
+		<!-- 删除添加表字段 -->
+		<action name="deleteTableField" class="com.manage.table.action.TablesAction" method="deleteTableField">
+			<result name="success">/admin/common/info.jsp</result>
+		</action>
 	</package>
 	
-	
+	<package name="tableJson"  extends="json-default"  namespace="/table">
+		<!-- 初始化表单信息 -->
+		<action name="initTableInfo" class="com.manage.table.action.TablesAction" method="initTableInfo" >
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		<!-- 表字段名称查重 -->
+		<action name="checkFieldRepeat" class="com.manage.table.action.TablesAction" method="checkFieldRepeat" >
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+	</package>
 </struts>
 
 

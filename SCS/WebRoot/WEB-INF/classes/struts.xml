@@ -191,7 +191,8 @@
 	<include file="com/base/struts/admin/struts-empseccheck.xml"></include>
 	<!-- 保密补贴扣发通知单 -->
 	<include file="com/base/struts/admin/struts-subsidiesdetainper.xml"></include>
-
+	<!-- 本部保密补贴考核扣发标准 -->
+	<include file="com/base/struts/admin/struts-detainstandard.xml"></include>
 	
 	<!-- 表单信息 -->
 	<include file="com/base/struts/admin/struts-tables.xml"></include>

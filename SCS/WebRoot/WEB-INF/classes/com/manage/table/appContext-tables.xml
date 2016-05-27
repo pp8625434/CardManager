@@ -21,5 +21,12 @@
 			</bean>
 		</property>
 	</bean>
-
+	<bean id="com.manage.table.model.TablesInfo" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.manage.table.service.impl.TablesManagerImpl">
+				<property name="dao" ref="com.manage.table.dao.TablesDao" />
+				<property name="modelClass" value="com.manage.table.model.TablesInfo" />
+			</bean>
+		</property>
+	</bean>	
 </beans>

@@ -1,0 +1,302 @@
+package com.manage.table.action;
+
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.base.framework.BaseConfigHolder;
+import com.base.framework.SpringContextHolder;
+import com.base.framework.paging.PageInfo;
+import com.base.framework.web.PageInfoUtil;
+import com.base.framework.web.PageParamsUtil;
+import com.base.framework.web.struts.BaseAction;
+import com.base.util.LogUtil;
+import com.base.util.Utils;
+import com.manage.log.model.Log;
+import com.manage.log.service.LogManager;
+import com.manage.table.action.info.TablesPageInfo;
+import com.manage.table.model.Tables;
+import com.manage.table.model.TablesInfo;
+import com.manage.table.service.TablesManager;
+import com.manage.user.model.User;
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.DatabaseMetaData;
+
+@SuppressWarnings("serial")
+public class TablesAction extends BaseAction{
+	
+	private List<Tables> tablesList;
+	
+	private List<TablesInfo> tinfoList;
+	
+	private Tables tables;
+	
+	private TablesPageInfo  pageInfo;
+	
+	private String data;
+	
+	private TablesInfo tablesInfo;
+	
+	private String params;
+	
+	private String ids;
+	
+	private TablesManager tMgr = (TablesManager) SpringContextHolder.getBean(Tables.class);
+	private TablesManager tinfoMgr = (TablesManager) SpringContextHolder.getBean(TablesInfo.class);
+	private LogManager logMgr = (LogManager)SpringContextHolder.getBean(Log.class);
+	
+	/**
+	 * 获得数据库表 列表信息
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public String findTablesList() throws Exception{
+		pageInfo = pageInfo ==null?new TablesPageInfo():pageInfo;
+		PageInfo sarchPageInfo = PageInfoUtil.populate(pageInfo);
+		tablesList = tMgr.getObjects(sarchPageInfo);
+		return SUCCESS;
+	}
+	
+	/**
+	 * 编辑
+	 * @return
+	 * @throws Exception
+	 */
+	public String editTables() throws Exception{
+		String params = PageParamsUtil.getPageParam(pageInfo);
+		this.getRequest().setAttribute("params", params);
+		tables = (Tables) tMgr.getObjectById(tables.getId());
+		return SUCCESS;
+	}
+	
+	/**
+	 * 保存
+	 * @return
+	 * @throws Exception
+	 */
+	public String saveTables() throws Exception{
+		int typeNum = LogUtil.LOG_ADD_TYPE;
+		if(tables.getId() != null){
+			typeNum = LogUtil.LOG_UPDATE_TYPE;
+		}
+		User u = (User) getSession().getAttribute("user");
+		
+		tMgr.saveObject(tables);
+		logMgr.saveLog(typeNum, LogUtil.LOG_TABLES, tables.getId(), tables.getTableName(), u.getId(), u.getRealname(),getRequest());
+		this.getRequest().setAttribute("title","表单信息");
+		this.getRequest().setAttribute("url","/table/findTablesList.action");
+		this.getRequest().setAttribute("params",this.params);
+		return SUCCESS;
+	}
+	
+	/**
+	 * 删除
+	 * @return
+	 * @throws Exception
+	 */
+	public String deleteTable() throws Exception{
+		if(Utils.isNotNullOrEmpty(ids)){
+			User u = (User) getRequest().getSession().getAttribute("user");
+			String [] tempids = ids.split(",");
+			String sql ="";
+			if(Utils.isNotNullOrEmpty(tempids)){
+				for (int i = 0; i < tempids.length; i++) {
+					tables = (Tables) tMgr.getObjectById(Integer.parseInt(tempids[i]));
+					//删除从字段表对应的信息
+					sql = "delete from  p_tablesInfo  where  tid="+tables.getId();
+					tMgr.executeSQLForUpdate(sql);
+					
+					tMgr.removeObjectById(tables.getId());
+					logMgr.saveLog(LogUtil.LOG_DELETE_TYPE, LogUtil.LOG_TABLES, tables.getId(), tables.getTableName(), u.getId(), u.getRealname(),getRequest());
+				}
+			}
+		}
+		params=PageParamsUtil.getPageParam(pageInfo);
+		getRequest().setAttribute("params", params);
+		this.getRequest().setAttribute("title", "表单信息");
+		this.getRequest().setAttribute("delStr", "true");
+		this.getRequest().setAttribute("url", "/table/findTablesList.action");
+		return SUCCESS;
+	}
+	
+	/**
+	 * 获得表字段信息
+	 * @return
+	 * @throws Exception
+	 */
+	public String findTableFieldInfo() throws Exception{
+		String params = PageParamsUtil.getPageParam(pageInfo);
+		this.getRequest().setAttribute("params", params);
+		tinfoList = tinfoMgr.findFieldInfoListBytid(tables.getId());
+		return SUCCESS;
+	}
+	
+	
+	/**
+	 * 初始化 表单信息
+	 * @return
+	 * @throws Exception
+	 */
+	public String initTableInfo() throws Exception{
+		data  ="error";
+		String driver = BaseConfigHolder.getProperties().getProperty("jdbc.driverClass");		
+		String url = BaseConfigHolder.getProperties().getProperty("jdbc.jdbcUrl");	
+		String user = BaseConfigHolder.getProperties().getProperty("jdbc.user");
+		String pwd = BaseConfigHolder.getProperties().getProperty("jdbc.password");
+		url += "?user="+user+"&password="+pwd+ "&useUnicode=true&characterEncoding=UTF-8";
+		Connection  getConnection  = null;
+		ResultSet resultSet = null;
+		ResultSet rs = null;
+		try {
+			Class.forName(driver);
+	        getConnection=(Connection) DriverManager.getConnection(url);
+			DatabaseMetaData dbmd = (DatabaseMetaData) getConnection.getMetaData();
+			resultSet = dbmd.getTables(null, "%", "%", new String[] { "TABLE" });
+			//先清空数据
+			String sql = "";
+			sql = "delete from p_tables";
+			tMgr.executeSQLForUpdate(sql);
+			sql = "delete from p_tablesinfo";
+			tMgr.executeSQLForUpdate(sql);
+			List<String> tlist = excluderTable();
+			
+			while (resultSet.next()){
+                String tableName = resultSet.getString("TABLE_NAME");
+                if(tlist.contains(tableName)){
+                	continue;
+                }
+                tables = new Tables();
+                tables.setTableName(tableName);
+                tMgr.saveObject(tables);
+                
+                if(tables.getId()!=null && tables.getId()>0){                	
+                	rs = dbmd.getColumns(null, "%", tableName, "%");
+                    while(rs.next()){
+                    	tablesInfo = new TablesInfo();
+                    	tablesInfo.setTid(tables.getId());
+                    	tablesInfo.setFieldName(rs.getString("COLUMN_NAME"));
+                    	if(rs.getString("TYPE_NAME").equals("INT")){
+                    		tablesInfo.setFielType(2);	
+                    	}else if(rs.getString("TYPE_NAME").equals("VARCHAR")){
+                    		tablesInfo.setFielType(1);
+                    	}else {
+                    		tablesInfo.setFielType(0);
+                    	}
+                    	tablesInfo.setFielDesc(rs.getString("REMARKS"));
+                    	tinfoMgr.saveObject(tablesInfo);
+//                    	System.out.print("列名："+rs.getString("COLUMN_NAME"));
+//                    	System.out.print("  数据类型是："+rs.getString("DATA_TYPE"));
+//                    	System.out.print("  类型名称是："+rs.getString("TYPE_NAME"));
+//                    	System.out.print("  列大小是："+rs.getString("COLUMN_SIZE"));
+//                    	System.out.println("  注释是："+rs.getString("REMARKS"));
+                    }
+                }
+            }
+			data = "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			getConnection.close();
+			resultSet.close();
+			rs.close();
+		}
+		
+		return SUCCESS;
+	}
+	
+	
+	private static List<String> excluderTable(){
+		List<String> list = new ArrayList<String>();
+		list.add("p_log");
+		list.add("p_loginlog");
+		list.add("p_flowchart");
+		list.add("p_flowlines");
+		list.add("p_flownodes");
+		list.add("p_flownodesconfig");
+		list.add("p_menu");
+		list.add("p_menulink");
+		list.add("p_rolemenulink");
+		list.add("p_tables");
+		list.add("p_tablesinfo");
+		list.add("p_url");
+		list.add("p_userrole");
+		return list;
+	}
+	
+	public List<Tables> getTablesList() {
+		return tablesList;
+	}
+
+
+	public void setTablesList(List<Tables> tablesList) {
+		this.tablesList = tablesList;
+	}
+
+
+	public Tables getTables() {
+		return tables;
+	}
+
+
+	public void setTables(Tables tables) {
+		this.tables = tables;
+	}
+
+
+	public TablesPageInfo getPageInfo() {
+		return pageInfo;
+	}
+
+
+	public void setPageInfo(TablesPageInfo pageInfo) {
+		this.pageInfo = pageInfo;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public TablesInfo getTablesInfo() {
+		return tablesInfo;
+	}
+
+	public void setTablesInfo(TablesInfo tablesInfo) {
+		this.tablesInfo = tablesInfo;
+	}
+
+	public String getParams() {
+		return params;
+	}
+
+	public void setParams(String params) {
+		this.params = params;
+	}
+
+	public String getIds() {
+		return ids;
+	}
+
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+
+	public List<TablesInfo> getTinfoList() {
+		return tinfoList;
+	}
+
+	public void setTinfoList(List<TablesInfo> tinfoList) {
+		this.tinfoList = tinfoList;
+	}
+
+	
+	
+	 
+
+}

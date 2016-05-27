@@ -1,0 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ include file="/includes/main.jsp"%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/admin/css/style.css"  >
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/admin/css/content.css"  >
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/framework/hi_Include.js"></script>
+		
+		
+	</head>
+
+	<body class="adminMain">
+		<div class="mainTitle">
+			表字段信息
+		</div>
+		
+		<div class="mainConText">
+			<form  method="post">
+				<input type="hidden" value="<s:property value="tables.id"/>" />
+	    		<input type="hidden" name="params" value="<%=request.getAttribute("params") %>"/>
+	    	
+				<div class="mainConText">
+			<table class="tableCon">
+				<tr class="TRtit">
+					
+					<td><a>字段名称</a></td>
+					<td><a>描述</a></td>
+					<td><a>类型</a></td>
+					<td>
+						操作
+					</td>
+				</tr>
+			
+				
+				<s:iterator value="tinfoList" status="field">
+					<tr class="<s:if test="#field.odd==false">trEven</s:if><s:else> trOdd</s:else>">
+						
+						<td><s:property value="fieldName" /></td>
+						<td><s:property value="fielDesc" /></td>
+						<td>
+							<s:if test="fielType ==0">其他</s:if>
+							<s:elseif test="fielType ==1">字符型</s:elseif>
+							<s:elseif test="fielType ==2">整型</s:elseif>
+						</td>
+						<td>
+							
+							<a href="javascript:edit_table(${id})">编辑</a>
+							
+							<a href="javascript:delete_table(${id})">删除</a>
+						</td>
+					</tr>
+				</s:iterator> 
+			</table>
+			
+		</div>
+		</div>
+	</body>
+</html>
