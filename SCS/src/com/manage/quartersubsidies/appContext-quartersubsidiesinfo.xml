@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Enumeration Manager And DAO Configration==================== -->  
+    <bean id="com.manage.quartersubsidies.dao.impl.QuartersubsidiesInfoDaoImpl" class="com.manage.quartersubsidies.dao.impl.QuartersubsidiesInfoDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.quartersubsidies.dao.QuartersubsidiesInfoDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.quartersubsidies.dao.QuartersubsidiesInfoDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.quartersubsidies.dao.impl.QuartersubsidiesInfoDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.quartersubsidies.model.SQuartersubsidiesInfoTab" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.quartersubsidies.service.impl.QuartersubsidiesInfoManagerImpl">
+                <property name="dao" ref="com.manage.quartersubsidies.dao.QuartersubsidiesInfoDao"/>
+                <property name="modelClass" value="com.manage.quartersubsidies.model.SQuartersubsidiesInfoTab"/>
+            </bean>
+        </property>
+    </bean>
+    
+
+</beans>

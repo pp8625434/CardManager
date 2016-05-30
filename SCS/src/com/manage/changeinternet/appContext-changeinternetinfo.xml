@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Enumeration Manager And DAO Configration==================== -->  
+    <bean id="com.manage.changeinternet.dao.impl.ChangeinternetInfoDaoImpl" class="com.manage.changeinternet.dao.impl.ChangeinternetInfoDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.changeinternet.dao.ChangeinternetInfoDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.changeinternet.dao.ChangeinternetInfoDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.changeinternet.dao.impl.ChangeinternetInfoDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.changeinternet.model.SChangeinternetInfoTab" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.changeinternet.service.impl.ChangeinternetInfoManagerImpl">
+                <property name="dao" ref="com.manage.changeinternet.dao.ChangeinternetInfoDao"/>
+                <property name="modelClass" value="com.manage.changeinternet.model.SChangeinternetInfoTab"/>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

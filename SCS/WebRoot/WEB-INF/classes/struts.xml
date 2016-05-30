@@ -107,6 +107,7 @@
 	<include file="com/base/struts/admin/struts-leavepromise.xml"></include>
 	<include file="com/base/struts/admin/struts-classifiedprint.xml"></include>
 	<include file="com/base/struts/admin/struts-classifiedcopy.xml"></include>
+	<include file="com/base/struts/admin/struts-classifieddestroy.xml"></include>
 	<include file="com/base/struts/admin/struts-classifiedrecord.xml"></include>
 	<include file="com/base/struts/admin/struts-classifiedtz.xml"></include>
 	<include file="com/base/struts/admin/struts-keypartexam.xml"></include>
@@ -122,7 +123,9 @@
 	<include file="com/base/struts/admin/struts-changeinternet.xml"></include>
 	<include file="com/base/struts/admin/struts-changemedium.xml"></include>
 	<include file="com/base/struts/admin/struts-vregist.xml"></include>
-	
+	<include file="com/base/struts/admin/struts-quartersubsidies.xml"></include>
+	<include file="com/base/struts/admin/struts-equalification.xml"></include>
+	<include file="com/base/struts/admin/struts-applykeypart.xml"></include>
 	<!-- 视频会议系统使用申请表 -->
 	<include file="com/base/struts/admin/struts-videomeeting.xml" ></include>
 	<!-- 系统失泄密记录表 -->

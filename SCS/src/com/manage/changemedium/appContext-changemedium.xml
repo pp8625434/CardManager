@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Enumeration Manager And DAO Configration==================== -->  
+    <bean id="com.manage.changemedium.dao.impl.ChangemediumDaoImpl" class="com.manage.changemedium.dao.impl.ChangemediumDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.changemedium.dao.ChangemediumDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.changemedium.dao.ChangemediumDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.changemedium.dao.impl.ChangemediumDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.changemedium.model.SChangemediumTab" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.changemedium.service.impl.ChangemediumManagerImpl">
+                <property name="dao" ref="com.manage.changemedium.dao.ChangemediumDao"/>
+                <property name="modelClass" value="com.manage.changemedium.model.SChangemediumTab"/>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

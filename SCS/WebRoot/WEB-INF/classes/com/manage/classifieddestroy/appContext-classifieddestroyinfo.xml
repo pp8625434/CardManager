@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Enumeration Manager And DAO Configration==================== -->  
+    <bean id="com.manage.classifieddestroy.dao.impl.ClassifieddestroyInfoDaoImpl" class="com.manage.classifieddestroy.dao.impl.ClassifieddestroyInfoDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.classifieddestroy.dao.ClassifieddestroyInfoDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.classifieddestroy.dao.ClassifieddestroyInfoDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.classifieddestroy.dao.impl.ClassifieddestroyInfoDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.classifieddestroy.model.SClassifieddestroyInfoTab" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.classifieddestroy.service.impl.ClassifieddestroyInfoManagerImpl">
+                <property name="dao" ref="com.manage.classifieddestroy.dao.ClassifieddestroyInfoDao"/>
+                <property name="modelClass" value="com.manage.classifieddestroy.model.SClassifieddestroyInfoTab"/>
+            </bean>
+        </property>
+    </bean>
+    
+
+</beans>

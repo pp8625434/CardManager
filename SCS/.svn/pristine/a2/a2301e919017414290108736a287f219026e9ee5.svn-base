@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Ware Manager And DAO Configration==================== -->  
+    <bean id="com.manage.applykeypart.dao.impl.MigrantsioDaoImpl" class="com.manage.applykeypart.dao.impl.MigrantsioDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.applykeypart.dao.MigrantsioDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.applykeypart.dao.MigrantsioDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.applykeypart.dao.impl.MigrantsioDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.applykeypart.model.SMigrantsioTab" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.applykeypart.service.impl.MigrantsioManagerImpl">
+                <property name="dao" ref="com.manage.applykeypart.dao.MigrantsioDao"/>
+                <property name="modelClass" value="com.manage.applykeypart.model.SMigrantsioTab"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Ware Manager And DAO Configration==================== -->  
+    <bean id="com.manage.applykeypart.dao.impl.ApplykeypartDaoImpl" class="com.manage.applykeypart.dao.impl.ApplykeypartDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.manage.applykeypart.dao.ApplykeypartDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.manage.applykeypart.dao.ApplykeypartDao" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.manage.applykeypart.dao.impl.ApplykeypartDaoImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.manage.applykeypart.model.SApplykeypartTab" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.manage.applykeypart.service.impl.ApplykeypartManagerImpl">
+                <property name="dao" ref="com.manage.applykeypart.dao.ApplykeypartDao"/>
+                <property name="modelClass" value="com.manage.applykeypart.model.SApplykeypartTab"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>
